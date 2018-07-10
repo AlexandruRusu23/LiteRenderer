@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{50a05f24-100e-4f53-b805-c16afa551fc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Init">
+      <UniqueIdentifier>{a7cde497-5cd1-4c66-b33d-26717a9c9cee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{f344bc58-cce0-4850-82b8-78507532dcc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{8bd566fd-3b52-4575-bd1f-1a247eedf9a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Models">
+      <UniqueIdentifier>{a20ed11c-2c35-482f-80ab-af30da4de45e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{475ab8da-4a16-46e1-a924-bc7a96c86777}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Init\Init_GLEW.cpp">
+      <Filter>Core\Init</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Init\Init_GLUT.cpp">
+      <Filter>Core\Init</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\Models_Manager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\Scene_Manager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\Shader_Manager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Models\CubeIndex.cpp">
+      <Filter>Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Models\Model.cpp">
+      <Filter>Rendering\Models</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\Init\ContextInfo.h">
+      <Filter>Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Init\DebugOutput.h">
+      <Filter>Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Init\FrameBufferInfo.h">
+      <Filter>Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Init\IListener.h">
+      <Filter>Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Init\Init_GLEW.h">
+      <Filter>Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Init\Init_GLUT.h">
+      <Filter>Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Init\WindowInfo.h">
+      <Filter>Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\Models_Manager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\Scene_Manager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\Shader_Manager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\IGameObject.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\VertexFormat.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Models\CubeIndex.h">
+      <Filter>Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Models\Model.h">
+      <Filter>Rendering\Models</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Vertex_Shader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Fragment_Shader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>
