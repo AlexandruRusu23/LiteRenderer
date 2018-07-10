@@ -7,19 +7,17 @@
 #include "FrameBufferInfo.h"
 #include "WindowInfo.h"
 #include "IListener.h"
-#include "DebugOutput.h"
-#include "Init_GLEW.h"
 
 namespace Core
 {
 	namespace Init
 	{
-		class Init_GLUT
+		class InitGLUT
 		{
 		public:
-			static void Init(const Core::WindowInfo& windowInfo, const Core::ContextInfo& contextInfo, const Core::FrameBufferInfo& framebufferInfo);
+			static void Init(const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FrameBufferInfo& frameBufferInfo);
 		public:
-			static void SetListener(Core::IListener*& iListener);
+			static void SetListener(IListener* iListener);
 
 			static void Run();
 			static void Close();
@@ -27,15 +25,15 @@ namespace Core
 			void EnterFullscreen();
 			void ExitFullscreen();
 
-			static void PrintOpenGLInfo(const Core::WindowInfo& windowInfo, const Core::ContextInfo& context);
+			static void PrintOpenGLInfo(const WindowInfo& windowInfo, const ContextInfo& context);
 		private:
-			static Core::IListener* listener;
-			static Core::WindowInfo windowInformation;
-
 			static void IdleCallback(void);
 			static void DisplayCallback(void);
 			static void ReshapeCallback(int width, int height);
 			static void CloseCallback();
+
+			static IListener* m_listener;
+			static WindowInfo m_windowInformation;
 		};
 	}
 }

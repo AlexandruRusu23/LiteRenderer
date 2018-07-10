@@ -10,9 +10,12 @@ namespace Core
 {
 	namespace Init
 	{
-		class Init_GLEW
+		class InitGLEW
 		{
 		public:
+			InitGLEW(void);
+			~InitGLEW(void);
+
 			static void Init();
 		};
 	}

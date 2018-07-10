@@ -2,8 +2,7 @@
 #define CUBEINDEX_H
 
 #include "Model.h"
-#include <time.h>
-#include <stdarg.h>
+#include <chrono>
 
 namespace Rendering
 {
@@ -16,15 +15,16 @@ namespace Rendering
 			~CubeIndex();
 
 			void Create();
-			virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override final;
+			virtual void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) override final;
 
 			virtual void Update() override final;
 
 		private:
-			glm::vec3 rotation, rotation_speed;
-			glm::vec3 translate;
-			glm::mat4 translate_matrix;
-			time_t timer;
+			glm::vec3 m_rotation;
+			glm::vec3 m_rotationSpeed;
+			glm::vec3 m_translate;
+			glm::mat4 m_translateMatrix;
+			std::chrono::milliseconds m_timer;
 		};
 	}
 }

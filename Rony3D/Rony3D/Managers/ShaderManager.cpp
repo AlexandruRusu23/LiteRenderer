@@ -1,27 +1,28 @@
-#include "Shader_Manager.h"
+#include "ShaderManager.h"
+
 #include <iostream>
 #include <fstream>
 #include <vector>
 
 using namespace Managers;
 
-// static std::map from Shader_Manager class;
-std::map <std::string, GLuint> Shader_Manager::ms_programs;
+// static std::map from ShaderManager class;
+std::map <std::string, GLuint> ShaderManager::m_programs;
 
-Shader_Manager::Shader_Manager(void) {}
+ShaderManager::ShaderManager(void) {}
 
-Shader_Manager::~Shader_Manager(void)
+ShaderManager::~ShaderManager(void)
 {
-	std::map<std::string, GLuint>::iterator i;
-	for (i = ms_programs.begin(); i != ms_programs.end(); i++)
+	std::map<std::string, GLuint>::iterator program;
+	for (program = m_programs.begin(); program != m_programs.end(); program++)
 	{
-		GLuint pr = i->second;
+		GLuint pr = program->second;
 		glDeleteProgram(pr);
 	}
-	ms_programs.clear();
+	m_programs.clear();
 }
 
-std::string Shader_Manager::ReadShader(const std::string& filename)
+std::string ShaderManager::ReadShader(const std::string& filename)
 {
 	std::string shaderCode;
 	std::ifstream file(filename.c_str(), std::ios::in);
@@ -48,14 +49,13 @@ std::string Shader_Manager::ReadShader(const std::string& filename)
 	return shaderCode;
 }
 
-GLuint Shader_Manager::CreateShader(GLenum shaderType, const std::string& source, const std::string& shaderName)
+GLuint ShaderManager::CreateShader(GLenum shaderType, const std::string& source, const std::string& shaderName)
 {
-	int compileResult = 0;
-
 	GLuint shader = glCreateShader(shaderType);
 	const char *shaderCodePtr = source.c_str();
 	const int shaderCodeSize = static_cast<int>(source.size());
 
+	int compileResult = 0;
 	glShaderSource(shader, 1, &shaderCodePtr, &shaderCodeSize);
 	glCompileShader(shader);
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &compileResult);
@@ -72,19 +72,18 @@ GLuint Shader_Manager::CreateShader(GLenum shaderType, const std::string& source
 	return shader;
 }
 
-void Shader_Manager::CreateProgram(const std::string& shaderName, const std::string& VertexShaderFilename, const std::string& FragmentShaderFilename)
+void ShaderManager::CreateProgram(const std::string& shaderName, const std::string& VertexShaderFilename, const std::string& FragmentShaderFilename)
 {
 	std::string vertexShaderCode = ReadShader(VertexShaderFilename);
 	std::string fragmentShaderCode = ReadShader(FragmentShaderFilename);
 	GLuint vertexShader = CreateShader(GL_VERTEX_SHADER, vertexShaderCode, (std::string("vertex shader")).c_str());
 	GLuint fragmentShader = CreateShader(GL_FRAGMENT_SHADER, fragmentShaderCode, (std::string("fragment shader")).c_str());
 
-	int linkResult = 0;
-
 	GLuint program = glCreateProgram();
 	glAttachShader(program, vertexShader);
 	glAttachShader(program, fragmentShader);
 
+	int linkResult = 0;
 	glLinkProgram(program);
 	glGetProgramiv(program, GL_LINK_STATUS, &linkResult);
 
@@ -98,14 +97,14 @@ void Shader_Manager::CreateProgram(const std::string& shaderName, const std::str
 		return;
 	}
 	// check if shaderName is already in std::map
-	if (ms_programs.find(shaderName) != ms_programs.end())
+	if (m_programs.find(shaderName) != m_programs.end())
 		return;
-	ms_programs[shaderName] = program;
+	m_programs[shaderName] = program;
 }
 
-const GLuint Shader_Manager::GetShader(const std::string& shaderName)
+const GLuint ShaderManager::GetShader(const std::string& shaderName)
 {
-	if (ms_programs.find(shaderName) != ms_programs.end())
-		return ms_programs.at(shaderName);
+	if (m_programs.find(shaderName) != m_programs.end())
+		return m_programs.at(shaderName);
 	return -1;
 }

@@ -15,10 +15,10 @@ namespace Rendering
 		glm::vec3 position;
 		glm::vec4 color;
 
-		VertexFormat(const glm::vec3 &iPos, const glm::vec4 &iColor)
+		VertexFormat(const glm::vec3 &position, const glm::vec4 &color)
 		{
-			position = iPos;
-			color = iColor;
+			this->position = position;
+			this->color = color;
 		}
 
 		VertexFormat() {}

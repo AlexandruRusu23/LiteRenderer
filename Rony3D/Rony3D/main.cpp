@@ -1,34 +1,29 @@
-#include <iostream>
-#include <math.h>
+#include "Engine.h"
+#include "Rendering\Models\CubeIndex.h"
 
-#include <glew/glew.h>
-#include <freeglut/freeglut.h>
+using namespace Rony3D;
+using namespace Rendering;
+using namespace Models;
 
-#define GLM_ENABLE_EXPERIMENTAL
-
-#include <glm/glm.hpp>
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtx/transform.hpp"
-#include "glm/gtc/type_ptr.hpp"
-
-#include "Core/Init/Init_GLUT.h"
-#include "Managers/Scene_Manager.h"
-
-using namespace Core;
+static const std::string k_cubeShader = "cubeShader";
 
 int main(int argc, char **argv)
 {
-	WindowInfo window(std::string("Scene3D"), 300, 300, 800, 600, true);
+	Engine* engine = new Engine();
+	engine->Init();
 
-	ContextInfo context(3, 3, true);
-	FrameBufferInfo frameBufferInfo(true, true, true, true);
-	Init::Init_GLUT::Init(window, context, frameBufferInfo);
+	engine->GetShaderManager()->CreateProgram(k_cubeShader.c_str(),
+		"Shaders/VertexShader.glsl",
+		"Shaders/FragmentShader.glsl");
 
-	IListener* scene = new Managers::Scene_Manager();
-	Init::Init_GLUT::SetListener(scene);
+	CubeIndex* cubeIndex = new CubeIndex();
+	cubeIndex->SetProgram(engine->GetShaderManager()->GetShader(k_cubeShader.c_str()));
+	cubeIndex->Create();
 
-	Init::Init_GLUT::Run();
+	engine->GetModelsManager()->SetModel("cubeIndex", cubeIndex);
 
-	delete scene;
+	engine->Run();
+
+	delete engine;
 	return 0;
 }

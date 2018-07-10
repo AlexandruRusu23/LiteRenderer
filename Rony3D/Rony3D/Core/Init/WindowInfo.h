@@ -9,50 +9,50 @@ namespace Core
 	struct WindowInfo
 	{
 		std::string name;
-		int width, height;
-		int position_x, position_y;
+		int width;
+		int height;
+		int positionX;
+		int positionY;
 		bool isReshapable;
 
 		WindowInfo()
 		{
-			name = "Scene3D";
+			name = "Rony3D";
 			width = 800; height = 600;
-			position_x = 300;
-			position_y = 300;
+			positionX = 300;
+			positionY = 300;
 			isReshapable = true;
 		}
 
-		WindowInfo(std::string name, int start_position_x, int start_position_y, int width, int height, bool isReshapable)
+		WindowInfo(std::string name, int startPositionX, int startPositionY, int width, int height, bool isReshapable)
 		{
 			this->name = name;
 			this->width = width;
 			this->height = height;
-			this->position_x = start_position_x;
-			this->position_y = start_position_y;
+			this->positionX = startPositionX;
+			this->positionY = startPositionY;
 			this->isReshapable = isReshapable;
 		}
 
 		// copy constructor
 		WindowInfo(const WindowInfo& windowInfo)
 		{
-			name = windowInfo.name;
-			position_x = windowInfo.position_x;
-			position_y = windowInfo.position_y;
-
-			width = windowInfo.width;
-			height = windowInfo.height;
-			isReshapable = windowInfo.isReshapable;
+			this->name = windowInfo.name;
+			this->positionX = windowInfo.positionX;
+			this->positionY = windowInfo.positionY;
+			this->width = windowInfo.width;
+			this->height = windowInfo.height;
+			this->isReshapable = windowInfo.isReshapable;
 		}
 
 		void operator=(const WindowInfo& windowInfo)
 		{
-			name = windowInfo.name;
-			position_x = windowInfo.position_x;
-			position_y = windowInfo.position_y;
-
-			width = windowInfo.width;
-			height = windowInfo.height;
-			isReshapable = windowInfo.isReshapable;
+			this->name = windowInfo.name;
+			this->positionX = windowInfo.positionX;
+			this->positionY = windowInfo.positionY;
+			this->width = windowInfo.width;
+			this->height = windowInfo.height;
+			this->isReshapable = windowInfo.isReshapable;
 		}
 	};
 }

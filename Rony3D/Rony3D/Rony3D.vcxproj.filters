@@ -31,25 +31,13 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{475ab8da-4a16-46e1-a924-bc7a96c86777}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Logging">
+      <UniqueIdentifier>{adc9ebfd-4d64-46df-ad3a-2d5897d9c10d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Init\Init_GLEW.cpp">
-      <Filter>Core\Init</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Init\Init_GLUT.cpp">
-      <Filter>Core\Init</Filter>
-    </ClCompile>
-    <ClCompile Include="Managers\Models_Manager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="Managers\Scene_Manager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="Managers\Shader_Manager.cpp">
-      <Filter>Managers</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Models\CubeIndex.cpp">
       <Filter>Rendering\Models</Filter>
@@ -57,12 +45,27 @@
     <ClCompile Include="Rendering\Models\Model.cpp">
       <Filter>Rendering\Models</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Init\InitGLEW.cpp">
+      <Filter>Core\Init</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Init\InitGLUT.cpp">
+      <Filter>Core\Init</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\ModelsManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\SceneManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\ShaderManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\ContextInfo.h">
-      <Filter>Core\Init</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Init\DebugOutput.h">
       <Filter>Core\Init</Filter>
     </ClInclude>
     <ClInclude Include="Core\Init\FrameBufferInfo.h">
@@ -71,23 +74,8 @@
     <ClInclude Include="Core\Init\IListener.h">
       <Filter>Core\Init</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Init\Init_GLEW.h">
-      <Filter>Core\Init</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Init\Init_GLUT.h">
-      <Filter>Core\Init</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Init\WindowInfo.h">
       <Filter>Core\Init</Filter>
-    </ClInclude>
-    <ClInclude Include="Managers\Models_Manager.h">
-      <Filter>Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="Managers\Scene_Manager.h">
-      <Filter>Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="Managers\Shader_Manager.h">
-      <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\IGameObject.h">
       <Filter>Rendering</Filter>
@@ -101,12 +89,33 @@
     <ClInclude Include="Rendering\Models\Model.h">
       <Filter>Rendering\Models</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Init\InitGLEW.h">
+      <Filter>Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Init\InitGLUT.h">
+      <Filter>Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\ModelsManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\SceneManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\ShaderManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Logging\DebugOutput.h">
+      <Filter>Core\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\Vertex_Shader.glsl">
+    <None Include="Shaders\FragmentShader.glsl">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Shaders\Fragment_Shader.glsl">
+    <None Include="Shaders\VertexShader.glsl">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

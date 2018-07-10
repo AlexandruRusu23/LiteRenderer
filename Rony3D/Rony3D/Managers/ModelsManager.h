@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <map>
-#include "Shader_Manager.h"
+#include "ShaderManager.h"
 #include "..\Rendering\IGameObject.h"
 #include "..\Rendering\Models\CubeIndex.h"
 
@@ -11,21 +11,22 @@ using namespace Rendering;
 
 namespace Managers
 {
-	class Models_Manager
+	class ModelsManager
 	{
 	public:
-		Models_Manager();
-		~Models_Manager();
+		ModelsManager();
+		~ModelsManager();
 
 		void Draw();
-		void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix);
+		void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix);
 		void Update();
 
 		void DeleteModel(const std::string& gameModelName);
 		const IGameObject& GetModel(const std::string& gameModelName) const;
+		void SetModel(const std::string& gameObjectName, IGameObject* gameObject);
 
 	private:
-		std::map<std::string, IGameObject*> gameModelList;
+		std::map<std::string, IGameObject*> m_gameModelList;
 	};
 }
 

@@ -1,18 +1,23 @@
-#include "Init_GLUT.h"
+#include "InitGLUT.h"
+#include "InitGLEW.h"
+#include "DebugOutput.h"
 
-Core::IListener* Core::Init::Init_GLUT::listener = NULL;
-Core::WindowInfo Core::Init::Init_GLUT::windowInformation;
+using namespace Core;
+using namespace Init;
 
-void Core::Init::Init_GLUT::Init(const Core::WindowInfo& windowInfo, const Core::ContextInfo& contextInfo, const Core::FrameBufferInfo& frameBufferInfo)
+IListener* InitGLUT::m_listener = NULL;
+WindowInfo InitGLUT::m_windowInformation;
+
+void InitGLUT::Init(const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FrameBufferInfo& frameBufferInfo)
 {
 	int fakeargc = 1;
 	char szFake[5] = "fake";
 	char *fakeargv[] = { szFake, NULL };
 	glutInit(&fakeargc, fakeargv);
 
-	if (contextInfo.core)
+	if (contextInfo.useCoreProfile)
 	{
-		glutInitContextVersion(contextInfo.major_version, contextInfo.minor_version);
+		glutInitContextVersion(contextInfo.majorVersion, contextInfo.minorVersion);
 		glutInitContextProfile(GLUT_CORE_PROFILE);
 	}
 	else
@@ -21,12 +26,12 @@ void Core::Init::Init_GLUT::Init(const Core::WindowInfo& windowInfo, const Core:
 	}
 
 	glutInitDisplayMode(frameBufferInfo.flags);
-	glutInitWindowPosition(windowInfo.position_x, windowInfo.position_y);
+	glutInitWindowPosition(windowInfo.positionX, windowInfo.positionY);
 	glutInitWindowSize(windowInfo.width, windowInfo.height);
 
 	glutCreateWindow(windowInfo.name.c_str());
 
-	windowInformation = windowInfo;
+	m_windowInformation = windowInfo;
 
 	std::cout << "GLUT: Initialized" << std::endl;
 
@@ -37,8 +42,8 @@ void Core::Init::Init_GLUT::Init(const Core::WindowInfo& windowInfo, const Core:
 	glutDisplayFunc(DisplayCallback);
 	glutReshapeFunc(ReshapeCallback);
 
-	Init::Init_GLEW::Init();
-	glDebugMessageCallback(DebugOutput::registerDebugError, NULL);
+	InitGLEW::Init();
+	glDebugMessageCallback(DebugOutput::RegisterDebugError, NULL);
 	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);
 
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
@@ -46,71 +51,71 @@ void Core::Init::Init_GLUT::Init(const Core::WindowInfo& windowInfo, const Core:
 	PrintOpenGLInfo(windowInfo, contextInfo);
 }
 
-void Core::Init::Init_GLUT::Run()
+void InitGLUT::Run()
 {
 	std::cout << "GLUT:\t Start Running" << std::endl;
 	glutMainLoop();
 }
 
-void Core::Init::Init_GLUT::Close()
+void InitGLUT::Close()
 {
 	std::cout << "GLUT:\t Finished" << std::endl;
 	glutLeaveMainLoop();
 }
 
-void Core::Init::Init_GLUT::IdleCallback(void)
+void InitGLUT::IdleCallback(void)
 {
 	glutPostRedisplay();
 }
 
-void Core::Init::Init_GLUT::DisplayCallback()
+void InitGLUT::DisplayCallback()
 {
 	//check for NULL
-	if (listener)
+	if (m_listener)
 	{
-		listener->NotifyBeginFrame();
-		listener->NotifyDisplayFrame();
+		m_listener->NotifyBeginFrame();
+		m_listener->NotifyDisplayFrame();
 
 		glutSwapBuffers();
 
-		listener->NotifyEndFrame();
+		m_listener->NotifyEndFrame();
 	}
 }
 
-void Core::Init::Init_GLUT::ReshapeCallback(int width, int height)
+void InitGLUT::ReshapeCallback(int width, int height)
 {
-	if (windowInformation.isReshapable == true)
+	if (m_windowInformation.isReshapable == true)
 	{
-		if (listener)
+		if (m_listener)
 		{
-			listener->NotifyReshape(width, height, windowInformation.width, windowInformation.height);
+			m_listener->NotifyReshape(width, height, m_windowInformation.width, m_windowInformation.height);
 		}
-		windowInformation.width = width;
-		windowInformation.height = height;
+		m_windowInformation.width = width;
+		m_windowInformation.height = height;
 	}
 }
 
-void Core::Init::Init_GLUT::CloseCallback()
+void InitGLUT::CloseCallback()
 {
 	Close();
 }
 
-void Core::Init::Init_GLUT::EnterFullscreen()
+void InitGLUT::EnterFullscreen()
 {
 	glutFullScreen();
 }
 
-void Core::Init::Init_GLUT::ExitFullscreen()
+void InitGLUT::ExitFullscreen()
 {
 	glutLeaveFullScreen();
 }
 
-void Core::Init::Init_GLUT::SetListener(Core::IListener*& iListener)
+void InitGLUT::SetListener(IListener* iListener)
 {
-	listener = iListener;
+	m_listener = iListener;
 }
 
-void Core::Init::Init_GLUT::PrintOpenGLInfo(const Core::WindowInfo& windowInfo, const Core::ContextInfo& contextInfo)
+void InitGLUT::PrintOpenGLInfo(const WindowInfo& windowInfo, const ContextInfo& contextInfo)
 {
 	const unsigned char* renderer = glGetString(GL_RENDERER);
 	const unsigned char* vendor = glGetString(GL_VENDOR);

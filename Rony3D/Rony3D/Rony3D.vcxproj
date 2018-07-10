@@ -138,34 +138,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Init\Init_GLEW.cpp" />
-    <ClCompile Include="Core\Init\Init_GLUT.cpp" />
+    <ClCompile Include="Core\Init\InitGLEW.cpp" />
+    <ClCompile Include="Core\Init\InitGLUT.cpp" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Managers\Models_Manager.cpp" />
-    <ClCompile Include="Managers\Scene_Manager.cpp" />
-    <ClCompile Include="Managers\Shader_Manager.cpp" />
+    <ClCompile Include="Managers\ModelsManager.cpp" />
+    <ClCompile Include="Managers\SceneManager.cpp" />
+    <ClCompile Include="Managers\ShaderManager.cpp" />
     <ClCompile Include="Rendering\Models\CubeIndex.cpp" />
     <ClCompile Include="Rendering\Models\Model.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\ContextInfo.h" />
-    <ClInclude Include="Core\Init\DebugOutput.h" />
     <ClInclude Include="Core\Init\FrameBufferInfo.h" />
     <ClInclude Include="Core\Init\IListener.h" />
-    <ClInclude Include="Core\Init\Init_GLEW.h" />
-    <ClInclude Include="Core\Init\Init_GLUT.h" />
+    <ClInclude Include="Core\Init\InitGLEW.h" />
+    <ClInclude Include="Core\Init\InitGLUT.h" />
     <ClInclude Include="Core\Init\WindowInfo.h" />
-    <ClInclude Include="Managers\Models_Manager.h" />
-    <ClInclude Include="Managers\Scene_Manager.h" />
-    <ClInclude Include="Managers\Shader_Manager.h" />
+    <ClInclude Include="Core\Logging\DebugOutput.h" />
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="Managers\ModelsManager.h" />
+    <ClInclude Include="Managers\SceneManager.h" />
+    <ClInclude Include="Managers\ShaderManager.h" />
     <ClInclude Include="Rendering\IGameObject.h" />
     <ClInclude Include="Rendering\Models\CubeIndex.h" />
     <ClInclude Include="Rendering\Models\Model.h" />
     <ClInclude Include="Rendering\VertexFormat.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\Fragment_Shader.glsl" />
-    <None Include="Shaders\Vertex_Shader.glsl" />
+    <None Include="Shaders\FragmentShader.glsl" />
+    <None Include="Shaders\VertexShader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

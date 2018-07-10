@@ -15,7 +15,7 @@ namespace Rendering
 			virtual ~Model();
 
 			virtual void Draw() override;
-			virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override;
+			virtual void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) override;
 			virtual void Update() override;
 			virtual void SetProgram(GLuint shaderName) override;
 			virtual void Destroy() override;
@@ -24,9 +24,9 @@ namespace Rendering
 			virtual const std::vector<GLuint>& GetVbos() const override;
 
 		protected:
-			GLuint vao;
-			GLuint program;
-			std::vector<GLuint> vbos;
+			GLuint m_vao;
+			GLuint m_program;
+			std::vector<GLuint> m_vbos;
 		};
 	}
 }

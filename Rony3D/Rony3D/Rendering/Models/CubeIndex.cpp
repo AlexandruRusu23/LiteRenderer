@@ -1,8 +1,9 @@
 #include "CubeIndex.h"
-using namespace Rendering;
-using namespace Models;
 
 #define PI 3.14159265
+
+using namespace Rendering;
+using namespace Models;
 
 CubeIndex::CubeIndex()
 {
@@ -20,7 +21,7 @@ void CubeIndex::Create()
 	GLuint vbo;
 	GLuint ibo;
 
-	time(&timer);
+	m_timer = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
 
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
@@ -85,33 +86,37 @@ void CubeIndex::Create()
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::color)));
 	glBindVertexArray(0);
 
-	this->vao = vao;
-	this->vbos.push_back(vbo);
-	this->vbos.push_back(ibo);
+	this->m_vao = vao;
+	this->m_vbos.push_back(vbo);
+	this->m_vbos.push_back(ibo);
 
-	rotation_speed = glm::vec3(10.0, 10.0, 10.0);
-	rotation = glm::vec3(0.0, 0.0, 0.0);
-	translate = glm::vec3(0.0, 0.0, 0.0);
-	translate_matrix = glm::translate(glm::mat4(1.0f), translate);
+	m_rotationSpeed = glm::vec3(100.0, 100.0, 100.0);
+	m_rotation = glm::vec3(0.0, 0.0, 0.0);
+	m_translate = glm::vec3(0.0, 0.0, 0.0);
+	m_translateMatrix = glm::translate(glm::mat4(1.0f), m_translate);
 }
 
 void CubeIndex::Update()
 {
+	auto current_miliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
+	float deltaTime = static_cast<float>(std::chrono::duration_cast<std::chrono::milliseconds>(current_miliseconds - m_timer).count());
+	float fps = 1000.f / deltaTime;
 
+	m_rotation = (1.f / fps) * m_rotationSpeed + m_rotation;
+
+	m_timer = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
 }
 
 void CubeIndex::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
-	rotation = 0.01f * rotation_speed + rotation;
+	glm::vec3 rotation_sin = glm::vec3(m_rotation.x * PI / 180, m_rotation.y * PI / 180, m_rotation.z * PI / 180);
 
-	glm::vec3 rotation_sin = glm::vec3(rotation.x * PI / 180, rotation.y * PI / 180, rotation.z * PI / 180);
+	glUseProgram(m_program);
+	glUniform3f(glGetUniformLocation(m_program, "rotation"), rotation_sin.x, rotation_sin.y, rotation_sin.z);
+	glUniformMatrix4fv(glGetUniformLocation(m_program, "translate_matrix"), 1, GL_FALSE, &m_translateMatrix[0][0]);
 
-	glUseProgram(program);
-	glUniform3f(glGetUniformLocation(program, "rotation"), rotation_sin.x, rotation_sin.y, rotation_sin.z);
-	glUniformMatrix4fv(glGetUniformLocation(program, "translate_matrix"), 1, GL_FALSE, &translate_matrix[0][0]);
-
-	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, GL_FALSE, &view_matrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, GL_FALSE, &projection_matrix[0][0]);
-	glBindVertexArray(vao);
+	glUniformMatrix4fv(glGetUniformLocation(m_program, "view_matrix"), 1, GL_FALSE, &view_matrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(m_program, "projection_matrix"), 1, GL_FALSE, &projection_matrix[0][0]);
+	glBindVertexArray(m_vao);
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }

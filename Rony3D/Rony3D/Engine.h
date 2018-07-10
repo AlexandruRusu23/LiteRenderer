@@ -1,0 +1,33 @@
+#ifndef ENGINE_H
+#define ENGINE_H
+
+#include "Core\Init\InitGLUT.h"
+#include "Managers\SceneManager.h"
+
+namespace Rony3D
+{
+	class Engine
+	{
+	public:
+		Engine();
+		~Engine();
+
+		//OpenGL and manager init
+		bool Init();
+
+		//Loop
+		void Run();
+
+		//Getters
+		Managers::SceneManager*  GetSceneManager()  const;
+		Managers::ShaderManager* GetShaderManager() const;
+		Managers::ModelsManager* GetModelsManager() const;
+
+	private:
+		Managers::SceneManager*  m_sceneManager  = nullptr;
+		Managers::ShaderManager* m_shaderManager = nullptr;
+		Managers::ModelsManager* m_modelsManager = nullptr;
+	};
+}
+
+#endif // !ENGINE_H

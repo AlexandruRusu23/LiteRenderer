@@ -5,35 +5,31 @@ namespace Core
 {
 	struct ContextInfo
 	{
-		int major_version, minor_version;
-		bool core;
+		int majorVersion;
+		int minorVersion;
+		bool useCoreProfile;
 
-		ContextInfo()
-		{
-			major_version = 3;
-			minor_version = 3;
-			core = true;
-		}
+		ContextInfo() = delete;
 
-		ContextInfo(int major_version, int minor_version, bool core)
+		ContextInfo(int majorVersion, int minorVersion, bool useCoreProfile)
 		{
-			this->major_version = major_version;
-			this->minor_version = minor_version;
-			this->core = core;
+			this->majorVersion = majorVersion;
+			this->minorVersion = minorVersion;
+			this->useCoreProfile = useCoreProfile;
 		}
 
 		ContextInfo(const ContextInfo& contextInfo)
 		{
-			major_version = contextInfo.major_version;
-			minor_version = contextInfo.minor_version;
-			core = contextInfo.core;
+			majorVersion = contextInfo.majorVersion;
+			minorVersion = contextInfo.minorVersion;
+			useCoreProfile = contextInfo.useCoreProfile;
 		}
 
 		void operator=(const ContextInfo& contextInfo)
 		{
-			major_version = contextInfo.major_version;
-			minor_version = contextInfo.minor_version;
-			core = contextInfo.core;
+			majorVersion = contextInfo.majorVersion;
+			minorVersion = contextInfo.minorVersion;
+			useCoreProfile = contextInfo.useCoreProfile;
 		}
 	};
 }
