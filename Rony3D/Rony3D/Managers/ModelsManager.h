@@ -1,11 +1,9 @@
 #ifndef MODELS_MANAGER_H
 #define MODELS_MANAGER_H
 
-#include <iostream>
 #include <map>
-#include "ShaderManager.h"
+
 #include "..\Rendering\IGameObject.h"
-#include "..\Rendering\Models\CubeIndex.h"
 
 using namespace Rendering;
 

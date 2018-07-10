@@ -10,7 +10,7 @@ static const std::string k_cubeShader = "cubeShader";
 int main(int argc, char **argv)
 {
 	Engine* engine = new Engine();
-	engine->Init();
+	engine->Init(argc, argv);
 
 	engine->GetShaderManager()->CreateProgram(k_cubeShader.c_str(),
 		"Shaders/VertexShader.glsl",

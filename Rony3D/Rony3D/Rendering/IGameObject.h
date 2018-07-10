@@ -1,7 +1,7 @@
 #ifndef IGAMEOBJECT_H
 #define IGAMEOBJECT_H
+
 #include <vector>
-#include <iostream>
 
 #include <glew\glew.h>
 #include <freeglut\freeglut.h>

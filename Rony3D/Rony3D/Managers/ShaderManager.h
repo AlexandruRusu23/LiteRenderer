@@ -1,10 +1,6 @@
 #ifndef SHADER_MANAGER_H
 #define SHADER_MANAGER_H
 
-#include <fstream>
-#include <iostream>
-#include <math.h>
-#include <vector>
 #include <map>
 
 #include <glew\glew.h>

@@ -1,7 +1,6 @@
 #ifndef WINDOWINFO_H
 #define WINDOWINFO_H
 
-#include <iostream>
 #include <string>
 
 namespace Core

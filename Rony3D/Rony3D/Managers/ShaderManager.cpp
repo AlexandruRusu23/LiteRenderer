@@ -6,7 +6,6 @@
 
 using namespace Managers;
 
-// static std::map from ShaderManager class;
 std::map <std::string, GLuint> ShaderManager::m_programs;
 
 ShaderManager::ShaderManager(void) {}

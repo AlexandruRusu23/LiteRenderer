@@ -13,7 +13,7 @@ namespace Rony3D
 		~Engine();
 
 		//OpenGL and manager init
-		bool Init();
+		bool Init(int argc, char **argv);
 
 		//Loop
 		void Run();

@@ -8,12 +8,12 @@ Engine::Engine()
 
 }
 
-bool Engine::Init()
+bool Engine::Init(int argc, char **argv)
 {
 	WindowInfo windowInfo(std::string("Rony3D"), 300, 300, 800, 600, true);
-	ContextInfo contextInfo(4, 5, true);
+	ContextInfo contextInfo(3, 3, true);
 	FrameBufferInfo frameBufferInfo(true, true, true, true);
-	Init::InitGLUT::Init(windowInfo, contextInfo, frameBufferInfo);
+	Init::InitGLUT::Init(argc, argv, windowInfo, contextInfo, frameBufferInfo);
 
 	m_sceneManager = new Managers::SceneManager();
 	Init::InitGLUT::SetListener(m_sceneManager);

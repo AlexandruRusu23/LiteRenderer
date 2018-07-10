@@ -15,7 +15,7 @@ namespace Core
 		class InitGLUT
 		{
 		public:
-			static void Init(const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FrameBufferInfo& frameBufferInfo);
+			static void Init(int argc, char **argv, const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FrameBufferInfo& frameBufferInfo);
 		public:
 			static void SetListener(IListener* iListener);
 

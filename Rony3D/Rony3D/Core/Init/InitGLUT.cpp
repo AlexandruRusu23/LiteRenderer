@@ -5,15 +5,12 @@
 using namespace Core;
 using namespace Init;
 
-IListener* InitGLUT::m_listener = NULL;
+IListener* InitGLUT::m_listener = nullptr;
 WindowInfo InitGLUT::m_windowInformation;
 
-void InitGLUT::Init(const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FrameBufferInfo& frameBufferInfo)
+void InitGLUT::Init(int argc, char **argv, const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FrameBufferInfo& frameBufferInfo)
 {
-	int fakeargc = 1;
-	char szFake[5] = "fake";
-	char *fakeargv[] = { szFake, NULL };
-	glutInit(&fakeargc, fakeargv);
+	glutInit(&argc, argv);
 
 	if (contextInfo.useCoreProfile)
 	{
@@ -21,9 +18,7 @@ void InitGLUT::Init(const WindowInfo& windowInfo, const ContextInfo& contextInfo
 		glutInitContextProfile(GLUT_CORE_PROFILE);
 	}
 	else
-	{
 		glutInitContextProfile(GLUT_COMPATIBILITY_PROFILE);
-	}
 
 	glutInitDisplayMode(frameBufferInfo.flags);
 	glutInitWindowPosition(windowInfo.positionX, windowInfo.positionY);
@@ -37,6 +32,7 @@ void InitGLUT::Init(const WindowInfo& windowInfo, const ContextInfo& contextInfo
 
 	glEnable(GL_DEBUG_OUTPUT);
 
+	// register callbacks
 	glutIdleFunc(IdleCallback);
 	glutCloseFunc(CloseCallback);
 	glutDisplayFunc(DisplayCallback);
@@ -87,9 +83,8 @@ void InitGLUT::ReshapeCallback(int width, int height)
 	if (m_windowInformation.isReshapable == true)
 	{
 		if (m_listener)
-		{
 			m_listener->NotifyReshape(width, height, m_windowInformation.width, m_windowInformation.height);
-		}
+		
 		m_windowInformation.width = width;
 		m_windowInformation.height = height;
 	}
