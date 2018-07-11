@@ -1,18 +1,22 @@
 //vertex shader
-#version 330 core
+#version 430 core
 
 layout(location = 0) in vec3 in_position;
-layout(location = 1) in vec4 in_color;
+//layout(location = 1) in vec4 in_color;
+layout(location = 1) in vec2 in_texture;
 
-uniform mat4 projection_matrix, view_matrix;
-uniform vec3 rotation;
+uniform mat4 projection_matrix;
+uniform mat4 view_matrix;
 uniform mat4 translate_matrix;
+uniform vec3 rotation;
 
-out vec4 color;
+//out vec4 color;
+out vec2 texcoord;
 
 void main()
 {
-    color = in_color;
+    //color = in_color;
+	texcoord = in_texture;
     mat4 rotate_x, rotate_y, rotate_z;
 
     rotate_x = mat4(1.0, 0.0, 0.0, 0.0,

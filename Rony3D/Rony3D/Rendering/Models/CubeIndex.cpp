@@ -104,14 +104,13 @@ void CubeIndex::Update()
 	float fps = 1000.f / deltaTime;
 
 	m_rotation = (1.f / fps) * m_rotationSpeed + m_rotation;
+	m_rotationSin = glm::vec3(m_rotation.x * PI / 180, m_rotation.y * PI / 180, m_rotation.z * PI / 180);
 }
 
 void CubeIndex::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
-	glm::vec3 rotation_sin = glm::vec3(m_rotation.x * PI / 180, m_rotation.y * PI / 180, m_rotation.z * PI / 180);
-
 	glUseProgram(m_program);
-	glUniform3f(glGetUniformLocation(m_program, "rotation"), rotation_sin.x, rotation_sin.y, rotation_sin.z);
+	glUniform3f(glGetUniformLocation(m_program, "rotation"), m_rotationSin.x, m_rotationSin.y, m_rotationSin.z);
 	glUniformMatrix4fv(glGetUniformLocation(m_program, "translate_matrix"), 1, GL_FALSE, &m_translateMatrix[0][0]);
 
 	glUniformMatrix4fv(glGetUniformLocation(m_program, "view_matrix"), 1, GL_FALSE, &view_matrix[0][0]);

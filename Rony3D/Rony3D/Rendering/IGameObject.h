@@ -7,6 +7,7 @@
 #include <freeglut\freeglut.h>
 
 #include "VertexFormat.h"
+#include "Texture\TextureLoader.h"
 
 namespace Rendering
 {
@@ -23,6 +24,9 @@ namespace Rendering
 
 		virtual GLuint GetVao() const = 0;
 		virtual const std::vector<GLuint>& GetVbos() const = 0;
+
+		virtual const GLuint GetTexture(const std::string& textureName) const = 0;
+		virtual void SetTexture(const std::string& textureName, GLuint textureId) = 0;
 	};
 
 	inline IGameObject::~IGameObject()

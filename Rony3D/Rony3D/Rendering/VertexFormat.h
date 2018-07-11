@@ -14,11 +14,20 @@ namespace Rendering
 	{
 		glm::vec3 position;
 		glm::vec4 color;
+		glm::vec2 texture;
 
 		VertexFormat(const glm::vec3 &position, const glm::vec4 &color)
 		{
 			this->position = position;
 			this->color = color;
+			texture.x = texture.y = 0;
+		}
+
+		VertexFormat(const glm::vec3 &position, const glm::vec2 &texture)
+		{
+			this->position = position;
+			this->color = { 0, 0, 0, 1};
+			this->texture = texture;
 		}
 
 		VertexFormat() {}

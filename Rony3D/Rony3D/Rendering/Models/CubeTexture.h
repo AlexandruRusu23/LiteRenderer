@@ -1,5 +1,5 @@
-#ifndef CUBEINDEX_H
-#define CUBEINDEX_H
+#ifndef CUBETEXTURE_H
+#define CUBETEXTURE_H
 
 #include "Model.h"
 #include <chrono>
@@ -8,11 +8,11 @@ namespace Rendering
 {
 	namespace Models
 	{
-		class CubeIndex : public Model
+		class CubeTexture : public Model
 		{
 		public:
-			CubeIndex();
-			~CubeIndex();
+			CubeTexture();
+			~CubeTexture();
 
 			void Create();
 			virtual void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) override final;

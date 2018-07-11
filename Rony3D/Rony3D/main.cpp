@@ -1,5 +1,7 @@
 #include "Engine.h"
-#include "Rendering\Models\CubeIndex.h"
+#include "Rendering\Models\CubeTexture.h"
+
+#include <soil\SOIL.h>
 
 using namespace Rony3D;
 using namespace Rendering;
@@ -16,11 +18,15 @@ int main(int argc, char **argv)
 		"Shaders/VertexShader.glsl",
 		"Shaders/FragmentShader.glsl");
 
-	CubeIndex* cubeIndex = new CubeIndex();
-	cubeIndex->SetProgram(engine->GetShaderManager()->GetShader(k_cubeShader.c_str()));
-	cubeIndex->Create();
+	CubeTexture* cubeTexture = new CubeTexture();
+	cubeTexture->SetProgram(engine->GetShaderManager()->GetShader(k_cubeShader.c_str()));
+	cubeTexture->Create();
 
-	engine->GetModelsManager()->SetModel("cubeIndex", cubeIndex);
+	unsigned int texture = engine->GetTextureLoader()->LoadTexture("Textures/bamboo.bmp", 256, 256);
+	//unsigned int textureId = SOIL_load_OGL_texture("Textures/nebula1.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS);
+	cubeTexture->SetTexture("Create", texture);
+
+	engine->GetModelsManager()->SetModel("cubeTexture", cubeTexture);
 
 	engine->Run();
 

@@ -34,6 +34,9 @@
     <Filter Include="Core\Logging">
       <UniqueIdentifier>{adc9ebfd-4d64-46df-ad3a-2d5897d9c10d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering\Texture">
+      <UniqueIdentifier>{2431970e-39f6-4018-bdd7-1931c021b8cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -62,6 +65,12 @@
     </ClCompile>
     <ClCompile Include="Engine.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Texture\TextureLoader.cpp">
+      <Filter>Rendering\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Models\CubeTexture.cpp">
+      <Filter>Rendering\Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +118,15 @@
     </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Texture\BMPHeaders.h">
+      <Filter>Rendering\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Texture\TextureLoader.h">
+      <Filter>Rendering\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Models\CubeTexture.h">
+      <Filter>Rendering\Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

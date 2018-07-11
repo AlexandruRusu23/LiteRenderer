@@ -6,10 +6,10 @@ SceneManager::SceneManager()
 {
 	glEnable(GL_DEPTH_TEST);
 
-	m_viewMatrix = glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
-		0.0f, 1.0f, 0.0f, 0.0f,
-		0.0f, 0.0f, -1.0f, 0.0f,
-		0.0f, 0.0f, 5.0f, 1.0f);
+	m_viewMatrix = glm::mat4(	1.0f, 0.0f, 0.0f,  0.0f,
+								0.0f, 1.0f, 0.0f,  0.0f,
+								0.0f, 0.0f, -1.0f, 0.0f,
+								0.0f, 0.0f, 5.0f, 1.0f);
 }
 
 SceneManager::~SceneManager()
@@ -28,6 +28,7 @@ void SceneManager::NotifyDisplayFrame()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 
+	m_modelsManager->Draw();
 	m_modelsManager->Draw(m_projectionMatrix, m_viewMatrix);
 }
 

@@ -2,6 +2,7 @@
 #define MODEL_H
 
 #include <vector>
+#include <map>
 #include "..\IGameObject.h"
 
 namespace Rendering
@@ -23,10 +24,14 @@ namespace Rendering
 			virtual GLuint GetVao() const override;
 			virtual const std::vector<GLuint>& GetVbos() const override;
 
+			virtual const GLuint GetTexture(const std::string& textureName) const override;
+			virtual void SetTexture(const std::string& textureName, GLuint textureId) override;
+
 		protected:
 			GLuint m_vao;
 			GLuint m_program;
 			std::vector<GLuint> m_vbos;
+			std::map<std::string, GLuint> m_textures;
 		};
 	}
 }

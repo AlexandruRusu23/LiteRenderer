@@ -10,8 +10,8 @@ Engine::Engine()
 
 bool Engine::Init(int argc, char **argv)
 {
-	WindowInfo windowInfo(std::string("Rony3D"), 300, 300, 800, 600, true);
-	ContextInfo contextInfo(3, 3, true);
+	WindowInfo windowInfo(std::string("Rony3D"), 300, 300, 1280, 720, true);
+	ContextInfo contextInfo(4, 3, true);
 	FrameBufferInfo frameBufferInfo(true, true, true, true);
 	Init::InitGLUT::Init(argc, argv, windowInfo, contextInfo, frameBufferInfo);
 
@@ -19,6 +19,7 @@ bool Engine::Init(int argc, char **argv)
 	Init::InitGLUT::SetListener(m_sceneManager);
 
 	m_shaderManager = new Managers::ShaderManager();
+	m_textureLoader = new TextureLoader();
 
 	if (m_sceneManager && m_shaderManager)
 	{
@@ -54,6 +55,11 @@ Managers::ModelsManager* Engine::GetModelsManager() const
 	return m_modelsManager;
 }
 
+TextureLoader* Engine::GetTextureLoader() const
+{
+	return m_textureLoader;
+}
+
 Engine::~Engine()
 {
 	if (m_sceneManager)
@@ -64,4 +70,7 @@ Engine::~Engine()
 
 	if (m_modelsManager)
 		delete m_modelsManager;
+
+	if (m_textureLoader)
+		delete m_textureLoader;
 }

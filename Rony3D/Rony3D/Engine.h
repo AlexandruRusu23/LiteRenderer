@@ -22,11 +22,13 @@ namespace Rony3D
 		Managers::SceneManager*  GetSceneManager()  const;
 		Managers::ShaderManager* GetShaderManager() const;
 		Managers::ModelsManager* GetModelsManager() const;
+		TextureLoader* GetTextureLoader() const;
 
 	private:
 		Managers::SceneManager*  m_sceneManager  = nullptr;
 		Managers::ShaderManager* m_shaderManager = nullptr;
 		Managers::ModelsManager* m_modelsManager = nullptr;
+		TextureLoader*			 m_textureLoader = nullptr;
 	};
 }
 
