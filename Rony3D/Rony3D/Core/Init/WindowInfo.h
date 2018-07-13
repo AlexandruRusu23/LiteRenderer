@@ -7,21 +7,14 @@ namespace Core
 {
 	struct WindowInfo
 	{
-		std::string name;
-		int width;
-		int height;
-		int positionX;
-		int positionY;
-		bool isReshapable;
+		std::string		name;
+		int				width;
+		int				height;
+		int				positionX;
+		int				positionY;
+		bool			isReshapable;
 
-		WindowInfo()
-		{
-			name = "Rony3D";
-			width = 800; height = 600;
-			positionX = 300;
-			positionY = 300;
-			isReshapable = true;
-		}
+		WindowInfo() = delete;
 
 		WindowInfo(std::string name, int startPositionX, int startPositionY, int width, int height, bool isReshapable)
 		{
@@ -33,7 +26,6 @@ namespace Core
 			this->isReshapable = isReshapable;
 		}
 
-		// copy constructor
 		WindowInfo(const WindowInfo& windowInfo)
 		{
 			this->name = windowInfo.name;

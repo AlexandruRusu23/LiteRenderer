@@ -12,23 +12,20 @@ namespace Rony3D
 		Engine();
 		~Engine();
 
-		//OpenGL and manager init
 		bool Init(int argc, char **argv);
 
-		//Loop
 		void Run();
 
-		//Getters
-		Managers::SceneManager*  GetSceneManager()  const;
-		Managers::ShaderManager* GetShaderManager() const;
-		Managers::ModelsManager* GetModelsManager() const;
-		TextureLoader* GetTextureLoader() const;
+		Managers::SceneManager*		GetSceneManager()  const;
+		Managers::ShaderManager*	GetShaderManager() const;
+		Managers::ModelsManager*	GetModelsManager() const;
+		TextureLoader*				GetTextureLoader() const;
 
 	private:
-		Managers::SceneManager*  m_sceneManager  = nullptr;
-		Managers::ShaderManager* m_shaderManager = nullptr;
-		Managers::ModelsManager* m_modelsManager = nullptr;
-		TextureLoader*			 m_textureLoader = nullptr;
+		Managers::SceneManager*		m_sceneManager  = nullptr;
+		Managers::ShaderManager*	m_shaderManager = nullptr;
+		Managers::ModelsManager*	m_modelsManager = nullptr;
+		TextureLoader*				m_textureLoader = nullptr;
 	};
 }
 

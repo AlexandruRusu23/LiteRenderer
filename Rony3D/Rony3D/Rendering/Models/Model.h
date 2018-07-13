@@ -14,12 +14,13 @@ namespace Rendering
 		public:
 			Model();
 			virtual ~Model();
+			virtual void Destroy() override;
 
+			virtual void Update() override;
 			virtual void Draw() override;
 			virtual void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) override;
-			virtual void Update() override;
+			
 			virtual void SetProgram(GLuint shaderName) override;
-			virtual void Destroy() override;
 
 			virtual GLuint GetVao() const override;
 			virtual const std::vector<GLuint>& GetVbos() const override;
@@ -28,10 +29,10 @@ namespace Rendering
 			virtual void SetTexture(const std::string& textureName, GLuint textureId) override;
 
 		protected:
-			GLuint m_vao;
-			GLuint m_program;
-			std::vector<GLuint> m_vbos;
-			std::map<std::string, GLuint> m_textures;
+			GLuint							m_vao;
+			GLuint							m_program;
+			std::vector<GLuint>				m_vbos;
+			std::map<std::string, GLuint>	m_textures;
 		};
 	}
 }

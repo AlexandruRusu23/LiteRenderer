@@ -8,6 +8,21 @@ Engine::Engine()
 
 }
 
+Engine::~Engine()
+{
+	if (m_sceneManager)
+		delete m_sceneManager;
+
+	if (m_shaderManager)
+		delete m_shaderManager;
+
+	if (m_modelsManager)
+		delete m_modelsManager;
+
+	if (m_textureLoader)
+		delete m_textureLoader;
+}
+
 bool Engine::Init(int argc, char **argv)
 {
 	WindowInfo windowInfo(std::string("Rony3D"), 300, 300, 1280, 720, true);
@@ -27,14 +42,11 @@ bool Engine::Init(int argc, char **argv)
 		m_sceneManager->SetModelsManager(m_modelsManager);
 	}
 	else
-	{
 		return false;
-	}
 
 	return true;
 }
 
-//Create the loop
 void Engine::Run()
 {
 	Init::InitGLUT::Run();
@@ -58,19 +70,4 @@ Managers::ModelsManager* Engine::GetModelsManager() const
 TextureLoader* Engine::GetTextureLoader() const
 {
 	return m_textureLoader;
-}
-
-Engine::~Engine()
-{
-	if (m_sceneManager)
-		delete m_sceneManager;
-
-	if (m_shaderManager)
-		delete m_shaderManager;
-
-	if (m_modelsManager)
-		delete m_modelsManager;
-
-	if (m_textureLoader)
-		delete m_textureLoader;
 }

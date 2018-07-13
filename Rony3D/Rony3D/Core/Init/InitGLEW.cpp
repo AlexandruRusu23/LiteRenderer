@@ -2,7 +2,7 @@
 #include "../Logging/Logger.h"
 
 using namespace Core;
-using namespace Core::Init;
+using namespace Init;
 
 InitGLEW::InitGLEW(void)
 {

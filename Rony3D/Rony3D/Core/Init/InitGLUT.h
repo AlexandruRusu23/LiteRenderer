@@ -16,6 +16,7 @@ namespace Core
 		{
 		public:
 			static void Init(int argc, char **argv, const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FrameBufferInfo& frameBufferInfo);
+		
 		public:
 			static void SetListener(IListener* iListener);
 
@@ -26,14 +27,15 @@ namespace Core
 			static void ExitFullscreen();
 
 			static void PrintOpenGLInfo(const WindowInfo& windowInfo, const ContextInfo& context);
+		
 		private:
 			static void IdleCallback(void);
 			static void DisplayCallback(void);
 			static void ReshapeCallback(int width, int height);
 			static void CloseCallback();
 
-			static IListener* m_listener;
-			static WindowInfo m_windowInformation;
+			static IListener*	m_listener;
+			static WindowInfo	m_windowInformation;
 		};
 	}
 }

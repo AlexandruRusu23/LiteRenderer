@@ -16,6 +16,8 @@ namespace Rendering
 		glm::vec4 color;
 		glm::vec2 texture;
 
+		VertexFormat() = delete;
+
 		VertexFormat(const glm::vec3 &position, const glm::vec4 &color)
 		{
 			this->position = position;
@@ -29,9 +31,6 @@ namespace Rendering
 			this->color = { 0, 0, 0, 1};
 			this->texture = texture;
 		}
-
-		VertexFormat() {}
-
 	};
 }
 #endif

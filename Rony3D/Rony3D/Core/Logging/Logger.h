@@ -19,7 +19,7 @@ namespace Core
 		class Logger
 		{
 		public:
-			static void Init();
+			static void Init(std::string filename = "Rony3D.log");
 			static void Close();
 
 			static void Log(std::string message, LogType logType = LogType::MESSAGE);

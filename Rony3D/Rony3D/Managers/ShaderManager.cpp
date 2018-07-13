@@ -23,6 +23,43 @@ ShaderManager::~ShaderManager(void)
 	m_programs.clear();
 }
 
+const GLuint ShaderManager::GetShader(const std::string& shaderName)
+{
+	if (m_programs.find(shaderName) != m_programs.end())
+		return m_programs.at(shaderName);
+	return -1;
+}
+
+void ShaderManager::CreateProgram(const std::string& shaderName, const std::string& VertexShaderFilename, const std::string& FragmentShaderFilename)
+{
+	std::string vertexShaderCode = ReadShader(VertexShaderFilename);
+	std::string fragmentShaderCode = ReadShader(FragmentShaderFilename);
+	GLuint vertexShader = CreateShader(GL_VERTEX_SHADER, vertexShaderCode, std::string("vertex_shader").c_str());
+	GLuint fragmentShader = CreateShader(GL_FRAGMENT_SHADER, fragmentShaderCode, std::string("fragment_shader").c_str());
+
+	GLuint program = glCreateProgram();
+	glAttachShader(program, vertexShader);
+	glAttachShader(program, fragmentShader);
+
+	int linkResult = 0;
+	glLinkProgram(program);
+	glGetProgramiv(program, GL_LINK_STATUS, &linkResult);
+
+	if (linkResult == GL_FALSE)
+	{
+		int infoLogLength = 0;
+		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &infoLogLength);
+		std::vector<char> programLog(infoLogLength);
+		glGetProgramInfoLog(program, infoLogLength, NULL, &programLog[0]);
+		Logger::Log("Shader Loader : LINK ERROR", LogType::ERROR_MESSAGE);
+		Logger::Log(&programLog[0], LogType::ERROR_MESSAGE);
+		return;
+	}
+	if (m_programs.find(shaderName) != m_programs.end())
+		return;
+	m_programs[shaderName] = program;
+}
+
 std::string ShaderManager::ReadShader(const std::string& filename)
 {
 	std::string shaderCode;
@@ -72,42 +109,4 @@ GLuint ShaderManager::CreateShader(GLenum shaderType, const std::string& source,
 		return 0;
 	}
 	return shader;
-}
-
-void ShaderManager::CreateProgram(const std::string& shaderName, const std::string& VertexShaderFilename, const std::string& FragmentShaderFilename)
-{
-	std::string vertexShaderCode = ReadShader(VertexShaderFilename);
-	std::string fragmentShaderCode = ReadShader(FragmentShaderFilename);
-	GLuint vertexShader = CreateShader(GL_VERTEX_SHADER, vertexShaderCode, (std::string("vertex shader")).c_str());
-	GLuint fragmentShader = CreateShader(GL_FRAGMENT_SHADER, fragmentShaderCode, (std::string("fragment shader")).c_str());
-
-	GLuint program = glCreateProgram();
-	glAttachShader(program, vertexShader);
-	glAttachShader(program, fragmentShader);
-
-	int linkResult = 0;
-	glLinkProgram(program);
-	glGetProgramiv(program, GL_LINK_STATUS, &linkResult);
-
-	if (linkResult == GL_FALSE)
-	{
-		int infoLogLength = 0;
-		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &infoLogLength);
-		std::vector<char> programLog(infoLogLength);
-		glGetProgramInfoLog(program, infoLogLength, NULL, &programLog[0]);
-		Logger::Log("Shader Loader : LINK ERROR", LogType::ERROR_MESSAGE);
-		Logger::Log(&programLog[0], LogType::ERROR_MESSAGE);
-		return;
-	}
-	// check if shaderName is already in std::map
-	if (m_programs.find(shaderName) != m_programs.end())
-		return;
-	m_programs[shaderName] = program;
-}
-
-const GLuint ShaderManager::GetShader(const std::string& shaderName)
-{
-	if (m_programs.find(shaderName) != m_programs.end())
-		return m_programs.at(shaderName);
-	return -1;
 }

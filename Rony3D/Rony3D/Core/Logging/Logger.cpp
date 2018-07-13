@@ -12,9 +12,15 @@ __time64_t Logger::m_currentTimestamp;
 struct tm Logger::m_currentTime;
 char Logger::m_currentTimeFormatted[26];
 
-void Logger::Init()
+void Logger::Init(std::string filename /* = "Rony3D.log" */)
 {
-	m_outStream.open("Rony3D.log", std::ofstream::out | std::ofstream::app);
+	if (m_outStream.is_open())
+	{
+		_ASSERT(false);
+		return;
+	}
+
+	m_outStream.open(filename, std::ofstream::out | std::ofstream::app);
 	Log("*********************Logger initialized***********************\n");
 }
 
@@ -123,7 +129,7 @@ void Logger::UpdateTimestamp()
 
 char* Logger::NumberToChar(unsigned int num, int base)
 {
-	static char Representation[] = "0123456789ABCDEF";
+	static char representation[] = "0123456789ABCDEF";
 	static char buffer[50];
 	char *ptr;
 
@@ -132,7 +138,7 @@ char* Logger::NumberToChar(unsigned int num, int base)
 
 	do
 	{
-		*--ptr = Representation[num%base];
+		*--ptr = representation[num%base];
 		num /= base;
 	} while (num != 0);
 

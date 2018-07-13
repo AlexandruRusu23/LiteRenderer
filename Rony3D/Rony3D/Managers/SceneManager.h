@@ -22,10 +22,10 @@ namespace Managers
 		void SetModelsManager(ModelsManager*& modelsManager);
 
 	private:
-		Managers::ModelsManager* m_modelsManager;
+		Managers::ModelsManager*	m_modelsManager;
 
-		glm::mat4 m_projectionMatrix;
-		glm::mat4 m_viewMatrix;
+		glm::mat4					m_projectionMatrix;
+		glm::mat4					m_viewMatrix;
 	};
 }
 

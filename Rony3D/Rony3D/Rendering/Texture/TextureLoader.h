@@ -22,4 +22,3 @@ namespace Rendering
 }
 
 #endif // !TEXTURELOADER_H
-
