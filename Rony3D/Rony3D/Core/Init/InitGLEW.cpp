@@ -1,4 +1,5 @@
 #include "InitGLEW.h"
+#include "../Logging/Logger.h"
 
 using namespace Core;
 using namespace Core::Init;
@@ -15,13 +16,15 @@ InitGLEW::~InitGLEW(void)
 
 void InitGLEW::Init()
 {
-	glewExperimental = true;
+	glewExperimental = GL_TRUE;
 
-	if (glewInit() == GLEW_OK)
+	if (glewInit() != GLEW_OK)
 	{
-		std::cout << "GLEW: Initialized" << std::endl;
+		Logger::Log("glewInit() error", LogType::ERROR_MESSAGE);
+		return;
 	}
 
-	std::cout << "OpenGL version supported by this platform: " << glGetString(GL_VERSION) << std::endl;
-	std::cout << "GLSL version supported by this platform: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
+	Logger::Log("GLEW: Initialized");
+	Logger::Log(LogType::MESSAGE, "OpenGL version supported by this platform: %s", glGetString(GL_VERSION));
+	Logger::Log(LogType::MESSAGE, "GLSL version supported by this platform: %s", glGetString(GL_SHADING_LANGUAGE_VERSION));
 }

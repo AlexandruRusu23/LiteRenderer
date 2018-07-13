@@ -140,6 +140,7 @@
   <ItemGroup>
     <ClCompile Include="Core\Init\InitGLEW.cpp" />
     <ClCompile Include="Core\Init\InitGLUT.cpp" />
+    <ClCompile Include="Core\Logging\Logger.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Managers\ModelsManager.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Core\Init\InitGLUT.h" />
     <ClInclude Include="Core\Init\WindowInfo.h" />
     <ClInclude Include="Core\Logging\DebugOutput.h" />
+    <ClInclude Include="Core\Logging\Logger.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Managers\ModelsManager.h" />
     <ClInclude Include="Managers\SceneManager.h" />

@@ -72,6 +72,9 @@
     <ClCompile Include="Rendering\Models\CubeTexture.cpp">
       <Filter>Rendering\Models</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Logging\Logger.cpp">
+      <Filter>Core\Logging</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\ContextInfo.h">
@@ -127,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="Rendering\Models\CubeTexture.h">
       <Filter>Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Logging\Logger.h">
+      <Filter>Core\Logging</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

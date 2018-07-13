@@ -4,6 +4,8 @@
 #include <fstream>
 #include <iostream>
 
+#include "../../Core/Logging/Logger.h"
+
 using namespace Rendering;
 
 TextureLoader::TextureLoader()
@@ -63,7 +65,7 @@ void TextureLoader::LoadBMPFile(const std::string& filename,
 	//read the file
 	std::ifstream file(filename.c_str(), std::ios::in | std::ios::binary);
 	if (!file.good()) {
-		std::cout << "Texture Loader: Cannot open texture file ";
+		Logger::Log(LogType::ERROR_MESSAGE, "Texture Loader: Cannot open texture file %s", filename.c_str());
 		width = 0;
 		height = 0;
 		return;

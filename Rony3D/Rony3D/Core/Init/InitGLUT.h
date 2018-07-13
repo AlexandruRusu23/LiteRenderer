@@ -22,8 +22,8 @@ namespace Core
 			static void Run();
 			static void Close();
 
-			void EnterFullscreen();
-			void ExitFullscreen();
+			static void EnterFullscreen();
+			static void ExitFullscreen();
 
 			static void PrintOpenGLInfo(const WindowInfo& windowInfo, const ContextInfo& context);
 		private:

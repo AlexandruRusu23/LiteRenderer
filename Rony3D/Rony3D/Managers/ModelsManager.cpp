@@ -12,6 +12,7 @@ ModelsManager::~ModelsManager()
 	for (auto model : m_gameModelList)
 	{
 		delete model.second;
+		model.second = nullptr;
 	}
 	m_gameModelList.clear();
 }

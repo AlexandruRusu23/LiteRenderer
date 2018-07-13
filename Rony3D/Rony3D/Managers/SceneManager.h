@@ -1,5 +1,6 @@
 #ifndef SCENE_MANAGER_H
 #define SCENE_MANAGER_H
+
 #include "ShaderManager.h"
 #include "ModelsManager.h"
 #include "..\Core\Init\IListener.h"
@@ -21,8 +22,8 @@ namespace Managers
 		void SetModelsManager(ModelsManager*& modelsManager);
 
 	private:
-		Managers::ShaderManager* m_shaderManager;
 		Managers::ModelsManager* m_modelsManager;
+
 		glm::mat4 m_projectionMatrix;
 		glm::mat4 m_viewMatrix;
 	};

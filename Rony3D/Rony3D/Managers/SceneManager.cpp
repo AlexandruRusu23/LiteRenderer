@@ -12,11 +12,7 @@ SceneManager::SceneManager()
 								0.0f, 0.0f, 5.0f, 1.0f);
 }
 
-SceneManager::~SceneManager()
-{
-	delete m_shaderManager;
-	delete m_modelsManager;
-}
+SceneManager::~SceneManager() { }
 
 void SceneManager::NotifyBeginFrame()
 {

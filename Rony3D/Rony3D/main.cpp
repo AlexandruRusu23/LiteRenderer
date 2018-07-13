@@ -22,9 +22,8 @@ int main(int argc, char **argv)
 	cubeTexture->SetProgram(engine->GetShaderManager()->GetShader(k_cubeShader.c_str()));
 	cubeTexture->Create();
 
-	unsigned int texture = engine->GetTextureLoader()->LoadTexture("Textures/bamboo.bmp", 256, 256);
-	//unsigned int textureId = SOIL_load_OGL_texture("Textures/nebula1.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS);
-	cubeTexture->SetTexture("Create", texture);
+	unsigned int textureId = engine->GetTextureLoader()->LoadTexture("Textures/nebula1.bmp", 256, 256);
+	cubeTexture->SetTexture("Create", textureId);
 
 	engine->GetModelsManager()->SetModel("cubeTexture", cubeTexture);
 

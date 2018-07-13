@@ -1,6 +1,7 @@
 #include "InitGLUT.h"
 #include "InitGLEW.h"
-#include "DebugOutput.h"
+#include "../Logging/DebugOutput.h"
+#include "../Logging/Logger.h"
 
 using namespace Core;
 using namespace Init;
@@ -10,6 +11,8 @@ WindowInfo InitGLUT::m_windowInformation;
 
 void InitGLUT::Init(int argc, char **argv, const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FrameBufferInfo& frameBufferInfo)
 {
+	Logger::Init();
+
 	glutInit(&argc, argv);
 
 	if (contextInfo.useCoreProfile)
@@ -28,7 +31,7 @@ void InitGLUT::Init(int argc, char **argv, const WindowInfo& windowInfo, const C
 
 	m_windowInformation = windowInfo;
 
-	std::cout << "GLUT: Initialized" << std::endl;
+	Logger::Log("GLUT: Initialized");
 
 	glEnable(GL_DEBUG_OUTPUT);
 
@@ -39,7 +42,7 @@ void InitGLUT::Init(int argc, char **argv, const WindowInfo& windowInfo, const C
 	glutReshapeFunc(ReshapeCallback);
 
 	InitGLEW::Init();
-	glDebugMessageCallback(DebugOutput::RegisterDebugError, NULL);
+	glDebugMessageCallback(Logging::DebugOutput::RegisterDebugError, NULL);
 	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);
 
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
@@ -49,13 +52,14 @@ void InitGLUT::Init(int argc, char **argv, const WindowInfo& windowInfo, const C
 
 void InitGLUT::Run()
 {
-	std::cout << "GLUT:\t Start Running" << std::endl;
+	Logger::Log("GLUT:\t Start Running");
 	glutMainLoop();
 }
 
 void InitGLUT::Close()
 {
-	std::cout << "GLUT:\t Finished" << std::endl;
+	Logger::Log("GLUT:\t Finished");
+	Logger::Close();
 	glutLeaveMainLoop();
 }
 
@@ -116,9 +120,9 @@ void InitGLUT::PrintOpenGLInfo(const WindowInfo& windowInfo, const ContextInfo& 
 	const unsigned char* vendor = glGetString(GL_VENDOR);
 	const unsigned char* version = glGetString(GL_VERSION);
 
-	std::cout << "***************************************************" << std::endl;
-	std::cout << "GLUT: Initialise" << std::endl;
-	std::cout << "GLUT:\tVendor : " << vendor << std::endl;
-	std::cout << "GLUT:\tRenderer : " << renderer << std::endl;
-	std::cout << "GLUT:\tVersion : " << version << std::endl;
+	Logger::Log("***************************************************");
+	Logger::Log("GLUT: Initialise");
+	Logger::Log(LogType::MESSAGE, "GLUT:\tVendor : %s", vendor);
+	Logger::Log(LogType::MESSAGE, "GLUT:\tRenderer : %s", renderer);
+	Logger::Log(LogType::MESSAGE, "GLUT:\tVersion : %s", version);
 }
