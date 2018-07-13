@@ -41,6 +41,15 @@ void InitGLUT::Init(int argc, char **argv, const WindowInfo& windowInfo, const C
 	glutDisplayFunc(DisplayCallback);
 	glutReshapeFunc(ReshapeCallback);
 
+	glutKeyboardFunc(NULL);
+	glutKeyboardUpFunc(NULL);
+	glutSpecialFunc(NULL); // special keyboard
+	glutSpecialUpFunc(NULL); // special keyboard
+	glutMouseFunc(NULL);
+	glutMouseWheelFunc(NULL);
+	glutMotionFunc(NULL); // mouse moves within window while mouse buttons are pressed
+	glutPassiveMotionFunc(NULL); // mouse moves within window while no mouse buttons are pressed
+
 	InitGLEW::Init();
 	glDebugMessageCallback(Logging::DebugOutput::RegisterDebugError, NULL);
 	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);

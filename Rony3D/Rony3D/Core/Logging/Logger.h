@@ -43,5 +43,3 @@ namespace Core
 using namespace Core::Logging;
 
 #endif // !LOGGER_H
-
-
