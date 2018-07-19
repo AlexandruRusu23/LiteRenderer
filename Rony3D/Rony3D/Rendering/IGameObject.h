@@ -3,11 +3,11 @@
 
 #include <vector>
 
-#include <glew\glew.h>
-#include <freeglut\freeglut.h>
+#include <glew/glew.h>
+#include <freeglut/freeglut.h>
 
 #include "VertexFormat.h"
-#include "Texture\TextureLoader.h"
+#include "Texture/TextureLoader.h"
 
 namespace Rendering
 {

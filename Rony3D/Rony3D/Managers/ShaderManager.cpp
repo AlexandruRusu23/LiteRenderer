@@ -4,38 +4,51 @@
 #include <fstream>
 #include <vector>
 
-#include "../Core/Logging/Logger.h"
+#include "Logger.h"
 
 using namespace Managers;
-
-std::map <std::string, GLuint> ShaderManager::m_programs;
+using namespace Rendering::Shaders;
 
 ShaderManager::ShaderManager(void) {}
 
 ShaderManager::~ShaderManager(void)
 {
-	std::map<std::string, GLuint>::iterator program;
+	std::map<std::string, ShaderObject*>::iterator program;
 	for (program = m_programs.begin(); program != m_programs.end(); program++)
 	{
-		GLuint pr = program->second;
-		glDeleteProgram(pr);
+		ShaderObject* shader = program->second;
+		delete shader;
 	}
 	m_programs.clear();
 }
 
-const GLuint ShaderManager::GetShader(const std::string& shaderName)
+ShaderObject* ShaderManager::GetShader(const std::string& shaderName)
 {
 	if (m_programs.find(shaderName) != m_programs.end())
 		return m_programs.at(shaderName);
-	return -1;
+	return nullptr;
 }
 
-void ShaderManager::CreateProgram(const std::string& shaderName, const std::string& VertexShaderFilename, const std::string& FragmentShaderFilename)
+void ShaderManager::CreateProgram(const std::string& shaderName,
+	const std::string& vertexShaderFilename,
+	const std::string& fragmentShaderFilename,
+	const std::string& geometryShaderFilename /* = "" */)
 {
-	std::string vertexShaderCode = ReadShader(VertexShaderFilename);
-	std::string fragmentShaderCode = ReadShader(FragmentShaderFilename);
+	if (m_programs.find(shaderName) != m_programs.end())
+		return;
+
+	std::string vertexShaderCode = ReadShader(vertexShaderFilename);
+	std::string fragmentShaderCode = ReadShader(fragmentShaderFilename);
+	std::string geometryShaderCode = "";
 	GLuint vertexShader = CreateShader(GL_VERTEX_SHADER, vertexShaderCode, std::string("vertex_shader").c_str());
 	GLuint fragmentShader = CreateShader(GL_FRAGMENT_SHADER, fragmentShaderCode, std::string("fragment_shader").c_str());
+	GLuint geometryShader = 0;
+
+	if (geometryShaderFilename != "")
+	{
+		geometryShaderCode = ReadShader(geometryShaderFilename);
+		geometryShader = CreateShader(GL_GEOMETRY_SHADER, geometryShaderCode, std::string("fragment_shader").c_str());
+	}
 
 	GLuint program = glCreateProgram();
 	glAttachShader(program, vertexShader);
@@ -55,9 +68,13 @@ void ShaderManager::CreateProgram(const std::string& shaderName, const std::stri
 		Logger::Log(&programLog[0], LogType::ERROR_MESSAGE);
 		return;
 	}
-	if (m_programs.find(shaderName) != m_programs.end())
-		return;
-	m_programs[shaderName] = program;
+
+	DrawingShader* shader = new DrawingShader(shaderName, program, vertexShader, fragmentShader, geometryShader);
+	shader->SetVertexShaderFilename(vertexShaderFilename);
+	shader->SetFragmentShaderFilename(vertexShaderFilename);
+	shader->SetGeometryShaderFilename(geometryShaderFilename);
+
+	m_programs[shaderName] = shader;
 }
 
 std::string ShaderManager::ReadShader(const std::string& filename)

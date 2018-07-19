@@ -2,7 +2,7 @@
 #define TEXTURELOADER_H
 
 #include <string>
-#include <glew\glew.h>
+#include <glew/glew.h>
 
 #include "BMPHeaders.h"
 

@@ -4,7 +4,7 @@
 #include <fstream>
 #include <iostream>
 
-#include "../../Core/Logging/Logger.h"
+#include "Logger.h"
 
 using namespace Rendering;
 

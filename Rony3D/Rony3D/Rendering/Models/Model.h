@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <map>
-#include "..\IGameObject.h"
+#include "../IGameObject.h"
 
 namespace Rendering
 {

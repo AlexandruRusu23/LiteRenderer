@@ -28,14 +28,17 @@
     <Filter Include="Rendering\Models">
       <UniqueIdentifier>{a20ed11c-2c35-482f-80ab-af30da4de45e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{475ab8da-4a16-46e1-a924-bc7a96c86777}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Logging">
       <UniqueIdentifier>{adc9ebfd-4d64-46df-ad3a-2d5897d9c10d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Rendering\Texture">
       <UniqueIdentifier>{2431970e-39f6-4018-bdd7-1931c021b8cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Shaders">
+      <UniqueIdentifier>{1b41656c-0125-4ddd-af49-5b236b99f15c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{475ab8da-4a16-46e1-a924-bc7a96c86777}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -63,9 +66,6 @@
     <ClCompile Include="Managers\ShaderManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
-    <ClCompile Include="Engine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\Texture\TextureLoader.cpp">
       <Filter>Rendering\Texture</Filter>
     </ClCompile>
@@ -75,18 +75,18 @@
     <ClCompile Include="Core\Logging\Logger.cpp">
       <Filter>Core\Logging</Filter>
     </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Shaders\DrawingShader.cpp">
+      <Filter>Rendering\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Shaders\ShaderObject.cpp">
+      <Filter>Rendering\Shaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\Init\ContextInfo.h">
-      <Filter>Core\Init</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Init\FrameBufferInfo.h">
-      <Filter>Core\Init</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Init\IListener.h">
-      <Filter>Core\Init</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Init\WindowInfo.h">
       <Filter>Core\Init</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\IGameObject.h">
@@ -119,9 +119,6 @@
     <ClInclude Include="Core\Logging\DebugOutput.h">
       <Filter>Core\Logging</Filter>
     </ClInclude>
-    <ClInclude Include="Engine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering\Texture\BMPHeaders.h">
       <Filter>Rendering\Texture</Filter>
     </ClInclude>
@@ -134,11 +131,31 @@
     <ClInclude Include="Core\Logging\Logger.h">
       <Filter>Core\Logging</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Init\ContextInfo.h">
+      <Filter>Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Init\FrameBufferInfo.h">
+      <Filter>Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Init\WindowInfo.h">
+      <Filter>Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Shaders\DrawingShader.h">
+      <Filter>Rendering\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Shaders\ShaderObject.h">
+      <Filter>Rendering\Shaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\VertexShader.glsl">
-      <Filter>Shaders</Filter>
+    <None Include="Assets\FragmentShader.glsl">
+      <Filter>Assets</Filter>
     </None>
-    <None Include="Shaders\FragmentShader.glsl" />
+    <None Include="Assets\VertexShader.glsl">
+      <Filter>Assets</Filter>
+    </None>
   </ItemGroup>
 </Project>

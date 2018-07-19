@@ -3,7 +3,7 @@
 
 #include <map>
 
-#include "..\Rendering\IGameObject.h"
+#include "Rendering/IGameObject.h"
 
 using namespace Rendering;
 

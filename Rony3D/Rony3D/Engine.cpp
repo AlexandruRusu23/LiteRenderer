@@ -1,6 +1,6 @@
 #include "Engine.h"
 
-using namespace Rony3D;
+using namespace RenderEngine;
 using namespace Core;
 
 Engine::Engine()

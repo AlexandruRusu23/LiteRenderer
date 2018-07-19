@@ -23,6 +23,7 @@
     <ProjectGuid>{5D0AB235-7804-493F-BA5A-5143FBE8610C}</ProjectGuid>
     <RootNamespace>Rony3D</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <ProjectName>Rony3D</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -70,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Dependencies\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\include\;$(SolutionDir)Rony3D\;$(SolutionDir)Rony3D\Core\Logging\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Dependencies\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\include\;$(SolutionDir)Rony3D\;$(SolutionDir)Rony3D\Core\Logging\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\include\;$(SolutionDir)Rony3D\;$(SolutionDir)Rony3D\Core\Logging\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\include\;$(SolutionDir)Rony3D\;$(SolutionDir)Rony3D\Core\Logging\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -161,6 +162,8 @@
     <ClCompile Include="Rendering\Models\CubeIndex.cpp" />
     <ClCompile Include="Rendering\Models\CubeTexture.cpp" />
     <ClCompile Include="Rendering\Models\Model.cpp" />
+    <ClCompile Include="Rendering\Shaders\DrawingShader.cpp" />
+    <ClCompile Include="Rendering\Shaders\ShaderObject.cpp" />
     <ClCompile Include="Rendering\Texture\TextureLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -180,13 +183,15 @@
     <ClInclude Include="Rendering\Models\CubeIndex.h" />
     <ClInclude Include="Rendering\Models\CubeTexture.h" />
     <ClInclude Include="Rendering\Models\Model.h" />
+    <ClInclude Include="Rendering\Shaders\DrawingShader.h" />
+    <ClInclude Include="Rendering\Shaders\ShaderObject.h" />
     <ClInclude Include="Rendering\Texture\BMPHeaders.h" />
     <ClInclude Include="Rendering\Texture\TextureLoader.h" />
     <ClInclude Include="Rendering\VertexFormat.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\FragmentShader.glsl" />
-    <None Include="Shaders\VertexShader.glsl" />
+    <None Include="Assets\FragmentShader.glsl" />
+    <None Include="Assets\VertexShader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

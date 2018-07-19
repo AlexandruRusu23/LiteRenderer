@@ -1,7 +1,7 @@
 #include "InitGLUT.h"
 #include "InitGLEW.h"
 #include "../Logging/DebugOutput.h"
-#include "../Logging/Logger.h"
+#include "Logger.h"
 
 using namespace Core;
 using namespace Init;

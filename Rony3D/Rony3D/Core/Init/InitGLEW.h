@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#include <glew\glew.h>
-#include <freeglut\freeglut.h>
+#include <glew/glew.h>
+#include <freeglut/freeglut.h>
 
 namespace Core
 {

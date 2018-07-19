@@ -1,8 +1,8 @@
 #ifndef FRAMEBUFFERINFO_H
 #define FRAMEBUFFERINFO_H
 
-#include <glew\glew.h>
-#include <freeglut\freeglut.h>
+#include <glew/glew.h>
+#include <freeglut/freeglut.h>
 
 namespace Core
 {

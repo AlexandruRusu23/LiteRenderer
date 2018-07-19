@@ -1,10 +1,10 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
-#include "Core\Init\InitGLUT.h"
-#include "Managers\SceneManager.h"
+#include "Core/Init/InitGLUT.h"
+#include "Managers/SceneManager.h"
 
-namespace Rony3D
+namespace RenderEngine
 {
 	class Engine
 	{
