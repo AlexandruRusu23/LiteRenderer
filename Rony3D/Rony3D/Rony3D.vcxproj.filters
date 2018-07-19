@@ -40,6 +40,9 @@
     <Filter Include="Assets">
       <UniqueIdentifier>{475ab8da-4a16-46e1-a924-bc7a96c86777}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{497a636a-5de2-49bf-8b2f-0c2a9ae4073c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -148,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="Rendering\Shaders\ShaderObject.h">
       <Filter>Rendering\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Singleton.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

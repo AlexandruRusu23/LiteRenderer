@@ -188,6 +188,7 @@
     <ClInclude Include="Rendering\Texture\BMPHeaders.h" />
     <ClInclude Include="Rendering\Texture\TextureLoader.h" />
     <ClInclude Include="Rendering\VertexFormat.h" />
+    <ClInclude Include="Utils\Singleton.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FragmentShader.glsl" />
