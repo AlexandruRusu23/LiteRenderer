@@ -38,17 +38,19 @@ void InitGLUT::Init(int argc, char **argv, const WindowInfo& windowInfo, const C
 	// register callbacks
 	glutIdleFunc(IdleCallback);
 	glutCloseFunc(CloseCallback);
+	
 	glutDisplayFunc(DisplayCallback);
 	glutReshapeFunc(ReshapeCallback);
+	
+	glutKeyboardFunc(KeyboardCallback);
+	glutKeyboardUpFunc(KeyboardUpCallback);
+	glutSpecialFunc(SpecialKeyboardCallback);
+	glutSpecialUpFunc(SpecialKeyboardUpCallback);
 
-	glutKeyboardFunc(NULL);
-	glutKeyboardUpFunc(NULL);
-	glutSpecialFunc(NULL); // special keyboard
-	glutSpecialUpFunc(NULL); // special keyboard
-	glutMouseFunc(NULL);
-	glutMouseWheelFunc(NULL);
-	glutMotionFunc(NULL); // mouse moves within window while mouse buttons are pressed
-	glutPassiveMotionFunc(NULL); // mouse moves within window while no mouse buttons are pressed
+	glutMouseFunc(MouseCallback);
+	glutMouseWheelFunc(MouseWheelCallback);
+	glutMotionFunc(MouseMotionCallback); // mouse moves within window while mouse buttons are pressed
+	glutPassiveMotionFunc(MousePassiveMotionCallback); // mouse moves within window while no mouse buttons are pressed
 
 	InitGLEW::Init();
 	glDebugMessageCallback(Logging::DebugOutput::RegisterDebugError, NULL);
@@ -105,6 +107,11 @@ void InitGLUT::IdleCallback(void)
 	glutPostRedisplay();
 }
 
+void InitGLUT::CloseCallback()
+{
+	Close();
+}
+
 void InitGLUT::DisplayCallback()
 {
 	//check for NULL
@@ -131,7 +138,50 @@ void InitGLUT::ReshapeCallback(int width, int height)
 	}
 }
 
-void InitGLUT::CloseCallback()
+void InitGLUT::KeyboardCallback(unsigned char key, int x, int y)
 {
-	Close();
+	if (m_listener)
+		m_listener->NotifyKeyboardPressed(key, x, y);
+}
+
+void InitGLUT::KeyboardUpCallback(unsigned char key, int x, int y)
+{
+	if (m_listener)
+		m_listener->NotifyKeyboardReleased(key, x, y);
+}
+
+void InitGLUT::SpecialKeyboardCallback(int key, int x, int y)
+{
+	if (m_listener)
+		m_listener->NotifySpecialKeyboardPressed(key, x, y);
+}
+
+void InitGLUT::SpecialKeyboardUpCallback(int key, int x, int y)
+{
+	if (m_listener)
+		m_listener->NotifySpecialKeyboardReleased(key, x, y);
+}
+
+void InitGLUT::MouseCallback(int button, int state, int x, int y)
+{
+	if (m_listener)
+		m_listener->NotifyMouse(button, state, x, y);
+}
+
+void InitGLUT::MouseWheelCallback(int button, int state, int x, int y)
+{
+	if (m_listener)
+		m_listener->NotifyMouseWheel(button, state, x, y);
+}
+
+void InitGLUT::MouseMotionCallback(int x, int y)
+{
+	if (m_listener)
+		m_listener->NotifyMouseMotion(x, y);
+}
+
+void InitGLUT::MousePassiveMotionCallback(int x, int y)
+{
+	if (m_listener)
+		m_listener->NotifyMousePassiveMotion(x, y);
 }

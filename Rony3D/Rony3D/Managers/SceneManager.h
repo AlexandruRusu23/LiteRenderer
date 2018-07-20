@@ -14,10 +14,21 @@ namespace Managers
 		SceneManager();
 		~SceneManager();
 
+		// drawing
 		virtual void NotifyBeginFrame();
 		virtual void NotifyDisplayFrame();
 		virtual void NotifyEndFrame();
 		virtual void NotifyReshape(int width, int height, int previousWidth, int previousHeight);
+
+		// input
+		virtual void NotifyKeyboardPressed(unsigned char key, int x, int y);
+		virtual void NotifyKeyboardReleased(unsigned char key, int x, int y);
+		virtual void NotifySpecialKeyboardPressed(int key, int x, int y);
+		virtual void NotifySpecialKeyboardReleased(int key, int x, int y);
+		virtual void NotifyMouse(int button, int state, int x, int y);
+		virtual void NotifyMouseWheel(int button, int state, int x, int y);
+		virtual void NotifyMouseMotion(int x, int y);
+		virtual void NotifyMousePassiveMotion(int x, int y);
 
 		void SetModelsManager(ModelsManager*& modelsManager);
 

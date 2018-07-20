@@ -45,6 +45,46 @@ void SceneManager::NotifyReshape(int width, int height, int previous_width, int 
 	m_projectionMatrix[3][2] = 2.0f * near1 * far1 / (near1 - far1);
 }
 
+void SceneManager::NotifyKeyboardPressed(unsigned char key, int x, int y)
+{
+	Logger::Log(LogType::MESSAGE, "NotifyKeyboardPressed key: %c ;x: %d; y: %d", key, x, y);
+}
+
+void SceneManager::NotifyKeyboardReleased(unsigned char key, int x, int y)
+{
+	Logger::Log(LogType::MESSAGE, "NotifyKeyboardReleased key: %c ;x: %d; y: %d", key, x, y);
+}
+
+void SceneManager::NotifySpecialKeyboardPressed(int key, int x, int y)
+{
+	Logger::Log(LogType::MESSAGE, "NotifySpecialKeyboardPressed key: %d ;x: %d; y: %d", key, x, y);
+}
+
+void SceneManager::NotifySpecialKeyboardReleased(int key, int x, int y)
+{
+	Logger::Log(LogType::MESSAGE, "NotifySpecialKeyboardReleased key: %d ;x: %d; y: %d", key, x, y);
+}
+
+void SceneManager::NotifyMouse(int button, int state, int x, int y)
+{
+	Logger::Log(LogType::MESSAGE, "NotifyMouse button: %d; state: %d; x: %d; y: %d", button, state, x, y);
+}
+
+void SceneManager::NotifyMouseWheel(int button, int state, int x, int y)
+{
+	Logger::Log(LogType::MESSAGE, "NotifyMouseWheel button: %d; state: %d; x: %d; y: %d", button, state, x, y);
+}
+
+void SceneManager::NotifyMouseMotion(int x, int y)
+{
+	Logger::Log(LogType::MESSAGE, "NotifyMouseMotion ;x: %d; y: %d", x, y);
+}
+
+void SceneManager::NotifyMousePassiveMotion(int x, int y)
+{
+	Logger::Log(LogType::MESSAGE, "NotifyMousePassiveMotion ;x: %d; y: %d", x, y);
+}
+
 void SceneManager::SetModelsManager(ModelsManager*& modelsManager)
 {
 	m_modelsManager = modelsManager;
