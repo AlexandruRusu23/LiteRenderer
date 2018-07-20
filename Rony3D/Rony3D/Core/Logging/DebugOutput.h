@@ -22,10 +22,10 @@ namespace Core
 			static void CALLBACK RegisterDebugError(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *msg, const void *data)
 			{
 				Logger::Log("\n**********Debug Output**************");
-				Logger::Log(LogType::MESSAGE, "source: %s", GetStringForSource(source).c_str());
-				Logger::Log(LogType::MESSAGE, "type: %s", GetStringForType(type).c_str());
-				Logger::Log(LogType::MESSAGE, "severity: %s", GetStringForSeverity(severity).c_str());
-				Logger::Log(LogType::MESSAGE, "debug call: %s", msg);
+				Logger::Log("source: %s", GetStringForSource(source).c_str());
+				Logger::Log("type: %s", GetStringForType(type).c_str());
+				Logger::Log("severity: %s", GetStringForSeverity(severity).c_str());
+				Logger::Log("debug call: %s", msg);
 				Logger::Log("\n************************");
 			}
 

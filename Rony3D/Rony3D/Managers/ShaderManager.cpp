@@ -64,8 +64,8 @@ void ShaderManager::CreateProgram(const std::string& shaderName,
 		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &infoLogLength);
 		std::vector<char> programLog(infoLogLength);
 		glGetProgramInfoLog(program, infoLogLength, NULL, &programLog[0]);
-		Logger::Log("Shader Loader : LINK ERROR", LogType::ERROR_MESSAGE);
-		Logger::Log(&programLog[0], LogType::ERROR_MESSAGE);
+		Logger::Log("Shader Loader : LINK ERROR");
+		Logger::Log(&programLog[0]);
 		return;
 	}
 
@@ -84,13 +84,13 @@ std::string ShaderManager::ReadShader(const std::string& filename)
 
 	if (!file)
 	{
-		Logger::Log(LogType::ERROR_MESSAGE, "Could not open the file %s.", filename.c_str());
+		Logger::Log("Could not open the file %s.", filename.c_str());
 		return 0;
 	}
 
 	if (!file.good())
 	{
-		Logger::Log(LogType::ERROR_MESSAGE, "Can't read file %s.", filename.c_str());
+		Logger::Log("Can't read file %s.", filename.c_str());
 		std::terminate();
 		return 0;
 	}
@@ -121,8 +121,8 @@ GLuint ShaderManager::CreateShader(GLenum shaderType, const std::string& source,
 		glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLogLength);
 		std::vector<char> shaderLog(infoLogLength);
 		glGetShaderInfoLog(shader, infoLogLength, NULL, &shaderLog[0]);
-		Logger::Log(LogType::ERROR_MESSAGE, "Error compiling shader: %s", shaderName.c_str());
-		Logger::Log(&shaderLog[0], LogType::ERROR_MESSAGE);
+		Logger::Log("Error compiling shader: %s", shaderName.c_str());
+		Logger::Log(&shaderLog[0]);
 		return 0;
 	}
 	return shader;

@@ -97,9 +97,9 @@ void InitGLUT::PrintOpenGLInfo(const WindowInfo& windowInfo, const ContextInfo& 
 
 	Logger::Log("***************************************************");
 	Logger::Log("GLUT: Initialise");
-	Logger::Log(LogType::MESSAGE, "GLUT:\tVendor : %s", vendor);
-	Logger::Log(LogType::MESSAGE, "GLUT:\tRenderer : %s", renderer);
-	Logger::Log(LogType::MESSAGE, "GLUT:\tVersion : %s", version);
+	Logger::Log("GLUT:\tVendor : %s", vendor);
+	Logger::Log("GLUT:\tRenderer : %s", renderer);
+	Logger::Log("GLUT:\tVersion : %s", version);
 }
 
 void InitGLUT::IdleCallback(void)

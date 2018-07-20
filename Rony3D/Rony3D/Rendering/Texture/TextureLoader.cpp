@@ -51,7 +51,7 @@ void TextureLoader::LoadBMPFile(const std::string& filename, unsigned int& width
 {
 	std::ifstream file(filename.c_str(), std::ios::in | std::ios::binary);
 	if (!file.good()) {
-		Logger::Log(LogType::ERROR_MESSAGE, "Texture Loader: Cannot open texture file %s", filename.c_str());
+		Logger::Log("Texture Loader: Cannot open texture file %s", filename.c_str());
 		width = 0;
 		height = 0;
 		return;
