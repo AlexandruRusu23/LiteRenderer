@@ -90,9 +90,14 @@ void CubeTexture::Create()
 	this->m_vbos.push_back(vbo);
 	this->m_vbos.push_back(ibo);
 
+	static int x = 0;
+
 	m_rotationSpeed = glm::vec3(0.0, 0.0, 0.0);
 	m_rotation = glm::vec3(0.0, 0.0, 0.0);
-	m_translate = glm::vec3(0.0, 0.0, 0.0);
+	m_translate = glm::vec3(3.0 * x, 0.0, 0.0);
+	
+	x++;
+
 	m_translateMatrix = glm::translate(glm::mat4(1.0f), m_translate);
 }
 
@@ -108,10 +113,12 @@ void CubeTexture::Draw(const glm::mat4& projection_matrix, const glm::mat4& view
 	glBindVertexArray(m_vao);
 
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, this->GetTexture("Create"));
-	unsigned int textureLocation = glGetUniformLocation(m_program, "texture1");
-	glUniform1i(textureLocation, 0);
+	glBindTexture(GL_TEXTURE_2D, *this->GetCurrentTextures().begin());
 
+	// fragment shader data
+	glUniform1i(glGetUniformLocation(m_program, "texture_sampler"), 0);
+
+	// vertex shader data
 	glUniformMatrix4fv(glGetUniformLocation(m_program, "projection_matrix"), 1, GL_FALSE, &projection_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(m_program, "view_matrix"), 1, GL_FALSE, &view_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(m_program, "translate_matrix"), 1, GL_FALSE, &m_translateMatrix[0][0]);

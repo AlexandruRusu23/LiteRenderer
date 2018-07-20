@@ -51,9 +51,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Models\CubeIndex.cpp">
-      <Filter>Rendering\Models</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\Models\Model.cpp">
       <Filter>Rendering\Models</Filter>
     </ClCompile>
@@ -109,9 +106,6 @@
     </ClInclude>
     <ClInclude Include="Rendering\VertexFormat.h">
       <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Models\CubeIndex.h">
-      <Filter>Rendering\Models</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Models\Model.h">
       <Filter>Rendering\Models</Filter>

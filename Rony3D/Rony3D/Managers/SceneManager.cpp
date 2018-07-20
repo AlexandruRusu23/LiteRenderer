@@ -46,45 +46,45 @@ void SceneManager::NotifyReshape(int width, int height, int previous_width, int 
 
 void SceneManager::NotifyKeyboardPressed(unsigned char key, int x, int y)
 {
-	Logger::Log("NotifyKeyboardPressed key: %c ;x: %d; y: %d", key, x, y);
+	//Logger::Log("NotifyKeyboardPressed key: %c ;x: %d; y: %d", key, x, y);
 	m_camera->KeyPressed(key);
 }
 
 void SceneManager::NotifyKeyboardReleased(unsigned char key, int x, int y)
 {
-	Logger::Log("NotifyKeyboardReleased key: %c ;x: %d; y: %d", key, x, y);
+	//Logger::Log("NotifyKeyboardReleased key: %c ;x: %d; y: %d", key, x, y);
 }
 
 void SceneManager::NotifySpecialKeyboardPressed(int key, int x, int y)
 {
-	Logger::Log("NotifySpecialKeyboardPressed key: %d ;x: %d; y: %d", key, x, y);
+	//Logger::Log("NotifySpecialKeyboardPressed key: %d ;x: %d; y: %d", key, x, y);
 }
 
 void SceneManager::NotifySpecialKeyboardReleased(int key, int x, int y)
 {
-	Logger::Log("NotifySpecialKeyboardReleased key: %d ;x: %d; y: %d", key, x, y);
+	//Logger::Log("NotifySpecialKeyboardReleased key: %d ;x: %d; y: %d", key, x, y);
 }
 
 void SceneManager::NotifyMouse(int button, int state, int x, int y)
 {
-	Logger::Log("NotifyMouse button: %d; state: %d; x: %d; y: %d", button, state, x, y);
+	//Logger::Log("NotifyMouse button: %d; state: %d; x: %d; y: %d", button, state, x, y);
 	m_camera->MousePressed(button, state, x, y);
 }
 
 void SceneManager::NotifyMouseWheel(int button, int state, int x, int y)
 {
-	Logger::Log("NotifyMouseWheel button: %d; state: %d; x: %d; y: %d", button, state, x, y);
+	//Logger::Log("NotifyMouseWheel button: %d; state: %d; x: %d; y: %d", button, state, x, y);
 }
 
 void SceneManager::NotifyMouseMotion(int x, int y)
 {
-	Logger::Log("NotifyMouseMotion x: %d; y: %d", x, y);
+	//Logger::Log("NotifyMouseMotion x: %d; y: %d", x, y);
 	m_camera->MouseMove(x, y);
 }
 
 void SceneManager::NotifyMousePassiveMotion(int x, int y)
 {
-	Logger::Log("NotifyMousePassiveMotion x: %d; y: %d", x, y);
+	//Logger::Log("NotifyMousePassiveMotion x: %d; y: %d", x, y);
 }
 
 void SceneManager::SetModelsManager(ModelsManager*& modelsManager)

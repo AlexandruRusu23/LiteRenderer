@@ -61,9 +61,19 @@ const GLuint Model::GetTexture(const std::string& textureName) const
 	return m_textures.at(textureName);
 }
 
-void Model::SetTexture(const std::string& textureName, GLuint textureId)
+void Model::AddTexture(const std::string& textureName, GLuint textureId)
 {
 	if (textureId == 0)
 		return;
 	m_textures[textureName] = textureId;
+}
+
+std::set<GLuint> const &Model::GetCurrentTextures() const
+{
+	return m_currentTextures;
+}
+
+void Model::SetCurrentTextures(const std::set<GLuint>& textures)
+{
+	m_currentTextures = textures;
 }

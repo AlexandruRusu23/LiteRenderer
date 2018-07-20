@@ -1,8 +1,6 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include <vector>
-#include <map>
 #include "../IGameObject.h"
 
 namespace Rendering
@@ -26,13 +24,16 @@ namespace Rendering
 			virtual const std::vector<GLuint>& GetVbos() const override;
 
 			virtual const GLuint GetTexture(const std::string& textureName) const override;
-			virtual void SetTexture(const std::string& textureName, GLuint textureId) override;
+			virtual void AddTexture(const std::string& textureName, GLuint textureId) override;
+			virtual std::set<GLuint> const &GetCurrentTextures() const override;
+			virtual void SetCurrentTextures(const std::set<GLuint>& textures) override;
 
 		protected:
 			GLuint							m_vao;
 			GLuint							m_program;
 			std::vector<GLuint>				m_vbos;
 			std::map<std::string, GLuint>	m_textures;
+			std::set<GLuint>				m_currentTextures;
 		};
 	}
 }

@@ -3,12 +3,11 @@
 
 layout(location = 0) out vec4 out_color;
 
-//in vec4 color;
-uniform sampler2D texture1;
+uniform sampler2D texture_sampler;
 in vec2 texcoord;
 
 void main(void)
 {
-	vec4 color = texture(texture1, texcoord);
+	vec4 color = texture2D(texture_sampler, texcoord);
 	out_color = color;
 }

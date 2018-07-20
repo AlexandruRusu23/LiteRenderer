@@ -161,7 +161,6 @@
     <ClCompile Include="Managers\ShaderManager.cpp" />
     <ClCompile Include="Rendering\Camera\OrthogonalCamera.cpp" />
     <ClCompile Include="Rendering\Camera\PerspectiveCamera.cpp" />
-    <ClCompile Include="Rendering\Models\CubeIndex.cpp" />
     <ClCompile Include="Rendering\Models\CubeTexture.cpp" />
     <ClCompile Include="Rendering\Models\Model.cpp" />
     <ClCompile Include="Rendering\Shaders\DrawingShader.cpp" />
@@ -186,7 +185,6 @@
     <ClInclude Include="Rendering\Camera\PerspectiveCamera.h" />
     <ClInclude Include="Rendering\ICamera.h" />
     <ClInclude Include="Rendering\IGameObject.h" />
-    <ClInclude Include="Rendering\Models\CubeIndex.h" />
     <ClInclude Include="Rendering\Models\CubeTexture.h" />
     <ClInclude Include="Rendering\Models\Model.h" />
     <ClInclude Include="Rendering\Shaders\DrawingShader.h" />
