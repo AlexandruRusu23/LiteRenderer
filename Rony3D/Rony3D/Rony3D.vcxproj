@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Dependencies\include\;$(SolutionDir)Rony3D\;$(SolutionDir)Rony3D\Core\Logging\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\include\;$(SolutionDir)Rony3D\;$(SolutionDir)Rony3D\Core\Logging\;$(SolutionDir)Rony3D\Utils\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Dependencies\include\;$(SolutionDir)Rony3D\;$(SolutionDir)Rony3D\Core\Logging\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\include\;$(SolutionDir)Rony3D\;$(SolutionDir)Rony3D\Core\Logging\;$(SolutionDir)Rony3D\Utils\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\include\;$(SolutionDir)Rony3D\;$(SolutionDir)Rony3D\Core\Logging\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\include\;$(SolutionDir)Rony3D\;$(SolutionDir)Rony3D\Core\Logging\;$(SolutionDir)Rony3D\Utils\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\include\;$(SolutionDir)Rony3D\;$(SolutionDir)Rony3D\Core\Logging\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\include\;$(SolutionDir)Rony3D\;$(SolutionDir)Rony3D\Core\Logging\;$(SolutionDir)Rony3D\Utils\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -165,6 +165,7 @@
     <ClCompile Include="Rendering\Shaders\DrawingShader.cpp" />
     <ClCompile Include="Rendering\Shaders\ShaderObject.cpp" />
     <ClCompile Include="Rendering\Texture\TextureLoader.cpp" />
+    <ClCompile Include="Utils\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\ContextInfo.h" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Rendering\Texture\TextureLoader.h" />
     <ClInclude Include="Rendering\VertexFormat.h" />
     <ClInclude Include="Utils\Singleton.h" />
+    <ClInclude Include="Utils\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FragmentShader.glsl" />

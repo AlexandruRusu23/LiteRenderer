@@ -2,6 +2,7 @@
 #include "InitGLEW.h"
 #include "../Logging/DebugOutput.h"
 #include "Logger.h"
+#include "Timer.h"
 
 using namespace Core;
 using namespace Init;
@@ -11,6 +12,7 @@ WindowInfo InitGLUT::m_windowInformation("Rony3D", 300, 300, 960, 540, true);
 
 void InitGLUT::Init(int argc, char **argv, const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FrameBufferInfo& frameBufferInfo)
 {
+	Timer::Init();
 	Logger::Init();
 
 	glutInit(&argc, argv);

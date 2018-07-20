@@ -2,7 +2,6 @@
 #define CUBETEXTURE_H
 
 #include "Model.h"
-#include <chrono>
 
 namespace Rendering
 {
@@ -25,7 +24,6 @@ namespace Rendering
 			glm::vec3					m_rotationSin;
 			glm::vec3					m_translate;
 			glm::mat4					m_translateMatrix;
-			std::chrono::milliseconds	m_timer;
 		};
 	}
 }

@@ -1,5 +1,7 @@
 #include "SceneManager.h"
 
+#include "Timer.h"
+
 using namespace Managers;
 
 SceneManager::SceneManager()
@@ -16,6 +18,7 @@ SceneManager::~SceneManager() { }
 
 void SceneManager::NotifyBeginFrame()
 {
+	Timer::Update();
 	m_modelsManager->Update();
 }
 
@@ -77,12 +80,12 @@ void SceneManager::NotifyMouseWheel(int button, int state, int x, int y)
 
 void SceneManager::NotifyMouseMotion(int x, int y)
 {
-	Logger::Log("NotifyMouseMotion ;x: %d; y: %d", x, y);
+	Logger::Log("NotifyMouseMotion x: %d; y: %d", x, y);
 }
 
 void SceneManager::NotifyMousePassiveMotion(int x, int y)
 {
-	Logger::Log("NotifyMousePassiveMotion ;x: %d; y: %d", x, y);
+	Logger::Log("NotifyMousePassiveMotion x: %d; y: %d", x, y);
 }
 
 void SceneManager::SetModelsManager(ModelsManager*& modelsManager)
