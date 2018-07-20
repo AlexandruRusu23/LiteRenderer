@@ -3,6 +3,7 @@
 
 #include "Core/Init/InitGLUT.h"
 #include "Managers/SceneManager.h"
+#include "Rendering/ICamera.h"
 
 namespace RenderEngine
 {
@@ -26,6 +27,7 @@ namespace RenderEngine
 		Managers::ShaderManager*	m_shaderManager = nullptr;
 		Managers::ModelsManager*	m_modelsManager = nullptr;
 		TextureLoader*				m_textureLoader = nullptr;
+		Rendering::ICamera*			m_camera		= nullptr;
 	};
 }
 

@@ -1,5 +1,7 @@
 #include "Engine.h"
 
+#include "Rendering\Camera\PerspectiveCamera.h"
+
 using namespace RenderEngine;
 using namespace Core;
 
@@ -25,7 +27,7 @@ Engine::~Engine()
 
 bool Engine::Init(int argc, char **argv)
 {
-	WindowInfo windowInfo(std::string("Rony3D"), 300, 300, 1280, 720, true);
+	WindowInfo windowInfo(std::string("Rony3D"), 200, 100, 1280, 720, true);
 	ContextInfo contextInfo(4, 3, true);
 	FrameBufferInfo frameBufferInfo(true, true, true, true);
 	Init::InitGLUT::Init(argc, argv, windowInfo, contextInfo, frameBufferInfo);
@@ -35,11 +37,13 @@ bool Engine::Init(int argc, char **argv)
 
 	m_shaderManager = new Managers::ShaderManager();
 	m_textureLoader = new TextureLoader();
-
+	
 	if (m_sceneManager && m_shaderManager)
 	{
 		m_modelsManager = new Managers::ModelsManager();
+		m_camera = new Rendering::Camera::PerspectiveCamera();
 		m_sceneManager->SetModelsManager(m_modelsManager);
+		m_sceneManager->SetCamera(m_camera);
 	}
 	else
 		return false;

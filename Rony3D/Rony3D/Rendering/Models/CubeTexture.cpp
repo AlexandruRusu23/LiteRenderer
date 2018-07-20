@@ -90,7 +90,7 @@ void CubeTexture::Create()
 	this->m_vbos.push_back(vbo);
 	this->m_vbos.push_back(ibo);
 
-	m_rotationSpeed = glm::vec3(90.0, 90.0, 90.0);
+	m_rotationSpeed = glm::vec3(0.0, 0.0, 0.0);
 	m_rotation = glm::vec3(0.0, 0.0, 0.0);
 	m_translate = glm::vec3(0.0, 0.0, 0.0);
 	m_translateMatrix = glm::translate(glm::mat4(1.0f), m_translate);

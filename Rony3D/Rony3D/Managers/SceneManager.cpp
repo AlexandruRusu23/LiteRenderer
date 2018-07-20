@@ -7,11 +7,7 @@ using namespace Managers;
 SceneManager::SceneManager()
 {
 	glEnable(GL_DEPTH_TEST);
-
-	m_viewMatrix = glm::mat4(	1.0f, 0.0f, 0.0f,  0.0f,
-								0.0f, 1.0f, 0.0f,  0.0f,
-								0.0f, 0.0f, -1.0f, 0.0f,
-								0.0f, 0.0f, 5.0f, 1.0f);
+	m_viewMatrix = glm::mat4(1.0f);
 }
 
 SceneManager::~SceneManager() { }
@@ -33,7 +29,7 @@ void SceneManager::NotifyDisplayFrame()
 
 void SceneManager::NotifyEndFrame()
 {
-
+	m_viewMatrix = m_camera->GetViewMatrix();
 }
 
 void SceneManager::NotifyReshape(int width, int height, int previous_width, int previous_height)
@@ -51,6 +47,7 @@ void SceneManager::NotifyReshape(int width, int height, int previous_width, int 
 void SceneManager::NotifyKeyboardPressed(unsigned char key, int x, int y)
 {
 	Logger::Log("NotifyKeyboardPressed key: %c ;x: %d; y: %d", key, x, y);
+	m_camera->KeyPressed(key);
 }
 
 void SceneManager::NotifyKeyboardReleased(unsigned char key, int x, int y)
@@ -71,6 +68,7 @@ void SceneManager::NotifySpecialKeyboardReleased(int key, int x, int y)
 void SceneManager::NotifyMouse(int button, int state, int x, int y)
 {
 	Logger::Log("NotifyMouse button: %d; state: %d; x: %d; y: %d", button, state, x, y);
+	m_camera->MousePressed(button, state, x, y);
 }
 
 void SceneManager::NotifyMouseWheel(int button, int state, int x, int y)
@@ -81,6 +79,7 @@ void SceneManager::NotifyMouseWheel(int button, int state, int x, int y)
 void SceneManager::NotifyMouseMotion(int x, int y)
 {
 	Logger::Log("NotifyMouseMotion x: %d; y: %d", x, y);
+	m_camera->MouseMove(x, y);
 }
 
 void SceneManager::NotifyMousePassiveMotion(int x, int y)
@@ -91,4 +90,9 @@ void SceneManager::NotifyMousePassiveMotion(int x, int y)
 void SceneManager::SetModelsManager(ModelsManager*& modelsManager)
 {
 	m_modelsManager = modelsManager;
+}
+
+void Managers::SceneManager::SetCamera(ICamera * camera)
+{
+	m_camera = camera;
 }

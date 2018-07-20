@@ -4,7 +4,7 @@
 #include "ShaderManager.h"
 #include "ModelsManager.h"
 #include "Core/Init/IListener.h"
-#include <time.h>
+#include "Rendering/ICamera.h"
 
 namespace Managers
 {
@@ -31,9 +31,11 @@ namespace Managers
 		virtual void NotifyMousePassiveMotion(int x, int y);
 
 		void SetModelsManager(ModelsManager*& modelsManager);
+		void SetCamera(ICamera* camera);
 
 	private:
 		Managers::ModelsManager*	m_modelsManager;
+		Rendering::ICamera*			m_camera;
 
 		glm::mat4					m_projectionMatrix;
 		glm::mat4					m_viewMatrix;

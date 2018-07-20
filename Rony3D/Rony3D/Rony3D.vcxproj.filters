@@ -43,6 +43,9 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{497a636a-5de2-49bf-8b2f-0c2a9ae4073c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering\Camera">
+      <UniqueIdentifier>{5f78ea2c-a66f-4789-8d40-d606d61cd97b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -89,6 +92,12 @@
     </ClCompile>
     <ClCompile Include="Utils\Timer.cpp">
       <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Camera\PerspectiveCamera.cpp">
+      <Filter>Rendering\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Camera\OrthogonalCamera.cpp">
+      <Filter>Rendering\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +169,15 @@
     </ClInclude>
     <ClInclude Include="Utils\Timer.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\ICamera.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Camera\PerspectiveCamera.h">
+      <Filter>Rendering\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Camera\OrthogonalCamera.h">
+      <Filter>Rendering\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
