@@ -7,8 +7,8 @@ int main(int argc, char **argv)
 	engine->Init(argc, argv);
 
 	engine->GetShaderManager()->CreateProgram("texturedCubeShader",
-		"Assets/VertexShader.glsl",
-		"Assets/FragmentShader.glsl");
+		"Assets/Shaders/CubeTexturedVertexShader.glsl",
+		"Assets/Shaders/CubeTexturedFragmentShader.glsl");
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 		cubeTexture->SetProgram(engine->GetShaderManager()->GetShader("texturedCubeShader")->GetProgramId());
 		cubeTexture->Create();
 
-		unsigned int textureId = engine->GetTextureLoader()->LoadTexture("Textures/Crate.bmp", 256, 256);
+		unsigned int textureId = engine->GetTextureLoader()->LoadTexture("Assets/Textures/Crate.bmp", 256, 256);
 		cubeTexture->AddTexture("CrateTexture", textureId);
 		cubeTexture->SetCurrentTextures({textureId});
 

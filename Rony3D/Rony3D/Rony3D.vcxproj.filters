@@ -37,9 +37,6 @@
     <Filter Include="Rendering\Shaders">
       <UniqueIdentifier>{1b41656c-0125-4ddd-af49-5b236b99f15c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assets">
-      <UniqueIdentifier>{475ab8da-4a16-46e1-a924-bc7a96c86777}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Utils">
       <UniqueIdentifier>{497a636a-5de2-49bf-8b2f-0c2a9ae4073c}</UniqueIdentifier>
     </Filter>
@@ -173,13 +170,5 @@
     <ClInclude Include="Rendering\Camera\OrthogonalCamera.h">
       <Filter>Rendering\Camera</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\FragmentShader.glsl">
-      <Filter>Assets</Filter>
-    </None>
-    <None Include="Assets\VertexShader.glsl">
-      <Filter>Assets</Filter>
-    </None>
   </ItemGroup>
 </Project>

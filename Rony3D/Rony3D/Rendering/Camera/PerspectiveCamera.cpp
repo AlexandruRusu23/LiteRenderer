@@ -59,33 +59,33 @@ void PerspectiveCamera::SetCameraVelocity(int speed)
 
 void PerspectiveCamera::KeyPressed(const unsigned char key)
 {
-	float dx = 0;
-	float dz = 0;
+	float strafeValue = 0;
+	float forwardValue = 0;
 	switch (key)
 	{
 	case 's':
 	case 'S':
 	{
-		dz = static_cast<float>(m_velocity);
+		forwardValue = static_cast<float>(m_velocity);
 		break;
 	}
 
 	case 'w':
 	case 'W':
 	{
-		dz = -static_cast<float>(m_velocity);
+		forwardValue = -static_cast<float>(m_velocity);
 		break;
 	}
 	case 'a':
 	case 'A':
 	{
-		dx = -static_cast<float>(m_velocity);
+		strafeValue = -static_cast<float>(m_velocity);
 		break;
 	}
 	case 'd':
 	case 'D':
 	{
-		dx = static_cast<float>(m_velocity);
+		strafeValue = static_cast<float>(m_velocity);
 		break;
 	}
 	default:
@@ -97,7 +97,7 @@ void PerspectiveCamera::KeyPressed(const unsigned char key)
 	glm::vec3 forward(mat[0][2], mat[1][2], mat[2][2]);
 	glm::vec3 strafe(mat[0][0], mat[1][0], mat[2][0]);
 
-	m_eyeVector += (-dz * forward + dx * strafe) * Timer::GetDeltaTime();
+	m_eyeVector += (-forwardValue * forward + strafeValue * strafe) * Timer::GetDeltaTime();
 
 	UpdateView();
 }
