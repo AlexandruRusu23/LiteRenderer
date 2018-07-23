@@ -5,7 +5,7 @@
 #include "Managers/SceneManager.h"
 #include "Rendering/ICamera.h"
 
-namespace RenderEngine
+namespace LiteRenderer
 {
 	class Engine
 	{

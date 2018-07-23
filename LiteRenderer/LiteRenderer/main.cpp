@@ -3,7 +3,7 @@
 
 int main(int argc, char **argv)
 {
-	RenderEngine::Engine* engine = new RenderEngine::Engine();
+	LiteRenderer::Engine* engine = new LiteRenderer::Engine();
 	engine->Init(argc, argv);
 
 	engine->GetShaderManager()->CreateProgram("texturedCubeShader",

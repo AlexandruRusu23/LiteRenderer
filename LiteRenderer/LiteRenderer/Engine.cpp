@@ -2,7 +2,7 @@
 
 #include "Rendering\Camera\PerspectiveCamera.h"
 
-using namespace RenderEngine;
+using namespace LiteRenderer;
 using namespace Core;
 
 Engine::Engine()
