@@ -1,32 +1,35 @@
-#ifndef ICAMERA_H
-#define ICAMERA_H
+#ifndef RENDERING_ICAMERA_H
+#define RENDERING_ICAMERA_H
 
 #include "VertexFormat.h"
 
-namespace Rendering
+namespace LiteRenderer
 {
-	class ICamera
+	namespace Rendering
 	{
-	public:
-		virtual ~ICamera() = 0;
+		class ICamera
+		{
+		public:
+			virtual ~ICamera() = 0;
 
-		virtual void UpdateView() = 0;
+			virtual void UpdateView() = 0;
 
-		virtual glm::mat4 GetViewMatrix() const = 0;
+			virtual glm::mat4 GetViewMatrix() const = 0;
 
-		virtual unsigned int GetCameraVelocity() = 0;
-		virtual void SetCameraVelocity(int speed) = 0;
-		
-		virtual void KeyPressed(const unsigned char key) = 0;
-		virtual void MousePressed(int button, int state, int x, int y) = 0;
-		virtual void MouseMove(int x, int y) = 0;
-	};
+			virtual unsigned int GetCameraVelocity() = 0;
+			virtual void SetCameraVelocity(int speed) = 0;
 
-	inline ICamera::~ICamera()
-	{
+			virtual void KeyPressed(const unsigned char key) = 0;
+			virtual void MousePressed(int button, int state, int x, int y) = 0;
+			virtual void MouseMove(int x, int y) = 0;
+		};
 
+		inline ICamera::~ICamera()
+		{
+
+		}
 	}
 }
 
-#endif // !ICAMERA_H
+#endif // !RENDERING_ICAMERA_H
 

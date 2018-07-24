@@ -6,6 +6,7 @@
 
 #include "Logger.h"
 
+using namespace LiteRenderer;
 using namespace Rendering;
 
 TextureLoader::TextureLoader()
@@ -95,3 +96,4 @@ void TextureLoader::LoadBMPFile(const std::string& filename, unsigned int& width
 	}
 	file.close();
 }
+

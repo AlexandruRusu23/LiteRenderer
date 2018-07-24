@@ -1,47 +1,49 @@
-#ifndef PERSPECTIVE_CAMERA_H
-#define PERSPECTIVE_CAMERA_H
+#ifndef CAMERA_PERSPECTIVECAMERA_H
+#define CAMERA_PERSPECTIVECAMERA_H
 
 #include "Rendering/ICamera.h"
 
-namespace Rendering
+namespace LiteRenderer
 {
-	namespace Camera
+	namespace Rendering
 	{
-		class PerspectiveCamera : public ICamera
+		namespace Camera
 		{
-		public:
-			PerspectiveCamera();
-			~PerspectiveCamera();
+			class PerspectiveCamera : public ICamera
+			{
+			public:
+				PerspectiveCamera();
+				~PerspectiveCamera();
 
-			virtual void UpdateView();
+				virtual void UpdateView();
 
-			virtual glm::mat4 GetViewMatrix() const;
+				virtual glm::mat4 GetViewMatrix() const;
 
-			virtual unsigned int GetCameraVelocity();
-			virtual void SetCameraVelocity(int speed);
+				virtual unsigned int GetCameraVelocity();
+				virtual void SetCameraVelocity(int speed);
 
-			virtual void KeyPressed(const unsigned char key);
-			virtual void MousePressed(int button, int state, int x, int y);
-			virtual void MouseMove(int x, int y);
+				virtual void KeyPressed(const unsigned char key);
+				virtual void MousePressed(int button, int state, int x, int y);
+				virtual void MouseMove(int x, int y);
 
-		private:
-			bool m_moveCamera;
+			private:
+				bool m_moveCamera;
 
-			glm::mat4 m_viewMatrix;
+				glm::mat4 m_viewMatrix;
 
-			glm::vec3 m_eyeVector;
-			glm::vec2 m_mousePosition;
-			glm::quat m_cameraQuat;
+				glm::vec3 m_eyeVector;
+				glm::vec2 m_mousePosition;
+				glm::quat m_cameraQuat;
 
-			float m_keyRoll;
-			float m_keyPitch;
-			float m_keyYaw;
-	
-			int m_velocity;
-		};
+				float m_keyRoll;
+				float m_keyPitch;
+				float m_keyYaw;
+
+				int m_velocity;
+			};
+		}
 	}
 }
 
-#endif // !PERSPECTIVE_CAMERA_H
-
+#endif // !CAMERA_PERSPECTIVECAMERA_H
 

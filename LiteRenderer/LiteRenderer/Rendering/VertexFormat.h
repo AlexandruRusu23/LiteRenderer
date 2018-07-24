@@ -1,5 +1,5 @@
-#ifndef VERTEXFORMAT_H
-#define VERTEXFORMAT_H
+#ifndef RENDERING_VERTEXFORMAT_H
+#define RENDERING_VERTEXFORMAT_H
 
 #define GLM_ENABLE_EXPERIMENTAL
 
@@ -8,29 +8,34 @@
 #include "glm/gtx/transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
-namespace Rendering
+namespace LiteRenderer
 {
-	struct VertexFormat
+	namespace Rendering
 	{
-		glm::vec3 position;
-		glm::vec4 color;
-		glm::vec2 texture;
-
-		VertexFormat() = delete;
-
-		VertexFormat(const glm::vec3 &position, const glm::vec4 &color)
+		struct VertexFormat
 		{
-			this->position = position;
-			this->color = color;
-			texture.x = texture.y = 0;
-		}
+			glm::vec3 position;
+			glm::vec4 color;
+			glm::vec2 texture;
 
-		VertexFormat(const glm::vec3 &position, const glm::vec2 &texture)
-		{
-			this->position = position;
-			this->color = { 0, 0, 0, 1};
-			this->texture = texture;
-		}
-	};
+			VertexFormat() = delete;
+
+			VertexFormat(const glm::vec3 &position, const glm::vec4 &color)
+			{
+				this->position = position;
+				this->color = color;
+				texture.x = texture.y = 0;
+			}
+
+			VertexFormat(const glm::vec3 &position, const glm::vec2 &texture)
+			{
+				this->position = position;
+				this->color = { 0, 0, 0, 1 };
+				this->texture = texture;
+			}
+		};
+	}
 }
-#endif
+
+#endif // !RENDERING_VERTEXFORMAT_H
+

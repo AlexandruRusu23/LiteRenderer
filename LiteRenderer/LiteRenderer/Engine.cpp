@@ -3,7 +3,6 @@
 #include "Rendering\Camera\PerspectiveCamera.h"
 
 using namespace LiteRenderer;
-using namespace Core;
 
 Engine::Engine()
 {
@@ -23,20 +22,23 @@ Engine::~Engine()
 
 	if (m_textureLoader)
 		delete m_textureLoader;
+
+	if (m_camera)
+		delete m_camera;
 }
 
 bool Engine::Init(int argc, char **argv)
 {
-	WindowInfo windowInfo(std::string("Rony3D"), 200, 100, 1280, 720, true);
-	ContextInfo contextInfo(4, 3, true);
-	FrameBufferInfo frameBufferInfo(true, true, true, true);
-	Init::InitGLUT::Init(argc, argv, windowInfo, contextInfo, frameBufferInfo);
+	Core::WindowInfo windowInfo(std::string("LiteRenderer"), 200, 100, 1280, 720, true);
+	Core::ContextInfo contextInfo(4, 3, true);
+	Core::FrameBufferInfo frameBufferInfo(true, true, true, true);
+	Core::Init::InitGLUT::Init(argc, argv, windowInfo, contextInfo, frameBufferInfo);
 
 	m_sceneManager = new Managers::SceneManager();
-	Init::InitGLUT::SetListener(m_sceneManager);
+	Core::Init::InitGLUT::SetListener(m_sceneManager);
 
 	m_shaderManager = new Managers::ShaderManager();
-	m_textureLoader = new TextureLoader();
+	m_textureLoader = new Rendering::TextureLoader();
 	
 	if (m_sceneManager && m_shaderManager)
 	{
@@ -53,7 +55,7 @@ bool Engine::Init(int argc, char **argv)
 
 void Engine::Run()
 {
-	Init::InitGLUT::Run();
+	Core::Init::InitGLUT::Run();
 }
 
 Managers::SceneManager* Engine::GetSceneManager() const
@@ -71,7 +73,8 @@ Managers::ModelsManager* Engine::GetModelsManager() const
 	return m_modelsManager;
 }
 
-TextureLoader* Engine::GetTextureLoader() const
+Rendering::TextureLoader* Engine::GetTextureLoader() const
 {
 	return m_textureLoader;
 }
+

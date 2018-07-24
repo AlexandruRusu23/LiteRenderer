@@ -1,24 +1,28 @@
-#ifndef INIT_GLEW_H
-#define INIT_GLEW_H
+#ifndef INIT_INITGLEW_H
+#define INIT_INITGLEW_H
 
 #include <iostream>
 
 #include <glew/glew.h>
 #include <freeglut/freeglut.h>
 
-namespace Core
+namespace LiteRenderer
 {
-	namespace Init
+	namespace Core
 	{
-		class InitGLEW
+		namespace Init
 		{
-		public:
-			InitGLEW(void);
-			~InitGLEW(void);
+			class InitGLEW
+			{
+			public:
+				InitGLEW(void);
+				~InitGLEW(void);
 
-			static void Init();
-		};
+				static void Init();
+			};
+		}
 	}
 }
 
-#endif
+#endif // !INIT_INITGLEW_H
+

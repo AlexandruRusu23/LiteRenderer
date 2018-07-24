@@ -4,13 +4,15 @@
 #include <cstdio>
 #include <cstdarg>
 
-using namespace Core::Logging;
+using namespace LiteRenderer;
+using namespace Core;
+using namespace Logging;
 
 static const unsigned int LOGGER_STRING_MAX_LENGTH = 1024;
 
 std::ofstream Logger::m_outStream;
 
-void Logger::Init(std::string filename /* = "Rony3D.log" */)
+void Logger::Init(std::string filename /* = "LiteRenderer.log" */)
 {
 	if (m_outStream.is_open())
 	{
@@ -56,3 +58,4 @@ void Logger::Log(const char* const format, ...)
 	m_outStream << currentTimeFormatted << messageBuffer << std::endl;
 	std::cout << currentTimeFormatted << messageBuffer << std::endl;
 }
+

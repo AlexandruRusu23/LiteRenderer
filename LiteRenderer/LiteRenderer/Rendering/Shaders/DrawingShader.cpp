@@ -1,6 +1,8 @@
 #include "DrawingShader.h"
 
-using namespace Rendering::Shaders;
+using namespace LiteRenderer;
+using namespace Rendering;
+using namespace Shaders;
 
 DrawingShader::DrawingShader(const std::string& shaderName,
 	GLuint programId,
@@ -57,3 +59,4 @@ void DrawingShader::SetGeometryShaderFilename(const std::string& filename)
 {
 	m_geometryShaderFilename = filename;
 }
+

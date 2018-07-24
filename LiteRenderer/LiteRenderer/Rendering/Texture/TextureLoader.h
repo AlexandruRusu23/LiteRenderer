@@ -1,24 +1,28 @@
-#ifndef TEXTURELOADER_H
-#define TEXTURELOADER_H
+#ifndef RENDERING_TEXTURELOADER_H
+#define RENDERING_TEXTURELOADER_H
 
 #include <string>
 #include <glew/glew.h>
 
 #include "BMPHeaders.h"
 
-namespace Rendering
+namespace LiteRenderer
 {
-	class TextureLoader
+	namespace Rendering
 	{
-	public:
-		TextureLoader();
-		~TextureLoader();
+		class TextureLoader
+		{
+		public:
+			TextureLoader();
+			~TextureLoader();
 
-		unsigned int LoadTexture(const std::string& filename, unsigned int width, unsigned int height);
+			unsigned int LoadTexture(const std::string& filename, unsigned int width, unsigned int height);
 
-	private:
-		void LoadBMPFile(const std::string& filename, unsigned int& width, unsigned int& height, unsigned char*& data);
-	};
+		private:
+			void LoadBMPFile(const std::string& filename, unsigned int& width, unsigned int& height, unsigned char*& data);
+		};
+	}
 }
 
-#endif // !TEXTURELOADER_H
+#endif // !RENDERING_TEXTURELOADER_H
+

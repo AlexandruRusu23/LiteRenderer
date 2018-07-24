@@ -1,6 +1,8 @@
 #include "ShaderObject.h"
 
-using namespace Rendering::Shaders;
+using namespace LiteRenderer;
+using namespace Rendering;
+using namespace Shaders;
 
 ShaderObject::ShaderObject(const std::string& shaderName, GLuint programId)
 	: m_shaderName(shaderName)
@@ -23,3 +25,4 @@ GLuint ShaderObject::GetProgramId() const
 {
 	return m_programId;
 }
+

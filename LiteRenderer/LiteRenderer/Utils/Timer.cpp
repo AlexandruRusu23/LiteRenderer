@@ -1,5 +1,8 @@
 #include "Timer.h"
 
+using namespace LiteRenderer;
+using namespace Utils;
+
 uint64_t Timer::m_currentTimeMS(0);
 uint64_t Timer::m_deltaTimeMS(0);
 
@@ -25,3 +28,4 @@ uint64_t Timer::GetDeltaTimeMS()
 {
 	return m_deltaTimeMS;
 }
+

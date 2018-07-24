@@ -1,49 +1,53 @@
-#ifndef FRAMEBUFFERINFO_H
-#define FRAMEBUFFERINFO_H
+#ifndef CORE_FRAMEBUFFERINFO_H
+#define CORE_FRAMEBUFFERINFO_H
 
 #include <glew/glew.h>
 #include <freeglut/freeglut.h>
 
-namespace Core
+namespace LiteRenderer
 {
-	struct FrameBufferInfo
+	namespace Core
 	{
-		unsigned int flags;
-		bool msaa; // GLUT_MULTISAMPLE
-
-		FrameBufferInfo()
+		struct FrameBufferInfo
 		{
-			flags = GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH;
-			msaa = false;
-		}
+			unsigned int flags;
+			bool msaa; // GLUT_MULTISAMPLE
 
-		FrameBufferInfo(bool color, bool depth, bool stencil, bool msaa)
-		{
-			flags = GLUT_DOUBLE;
-			if (color)
-				flags |= GLUT_RGBA | GLUT_ALPHA;
-			if (depth)
-				flags |= GLUT_DEPTH;
-			if (stencil)
-				flags |= GLUT_STENCIL;
-			if (msaa)
-				flags |= GLUT_MULTISAMPLE;
-			this->msaa = msaa;
-		}
+			FrameBufferInfo()
+			{
+				flags = GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH;
+				msaa = false;
+			}
 
-		FrameBufferInfo(const FrameBufferInfo& frameBufferInfo)
-		{
-			flags = frameBufferInfo.flags;
-			msaa = frameBufferInfo.msaa;
-		}
+			FrameBufferInfo(bool color, bool depth, bool stencil, bool msaa)
+			{
+				flags = GLUT_DOUBLE;
+				if (color)
+					flags |= GLUT_RGBA | GLUT_ALPHA;
+				if (depth)
+					flags |= GLUT_DEPTH;
+				if (stencil)
+					flags |= GLUT_STENCIL;
+				if (msaa)
+					flags |= GLUT_MULTISAMPLE;
+				this->msaa = msaa;
+			}
 
-		void operator=(const FrameBufferInfo& frameBufferInfo)
-		{
-			flags = frameBufferInfo.flags;
-			msaa = frameBufferInfo.flags;
-		}
+			FrameBufferInfo(const FrameBufferInfo& frameBufferInfo)
+			{
+				flags = frameBufferInfo.flags;
+				msaa = frameBufferInfo.msaa;
+			}
 
-	};
+			void operator=(const FrameBufferInfo& frameBufferInfo)
+			{
+				flags = frameBufferInfo.flags;
+				msaa = frameBufferInfo.flags;
+			}
+
+		};
+	}
 }
 
-#endif
+#endif // !CORE_FRAMEBUFFERINFO_H
+

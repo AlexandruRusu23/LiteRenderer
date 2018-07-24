@@ -1,41 +1,44 @@
-#ifndef DRAWINGSHADER_H
-#define DRAWINGSHADER_H
+#ifndef SHADERS_DRAWINGSHADER_H
+#define SHADERS_DRAWINGSHADER_H
 
 #include "ShaderObject.h"
 
-namespace Rendering
+namespace LiteRenderer
 {
-	namespace Shaders
+	namespace Rendering
 	{
-		class DrawingShader : public ShaderObject
+		namespace Shaders
 		{
-		public:
-			DrawingShader(const std::string& shaderName, 
-				GLuint programId,
-				GLuint vertexShaderId,
-				GLuint fragmentShaderId,
-				GLuint geometryShaderId = 0);
-			~DrawingShader();
+			class DrawingShader : public ShaderObject
+			{
+			public:
+				DrawingShader(const std::string& shaderName,
+					GLuint programId,
+					GLuint vertexShaderId,
+					GLuint fragmentShaderId,
+					GLuint geometryShaderId = 0);
+				~DrawingShader();
 
-			GLuint GetVertexShader() const;
-			GLuint GetFragmentShader() const;
-			GLuint GetGeometryShader() const;
+				GLuint GetVertexShader() const;
+				GLuint GetFragmentShader() const;
+				GLuint GetGeometryShader() const;
 
-			void SetVertexShaderFilename(const std::string& filename);
-			void SetFragmentShaderFilename(const std::string& filename);
-			void SetGeometryShaderFilename(const std::string& filename);
+				void SetVertexShaderFilename(const std::string& filename);
+				void SetFragmentShaderFilename(const std::string& filename);
+				void SetGeometryShaderFilename(const std::string& filename);
 
-		protected:
-			std::string m_vertexShaderFilename;
-			std::string m_fragmentShaderFilename;
-			std::string m_geometryShaderFilename;
+			protected:
+				std::string m_vertexShaderFilename;
+				std::string m_fragmentShaderFilename;
+				std::string m_geometryShaderFilename;
 
-			GLuint		m_vertexShaderId;
-			GLuint		m_fragmentShaderId;
-			GLuint		m_geometryShaderId;
-		};
+				GLuint		m_vertexShaderId;
+				GLuint		m_fragmentShaderId;
+				GLuint		m_geometryShaderId;
+			};
+		}
 	}
 }
 
-#endif // !DRAWINGSHADER_H
+#endif // !SHADERS_DRAWINGSHADER_H
 

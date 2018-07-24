@@ -1,6 +1,8 @@
 #include "Engine.h"
 #include "Rendering/Models/CubeTexture.h"
 
+using namespace LiteRenderer;
+
 int main(int argc, char **argv)
 {
 	LiteRenderer::Engine* engine = new LiteRenderer::Engine();
@@ -29,3 +31,4 @@ int main(int argc, char **argv)
 
 	return 0;
 }
+

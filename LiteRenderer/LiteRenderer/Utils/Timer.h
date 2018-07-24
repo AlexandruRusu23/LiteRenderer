@@ -1,28 +1,34 @@
-#ifndef TIMER_H
-#define TIMER_H
+#ifndef UTILS_TIMER_H
+#define UTILS_TIMER_H
 
 #include <chrono>
 #include <cstdint>
 
-class Timer
+namespace LiteRenderer
 {
-public:
-	Timer() = delete;
-	~Timer() = delete;
-	Timer(Timer& timer) = delete;
-	Timer& operator=(const Timer& timer) = delete;
+	namespace Utils
+	{
+		class Timer
+		{
+		public:
+			Timer() = delete;
+			~Timer() = delete;
+			Timer(Timer& timer) = delete;
+			Timer& operator=(const Timer& timer) = delete;
 
-	static void Init();
-	static void Update();
+			static void Init();
+			static void Update();
 
-	static float GetDeltaTime();
+			static float GetDeltaTime();
 
-	static uint64_t GetDeltaTimeMS();
+			static uint64_t GetDeltaTimeMS();
 
-private:
-	static uint64_t m_currentTimeMS;
-	static uint64_t m_deltaTimeMS;
-};
+		private:
+			static uint64_t m_currentTimeMS;
+			static uint64_t m_deltaTimeMS;
+		};
+	}
+}
 
-#endif // !TIMER_H
+#endif // !UTILS_TIMER_H
 

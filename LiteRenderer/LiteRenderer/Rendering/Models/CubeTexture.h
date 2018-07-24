@@ -1,31 +1,35 @@
-#ifndef CUBETEXTURE_H
-#define CUBETEXTURE_H
+#ifndef MODELS_CUBETEXTURE_H
+#define MODELS_CUBETEXTURE_H
 
 #include "Model.h"
 
-namespace Rendering
+namespace LiteRenderer
 {
-	namespace Models
+	namespace Rendering
 	{
-		class CubeTexture : public Model
+		namespace Models
 		{
-		public:
-			CubeTexture();
-			~CubeTexture();
+			class CubeTexture : public Model
+			{
+			public:
+				CubeTexture();
+				~CubeTexture();
 
-			void Create();
-			
-			virtual void Update() override final;
-			virtual void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) override final;
+				void Create();
 
-		private:
-			glm::vec3					m_rotation;
-			glm::vec3					m_rotationSpeed;
-			glm::vec3					m_rotationSin;
-			glm::vec3					m_translate;
-			glm::mat4					m_translateMatrix;
-		};
+				virtual void Update() override final;
+				virtual void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) override final;
+
+			private:
+				glm::vec3					m_rotation;
+				glm::vec3					m_rotationSpeed;
+				glm::vec3					m_rotationSin;
+				glm::vec3					m_translate;
+				glm::mat4					m_translateMatrix;
+			};
+		}
 	}
 }
 
-#endif
+#endif // !MODELS_CUBETEXTURE_H
+

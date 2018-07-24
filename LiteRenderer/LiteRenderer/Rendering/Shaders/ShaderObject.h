@@ -1,29 +1,33 @@
-#ifndef SHADEROBJECT_H
-#define SHADEROBJECT_H
+#ifndef SHADERS_SHADEROBJECT_H
+#define SHADERS_SHADEROBJECT_H
 
 #include <string>
 #include <glew\glew.h>
 
 #include "Logger.h"
 
-namespace Rendering
+namespace LiteRenderer
 {
-	namespace Shaders
+	namespace Rendering
 	{
-		class ShaderObject
+		namespace Shaders
 		{
-		public:
-			ShaderObject(const std::string& shaderName, GLuint programId);
-			virtual ~ShaderObject(void);
+			class ShaderObject
+			{
+			public:
+				ShaderObject(const std::string& shaderName, GLuint programId);
+				virtual ~ShaderObject(void);
 
-			std::string GetName() const;
-			GLuint GetProgramId() const;
+				std::string GetName() const;
+				GLuint GetProgramId() const;
 
-		protected:
-			std::string m_shaderName;
-			GLuint		m_programId;
-		};
+			protected:
+				std::string m_shaderName;
+				GLuint		m_programId;
+			};
+		}
 	}
 }
 
-#endif // !SHADEROBJECT_H
+#endif // !SHADERS_SHADEROBJECT_H
+

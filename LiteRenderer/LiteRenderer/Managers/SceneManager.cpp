@@ -2,6 +2,7 @@
 
 #include "Timer.h"
 
+using namespace LiteRenderer;
 using namespace Managers;
 
 SceneManager::SceneManager()
@@ -14,7 +15,7 @@ SceneManager::~SceneManager() { }
 
 void SceneManager::NotifyBeginFrame()
 {
-	Timer::Update();
+	Utils::Timer::Update();
 	m_modelsManager->Update();
 }
 
@@ -46,7 +47,6 @@ void SceneManager::NotifyReshape(int width, int height, int previous_width, int 
 
 void SceneManager::NotifyKeyboardPressed(unsigned char key, int x, int y)
 {
-	//Logger::Log("NotifyKeyboardPressed key: %c ;x: %d; y: %d", key, x, y);
 	m_camera->KeyPressed(key);
 }
 
@@ -92,7 +92,8 @@ void SceneManager::SetModelsManager(ModelsManager*& modelsManager)
 	m_modelsManager = modelsManager;
 }
 
-void Managers::SceneManager::SetCamera(ICamera * camera)
+void Managers::SceneManager::SetCamera(Rendering::ICamera * camera)
 {
 	m_camera = camera;
 }
+

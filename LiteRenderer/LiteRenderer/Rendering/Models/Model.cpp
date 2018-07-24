@@ -1,5 +1,6 @@
 #include "Model.h"
 
+using namespace LiteRenderer;
 using namespace Rendering;
 using namespace Models;
 
@@ -77,3 +78,4 @@ void Model::SetCurrentTextures(const std::set<GLuint>& textures)
 {
 	m_currentTextures = textures;
 }
+

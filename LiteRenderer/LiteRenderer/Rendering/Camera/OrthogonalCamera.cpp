@@ -1,6 +1,8 @@
 #include "OrthogonalCamera.h"
 
-using namespace Rendering::Camera;
+using namespace LiteRenderer;
+using namespace Rendering;
+using namespace Camera;
 
 OrthogonalCamera::OrthogonalCamera()
 {
@@ -36,3 +38,4 @@ void OrthogonalCamera::MouseMove(int x, int y)
 {
 
 }
+

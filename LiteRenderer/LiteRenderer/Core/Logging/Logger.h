@@ -1,31 +1,35 @@
-#ifndef LOGGER_H
-#define LOGGER_H
+#ifndef LOGGING_LOGGER_H
+#define LOGGING_LOGGER_H
 
 #include <string>
 #include <fstream>
 #include <ctime>
 
-namespace Core
+namespace LiteRenderer
 {
-	namespace Logging
+	namespace Core
 	{
-		class Logger
+		namespace Logging
 		{
-		public:
-			static void Init(std::string filename = "Rony3D.log");
-			static void Close();
+			class Logger
+			{
+			public:
+				static void Init(std::string filename = "LiteRenderer.log");
+				static void Close();
 
-			static void Log(const char* const format, ...);
+				static void Log(const char* const format, ...);
 
-		private:
-			Logger(void) {}
-			~Logger(void) {}
+			private:
+				Logger(void) {}
+				~Logger(void) {}
 
-			static std::ofstream	m_outStream;
-		};
+				static std::ofstream	m_outStream;
+			};
+		}
 	}
 }
 
-using namespace Core::Logging;
+using namespace LiteRenderer::Core::Logging;
 
-#endif // !LOGGER_H
+#endif // !LOGGING_LOGGER_H
+

@@ -4,7 +4,9 @@
 
 #include "Timer.h"
 
-using namespace Rendering::Camera;
+using namespace LiteRenderer;
+using namespace Rendering;
+using namespace Camera;
 
 PerspectiveCamera::PerspectiveCamera()
 	: m_moveCamera(false)
@@ -97,7 +99,7 @@ void PerspectiveCamera::KeyPressed(const unsigned char key)
 	glm::vec3 forward(mat[0][2], mat[1][2], mat[2][2]);
 	glm::vec3 strafe(mat[0][0], mat[1][0], mat[2][0]);
 
-	m_eyeVector += (-forwardValue * forward + strafeValue * strafe) * Timer::GetDeltaTime();
+	m_eyeVector += (-forwardValue * forward + strafeValue * strafe) * Utils::Timer::GetDeltaTime();
 
 	UpdateView();
 }
@@ -130,3 +132,4 @@ void PerspectiveCamera::MouseMove(int x, int y)
 	m_mousePosition = glm::vec2(x, y);
 	UpdateView();
 }
+

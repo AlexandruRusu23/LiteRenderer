@@ -1,5 +1,5 @@
-#ifndef SHADER_MANAGER_H
-#define SHADER_MANAGER_H
+#ifndef MANAGERS_SHADERMANAGER_H
+#define MANAGERS_SHADERMANAGER_H
 
 #include <map>
 
@@ -8,27 +8,31 @@
 #include "Rendering/Shaders/ShaderObject.h"
 #include "Rendering/Shaders/DrawingShader.h"
 
-namespace Managers
+namespace LiteRenderer
 {
-	class ShaderManager
+	namespace Managers
 	{
-	public:
-		ShaderManager(void);
-		~ShaderManager(void);
+		class ShaderManager
+		{
+		public:
+			ShaderManager(void);
+			~ShaderManager(void);
 
-		Rendering::Shaders::ShaderObject* GetShader(const std::string& shaderName);
+			Rendering::Shaders::ShaderObject* GetShader(const std::string& shaderName);
 
-		void CreateProgram(const std::string& shaderName, 
-			const std::string& vertexShaderFilename, 
-			const std::string& fragmentShaderFilename,
-			const std::string& geometryShaderFilename = "");
+			void CreateProgram(const std::string& shaderName,
+				const std::string& vertexShaderFilename,
+				const std::string& fragmentShaderFilename,
+				const std::string& geometryShaderFilename = "");
 
-	private:
-		std::string ReadShader(const std::string& filename);
-		GLuint CreateShader(GLenum shaderType, const std::string& source, const std::string& shaderName);
+		private:
+			std::string ReadShader(const std::string& filename);
+			GLuint CreateShader(GLenum shaderType, const std::string& source, const std::string& shaderName);
 
-		std::map<std::string, Rendering::Shaders::ShaderObject*> m_programs;
-	};
+			std::map<std::string, Rendering::Shaders::ShaderObject*> m_programs;
+		};
+	}
 }
 
-#endif
+#endif // !MANAGERS_SHADERMANAGER_H
+

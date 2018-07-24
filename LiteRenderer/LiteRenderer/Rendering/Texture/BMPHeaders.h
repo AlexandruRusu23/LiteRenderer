@@ -1,34 +1,38 @@
-#ifndef BMPHEADERS_H
-#define BMPHEADERS_H
+#ifndef TEXTURE_BMPHEADERS_H
+#define TEXTURE_BMPHEADERS_H
 
-namespace Rendering
+namespace LiteRenderer
 {
-	namespace Texture
+	namespace Rendering
 	{
-		struct BMP_Header
+		namespace Texture
 		{
-			unsigned char type[2];
-			int f_lenght;
-			short rezerved1;
-			short rezerved2;
-			int offBits;
-		};
+			struct BMP_Header
+			{
+				unsigned char type[2];
+				int f_lenght;
+				short rezerved1;
+				short rezerved2;
+				int offBits;
+			};
 
-		struct BMP_Header_Info
-		{
-			int size;
-			int width;
-			int height;
-			short planes;
-			short bitCount;
-			int compresion;
-			int sizeImage;
-			int xPelsPerMeter;
-			int yPelsPerMeter;
-			int clrUsed;
-			int clrImportant;
-		};
+			struct BMP_Header_Info
+			{
+				int size;
+				int width;
+				int height;
+				short planes;
+				short bitCount;
+				int compresion;
+				int sizeImage;
+				int xPelsPerMeter;
+				int yPelsPerMeter;
+				int clrUsed;
+				int clrImportant;
+			};
+		}
 	}
 }
 
-#endif // !BMPHEADERS_H
+#endif // !TEXTURE_BMPHEADERS_H
+

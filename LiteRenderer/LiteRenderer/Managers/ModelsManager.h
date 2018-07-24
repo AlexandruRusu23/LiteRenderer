@@ -1,31 +1,33 @@
-#ifndef MODELS_MANAGER_H
-#define MODELS_MANAGER_H
+#ifndef MANAGERS_MODELSMANAGER_H
+#define MANAGERS_MODELSMANAGER_H
 
 #include <map>
 
 #include "Rendering/IGameObject.h"
 
-using namespace Rendering;
-
-namespace Managers
+namespace LiteRenderer
 {
-	class ModelsManager
+	namespace Managers
 	{
-	public:
-		ModelsManager();
-		~ModelsManager();
+		class ModelsManager
+		{
+		public:
+			ModelsManager();
+			~ModelsManager();
 
-		void Update();
-		void Draw();
-		void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix);
+			void Update();
+			void Draw();
+			void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix);
 
-		const IGameObject& GetModel(const std::string& gameModelName) const;
-		void SetModel(const std::string& gameObjectName, IGameObject* gameObject);
-		void DeleteModel(const std::string& gameModelName);
+			const Rendering::IGameObject& GetModel(const std::string& gameModelName) const;
+			void SetModel(const std::string& gameObjectName, Rendering::IGameObject* gameObject);
+			void DeleteModel(const std::string& gameModelName);
 
-	private:
-		std::map<std::string, IGameObject*> m_gameModelList;
-	};
+		private:
+			std::map<std::string, Rendering::IGameObject*> m_gameModelList;
+		};
+	}
 }
 
-#endif
+#endif // !MANAGERS_MODELSMANAGER_H
+

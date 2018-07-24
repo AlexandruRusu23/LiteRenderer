@@ -4,6 +4,7 @@
 
 #define PI 3.14159265
 
+using namespace LiteRenderer;
 using namespace Rendering;
 using namespace Models;
 
@@ -103,7 +104,7 @@ void CubeTexture::Create()
 
 void CubeTexture::Update()
 {
-	m_rotation = Timer::GetDeltaTime() * m_rotationSpeed + m_rotation;
+	m_rotation = Utils::Timer::GetDeltaTime() * m_rotationSpeed + m_rotation;
 	m_rotationSin = glm::vec3(m_rotation.x * PI / 180, m_rotation.y * PI / 180, m_rotation.z * PI / 180);
 }
 
@@ -126,3 +127,4 @@ void CubeTexture::Draw(const glm::mat4& projection_matrix, const glm::mat4& view
 
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
+

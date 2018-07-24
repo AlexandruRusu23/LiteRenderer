@@ -4,15 +4,16 @@
 #include "Logger.h"
 #include "Timer.h"
 
+using namespace LiteRenderer;
 using namespace Core;
 using namespace Init;
 
 IListener* InitGLUT::m_listener = nullptr;
-WindowInfo InitGLUT::m_windowInformation("Rony3D", 300, 300, 960, 540, true);
+WindowInfo InitGLUT::m_windowInformation("LiteRenderer", 300, 300, 960, 540, true);
 
 void InitGLUT::Init(int argc, char **argv, const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FrameBufferInfo& frameBufferInfo)
 {
-	Timer::Init();
+	Utils::Timer::Init();
 	Logger::Init();
 
 	glutInit(&argc, argv);
@@ -51,8 +52,8 @@ void InitGLUT::Init(int argc, char **argv, const WindowInfo& windowInfo, const C
 
 	glutMouseFunc(MouseCallback);
 	glutMouseWheelFunc(MouseWheelCallback);
-	glutMotionFunc(MouseMotionCallback); // mouse moves within window while mouse buttons are pressed
-	glutPassiveMotionFunc(MousePassiveMotionCallback); // mouse moves within window while no mouse buttons are pressed
+	glutMotionFunc(MouseMotionCallback);
+	glutPassiveMotionFunc(MousePassiveMotionCallback);
 
 	InitGLEW::Init();
 	glDebugMessageCallback(Logging::DebugOutput::RegisterDebugError, NULL);
@@ -116,7 +117,6 @@ void InitGLUT::CloseCallback()
 
 void InitGLUT::DisplayCallback()
 {
-	//check for NULL
 	if (m_listener)
 	{
 		m_listener->NotifyBeginFrame();
@@ -187,3 +187,4 @@ void InitGLUT::MousePassiveMotionCallback(int x, int y)
 	if (m_listener)
 		m_listener->NotifyMousePassiveMotion(x, y);
 }
+

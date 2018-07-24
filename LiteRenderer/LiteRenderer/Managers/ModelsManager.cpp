@@ -1,10 +1,11 @@
 #include "ModelsManager.h"
 
+using namespace LiteRenderer;
 using namespace Managers;
-using namespace Rendering;
 
 ModelsManager::ModelsManager()
 {
+
 }
 
 ModelsManager::~ModelsManager()
@@ -41,19 +42,20 @@ void ModelsManager::Draw(const glm::mat4& projection_matrix, const glm::mat4& vi
 	}
 }
 
-const IGameObject& ModelsManager::GetModel(const std::string& gameModelName) const
+const Rendering::IGameObject& ModelsManager::GetModel(const std::string& gameModelName) const
 {
 	return (*m_gameModelList.at(gameModelName));
 }
 
-void ModelsManager::SetModel(const std::string& gameObjectName, IGameObject* gameObject)
+void ModelsManager::SetModel(const std::string& gameObjectName, Rendering::IGameObject* gameObject)
 {
 	m_gameModelList[gameObjectName.c_str()] = gameObject;
 }
 
 void ModelsManager::DeleteModel(const std::string& gameModelName)
 {
-	IGameObject* model = m_gameModelList[gameModelName];
+	Rendering::IGameObject* model = m_gameModelList[gameModelName];
 	model->Destroy();
 	m_gameModelList.erase(gameModelName);
 }
+

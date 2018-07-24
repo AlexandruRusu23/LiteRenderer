@@ -6,23 +6,23 @@
 
 #include "Logger.h"
 
+using namespace LiteRenderer;
 using namespace Managers;
-using namespace Rendering::Shaders;
 
 ShaderManager::ShaderManager(void) {}
 
 ShaderManager::~ShaderManager(void)
 {
-	std::map<std::string, ShaderObject*>::iterator program;
+	std::map<std::string, Rendering::Shaders::ShaderObject*>::iterator program;
 	for (program = m_programs.begin(); program != m_programs.end(); program++)
 	{
-		ShaderObject* shader = program->second;
+		Rendering::Shaders::ShaderObject* shader = program->second;
 		delete shader;
 	}
 	m_programs.clear();
 }
 
-ShaderObject* ShaderManager::GetShader(const std::string& shaderName)
+Rendering::Shaders::ShaderObject* ShaderManager::GetShader(const std::string& shaderName)
 {
 	if (m_programs.find(shaderName) != m_programs.end())
 		return m_programs.at(shaderName);
@@ -69,7 +69,7 @@ void ShaderManager::CreateProgram(const std::string& shaderName,
 		return;
 	}
 
-	DrawingShader* shader = new DrawingShader(shaderName, program, vertexShader, fragmentShader, geometryShader);
+	Rendering::Shaders::DrawingShader* shader = new Rendering::Shaders::DrawingShader(shaderName, program, vertexShader, fragmentShader, geometryShader);
 	shader->SetVertexShaderFilename(vertexShaderFilename);
 	shader->SetFragmentShaderFilename(vertexShaderFilename);
 	shader->SetGeometryShaderFilename(geometryShaderFilename);
@@ -85,6 +85,7 @@ std::string ShaderManager::ReadShader(const std::string& filename)
 	if (!file)
 	{
 		Logger::Log("Could not open the file %s.", filename.c_str());
+		_ASSERT(false);
 		return 0;
 	}
 
@@ -92,6 +93,7 @@ std::string ShaderManager::ReadShader(const std::string& filename)
 	{
 		Logger::Log("Can't read file %s.", filename.c_str());
 		std::terminate();
+		_ASSERT(false);
 		return 0;
 	}
 
@@ -127,3 +129,4 @@ GLuint ShaderManager::CreateShader(GLenum shaderType, const std::string& source,
 	}
 	return shader;
 }
+
