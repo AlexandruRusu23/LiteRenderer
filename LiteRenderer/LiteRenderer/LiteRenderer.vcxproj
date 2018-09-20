@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Dependencies\include\;$(ProjectDir);$(ProjectDir)Core\Logging\;$(ProjectDir)Utils\;$(SolutionDir)Dependencies\include\freetype\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\include\;$(ProjectDir);$(ProjectDir)Core\Input\;$(ProjectDir)Core\Logging\;$(ProjectDir)Utils\;$(SolutionDir)Dependencies\include\freetype\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Dependencies\include\;$(ProjectDir);$(ProjectDir)Core\Logging\;$(ProjectDir)Utils\;$(SolutionDir)Dependencies\include\freetype\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\include\;$(ProjectDir);$(ProjectDir)Core\Input\;$(ProjectDir)Core\Logging\;$(ProjectDir)Utils\;$(SolutionDir)Dependencies\include\freetype\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\include\;$(ProjectDir);$(ProjectDir)Core\Logging\;$(ProjectDir)Utils\;$(SolutionDir)Dependencies\include\freetype\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\include\;$(ProjectDir);$(ProjectDir)Core\Input\;$(ProjectDir)Core\Logging\;$(ProjectDir)Utils\;$(SolutionDir)Dependencies\include\freetype\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\include\;$(ProjectDir);$(ProjectDir)Core\Logging\;$(ProjectDir)Utils\;$(SolutionDir)Dependencies\include\freetype\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\include\;$(ProjectDir);$(ProjectDir)Core\Input\;$(ProjectDir)Core\Logging\;$(ProjectDir)Utils\;$(SolutionDir)Dependencies\include\freetype\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="Core\Init\InitGLEW.cpp" />
     <ClCompile Include="Core\Init\InitGLUT.cpp" />
+    <ClCompile Include="Core\Input\InputController.cpp" />
     <ClCompile Include="Core\Logging\Logger.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="main.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="Core\Init\InitGLEW.h" />
     <ClInclude Include="Core\Init\InitGLUT.h" />
     <ClInclude Include="Core\Init\WindowInfo.h" />
+    <ClInclude Include="Core\Input\InputController.h" />
     <ClInclude Include="Core\Logging\DebugOutput.h" />
     <ClInclude Include="Core\Logging\Logger.h" />
     <ClInclude Include="Engine.h" />

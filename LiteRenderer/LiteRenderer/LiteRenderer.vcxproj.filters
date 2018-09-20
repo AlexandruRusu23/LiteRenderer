@@ -43,6 +43,9 @@
     <Filter Include="Rendering\Camera">
       <UniqueIdentifier>{5f78ea2c-a66f-4789-8d40-d606d61cd97b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Input">
+      <UniqueIdentifier>{592226fd-9475-4547-9d05-7394e17a3996}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -92,6 +95,9 @@
     </ClCompile>
     <ClCompile Include="Rendering\Camera\OrthogonalCamera.cpp">
       <Filter>Rendering\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Input\InputController.cpp">
+      <Filter>Core\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="Rendering\Camera\OrthogonalCamera.h">
       <Filter>Rendering\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Input\InputController.h">
+      <Filter>Core\Input</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

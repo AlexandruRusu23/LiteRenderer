@@ -35,9 +35,9 @@ namespace LiteRenderer
 				glm::vec2 m_mousePosition;
 				glm::quat m_cameraQuat;
 
-				float m_keyRoll;
 				float m_keyPitch;
 				float m_keyYaw;
+				float m_keyRoll;
 
 				int m_velocity;
 			};

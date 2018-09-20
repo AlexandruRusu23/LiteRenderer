@@ -13,7 +13,7 @@ namespace LiteRenderer
 		Engine();
 		~Engine();
 
-		bool Init(int argc, char **argv);
+		void Init(int argc, char **argv);
 
 		void Run();
 

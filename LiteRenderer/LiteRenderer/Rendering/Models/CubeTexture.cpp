@@ -2,11 +2,11 @@
 
 #include "Timer.h"
 
-#define PI 3.14159265
-
 using namespace LiteRenderer;
 using namespace Rendering;
 using namespace Models;
+
+const float CubeTexture::PI = 3.14159265f;
 
 CubeTexture::CubeTexture()
 {

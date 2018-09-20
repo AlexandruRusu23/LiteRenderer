@@ -3,6 +3,7 @@
 #include <freeglut\freeglut.h>
 
 #include "Timer.h"
+#include "InputController.h"
 
 using namespace LiteRenderer;
 using namespace Rendering;
@@ -11,14 +12,14 @@ using namespace Camera;
 PerspectiveCamera::PerspectiveCamera()
 	: m_moveCamera(false)
 	, m_keyPitch(0)
-	, m_keyRoll(0)
 	, m_keyYaw(0)
+	, m_keyRoll(0)
 	, m_cameraQuat({ 0,0,0,0 })
-	, m_velocity(100)
+	, m_velocity(10)
 {
 	m_viewMatrix = glm::mat4(	1.0f, 0.0f, 0.0f, 0.0f,
 								0.0f, 1.0f, 0.0f, 0.0f,
-								0.0f, 0.0f, -1.0f, 0.0f,
+								0.0f, 0.0f, 1.0f, 0.0f,
 								0.0f, 0.0f, 10.0f, 1.0f);
 
 	m_eyeVector = glm::vec3(0.0f, 0.0f, -10.0f);
@@ -36,9 +37,10 @@ void PerspectiveCamera::UpdateView()
 
 	m_cameraQuat = keyQuat * m_cameraQuat;
 	m_cameraQuat = glm::normalize(m_cameraQuat);
-	glm::mat4 rotateMatrix = glm::mat4_cast(m_cameraQuat);
 
+	glm::mat4 rotateMatrix = glm::mat4_cast(m_cameraQuat);
 	glm::mat4 translateMatrix = glm::mat4(1.0f);
+
 	translateMatrix = glm::translate(translateMatrix, -m_eyeVector);
 
 	m_viewMatrix = rotateMatrix * translateMatrix;
@@ -63,35 +65,22 @@ void PerspectiveCamera::KeyPressed(const unsigned char key)
 {
 	float strafeValue = 0;
 	float forwardValue = 0;
-	switch (key)
-	{
-	case 's':
-	case 'S':
+
+	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_S))
 	{
 		forwardValue = static_cast<float>(m_velocity);
-		break;
 	}
-
-	case 'w':
-	case 'W':
+	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_W))
 	{
 		forwardValue = -static_cast<float>(m_velocity);
-		break;
 	}
-	case 'a':
-	case 'A':
+	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_A))
 	{
 		strafeValue = -static_cast<float>(m_velocity);
-		break;
 	}
-	case 'd':
-	case 'D':
+	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_D))
 	{
 		strafeValue = static_cast<float>(m_velocity);
-		break;
-	}
-	default:
-		break;
 	}
 
 	glm::mat4 mat = GetViewMatrix();

@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 
 #include "Timer.h"
+#include "InputController.h"
 
 using namespace LiteRenderer;
 using namespace Managers;
@@ -47,22 +48,27 @@ void SceneManager::NotifyReshape(int width, int height, int previous_width, int 
 
 void SceneManager::NotifyKeyboardPressed(unsigned char key, int x, int y)
 {
+	//Logger::Log("NotifyKeyboardPressed key: %c ;x: %d; y: %d", key, x, y);
+	Core::Input::InputController::NormalKeyPressed(key);
 	m_camera->KeyPressed(key);
 }
 
 void SceneManager::NotifyKeyboardReleased(unsigned char key, int x, int y)
 {
 	//Logger::Log("NotifyKeyboardReleased key: %c ;x: %d; y: %d", key, x, y);
+	Core::Input::InputController::NormalKeyReleased(key);
 }
 
 void SceneManager::NotifySpecialKeyboardPressed(int key, int x, int y)
 {
 	//Logger::Log("NotifySpecialKeyboardPressed key: %d ;x: %d; y: %d", key, x, y);
+	Core::Input::InputController::SpecialKeyPressed(key);
 }
 
 void SceneManager::NotifySpecialKeyboardReleased(int key, int x, int y)
 {
 	//Logger::Log("NotifySpecialKeyboardReleased key: %d ;x: %d; y: %d", key, x, y);
+	Core::Input::InputController::SpecialKeyReleased(key);
 }
 
 void SceneManager::NotifyMouse(int button, int state, int x, int y)
