@@ -21,7 +21,6 @@ namespace LiteRenderer
 			virtual ~IGameObject() = 0;
 
 			virtual void Update() = 0;
-			virtual void Draw() = 0;
 			virtual void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) = 0;
 			virtual void SetProgram(GLuint shaderName) = 0;
 			virtual void Destroy() = 0;

@@ -17,7 +17,6 @@ namespace LiteRenderer
 				virtual void Destroy() override;
 
 				virtual void Update() override;
-				virtual void Draw() override;
 				virtual void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) override;
 
 				virtual void SetProgram(GLuint shaderName) override;

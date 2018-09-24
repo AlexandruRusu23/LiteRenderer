@@ -30,11 +30,6 @@ void Model::Update()
 
 }
 
-void Model::Draw()
-{
-
-}
-
 void Model::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix)
 {
 

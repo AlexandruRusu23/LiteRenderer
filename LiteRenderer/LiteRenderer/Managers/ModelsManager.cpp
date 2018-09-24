@@ -26,14 +26,6 @@ void ModelsManager::Update()
 	}
 }
 
-void ModelsManager::Draw()
-{
-	for (auto model : m_gameModelList)
-	{
-		model.second->Draw();
-	}
-}
-
 void ModelsManager::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
 	for (auto model : m_gameModelList)

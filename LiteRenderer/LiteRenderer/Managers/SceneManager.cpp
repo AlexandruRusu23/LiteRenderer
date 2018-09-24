@@ -26,7 +26,6 @@ void SceneManager::NotifyDisplayFrame()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 
-	m_modelsManager->Draw();
 	m_modelsManager->Draw(m_projectionMatrix, m_viewMatrix);
 }
 
@@ -37,14 +36,22 @@ void SceneManager::NotifyEndFrame()
 
 void SceneManager::NotifyReshape(int width, int height, int previous_width, int previous_height)
 {
-	float ar = (float)glutGet(GLUT_WINDOW_WIDTH) / (float)glutGet(GLUT_WINDOW_HEIGHT);
-	float angle = 45.0f, near1 = 0.1f, far1 = 2000.0f;
+	float aspectRatio = static_cast<float>(width) / static_cast<float>(height);
+	float angle = 45.0f;
+	float near1 = 0.1f;
+	float far1 = 2000.0f;
 
-	m_projectionMatrix[0][0] = 1.0f / (ar * tan(angle / 2.0f));
+	m_projectionMatrix[0][0] = 1.0f / (aspectRatio * tan(angle / 2.0f));
 	m_projectionMatrix[1][1] = 1.0f / tan(angle / 2.0f);
 	m_projectionMatrix[2][2] = (-near1 - far1) / (near1 - far1);
 	m_projectionMatrix[2][3] = 1.0f;
 	m_projectionMatrix[3][2] = 2.0f * near1 * far1 / (near1 - far1);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glViewport(0, 0, width, height);
+	gluPerspective(angle, aspectRatio, near1, far1);
+	glMatrixMode(GL_MODELVIEW);
 }
 
 void SceneManager::NotifyKeyboardPressed(unsigned char key, int x, int y)

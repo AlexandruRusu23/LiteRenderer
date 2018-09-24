@@ -16,7 +16,6 @@ namespace LiteRenderer
 			~ModelsManager();
 
 			void Update();
-			void Draw();
 			void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix);
 
 			const Rendering::IGameObject& GetModel(const std::string& gameModelName) const;
