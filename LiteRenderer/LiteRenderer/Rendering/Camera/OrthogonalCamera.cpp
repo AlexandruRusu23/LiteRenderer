@@ -14,6 +14,11 @@ OrthogonalCamera::~OrthogonalCamera()
 
 }
 
+void OrthogonalCamera::Update()
+{
+
+}
+
 void OrthogonalCamera::UpdateView()
 {
 
@@ -22,11 +27,6 @@ void OrthogonalCamera::UpdateView()
 glm::mat4 OrthogonalCamera::GetViewMatrix() const
 {
 	return m_viewMatrix;
-}
-
-void OrthogonalCamera::KeyPressed(const unsigned char key)
-{
-
 }
 
 void OrthogonalCamera::MousePressed(int button, int state, int x, int y)

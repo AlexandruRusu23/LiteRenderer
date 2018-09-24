@@ -18,6 +18,7 @@ void SceneManager::NotifyBeginFrame()
 {
 	Utils::Timer::Update();
 	m_modelsManager->Update();
+	m_camera->Update();
 }
 
 void SceneManager::NotifyDisplayFrame()
@@ -50,7 +51,6 @@ void SceneManager::NotifyKeyboardPressed(unsigned char key, int x, int y)
 {
 	//Logger::Log("NotifyKeyboardPressed key: %c ;x: %d; y: %d", key, x, y);
 	Core::Input::InputController::NormalKeyPressed(key);
-	m_camera->KeyPressed(key);
 }
 
 void SceneManager::NotifyKeyboardReleased(unsigned char key, int x, int y)

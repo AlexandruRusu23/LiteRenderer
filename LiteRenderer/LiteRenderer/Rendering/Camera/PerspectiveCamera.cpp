@@ -2,6 +2,8 @@
 
 #include <freeglut\freeglut.h>
 
+#include "Logger.h"
+
 #include "Timer.h"
 #include "InputController.h"
 
@@ -28,6 +30,38 @@ PerspectiveCamera::PerspectiveCamera()
 PerspectiveCamera::~PerspectiveCamera()
 {
 
+}
+
+void PerspectiveCamera::Update()
+{
+	float strafeValue = 0;
+	float forwardValue = 0;
+
+	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_S))
+	{
+		forwardValue += static_cast<float>(m_velocity);
+	}
+	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_W))
+	{
+		forwardValue -= static_cast<float>(m_velocity);
+	}
+	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_A))
+	{
+		strafeValue -= static_cast<float>(m_velocity);
+	}
+	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_D))
+	{
+		strafeValue += static_cast<float>(m_velocity);
+	}
+
+	glm::mat4 mat = GetViewMatrix();
+	
+	glm::vec3 forward(mat[0][2], mat[1][2], mat[2][2]);
+	glm::vec3 strafe(mat[0][0], mat[1][0], mat[2][0]);
+
+	m_eyeVector += (-forwardValue * forward + strafeValue * strafe) * Utils::Timer::GetDeltaTime();
+
+	UpdateView();
 }
 
 void PerspectiveCamera::UpdateView()
@@ -59,38 +93,6 @@ unsigned int PerspectiveCamera::GetCameraVelocity()
 void PerspectiveCamera::SetCameraVelocity(int speed)
 {
 	m_velocity = speed;
-}
-
-void PerspectiveCamera::KeyPressed(const unsigned char key)
-{
-	float strafeValue = 0;
-	float forwardValue = 0;
-
-	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_S))
-	{
-		forwardValue = static_cast<float>(m_velocity);
-	}
-	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_W))
-	{
-		forwardValue = -static_cast<float>(m_velocity);
-	}
-	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_A))
-	{
-		strafeValue = -static_cast<float>(m_velocity);
-	}
-	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_D))
-	{
-		strafeValue = static_cast<float>(m_velocity);
-	}
-
-	glm::mat4 mat = GetViewMatrix();
-	
-	glm::vec3 forward(mat[0][2], mat[1][2], mat[2][2]);
-	glm::vec3 strafe(mat[0][0], mat[1][0], mat[2][0]);
-
-	m_eyeVector += (-forwardValue * forward + strafeValue * strafe) * Utils::Timer::GetDeltaTime();
-
-	UpdateView();
 }
 
 void PerspectiveCamera::MousePressed(int button, int state, int x, int y)

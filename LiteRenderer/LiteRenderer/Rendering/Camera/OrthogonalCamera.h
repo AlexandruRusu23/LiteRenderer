@@ -15,11 +15,11 @@ namespace LiteRenderer
 				OrthogonalCamera();
 				~OrthogonalCamera();
 
+				virtual void Update();
 				virtual void UpdateView();
 
 				virtual glm::mat4 GetViewMatrix() const;
 
-				virtual void KeyPressed(const unsigned char key);
 				virtual void MousePressed(int button, int state, int x, int y);
 				virtual void MouseMove(int x, int y);
 

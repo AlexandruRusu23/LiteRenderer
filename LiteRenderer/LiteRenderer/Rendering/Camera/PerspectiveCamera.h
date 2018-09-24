@@ -15,6 +15,7 @@ namespace LiteRenderer
 				PerspectiveCamera();
 				~PerspectiveCamera();
 
+				virtual void Update();
 				virtual void UpdateView();
 
 				virtual glm::mat4 GetViewMatrix() const;
@@ -22,7 +23,6 @@ namespace LiteRenderer
 				virtual unsigned int GetCameraVelocity();
 				virtual void SetCameraVelocity(int speed);
 
-				virtual void KeyPressed(const unsigned char key);
 				virtual void MousePressed(int button, int state, int x, int y);
 				virtual void MouseMove(int x, int y);
 
