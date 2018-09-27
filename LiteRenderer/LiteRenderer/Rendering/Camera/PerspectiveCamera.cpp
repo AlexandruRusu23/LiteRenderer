@@ -1,9 +1,5 @@
 #include "PerspectiveCamera.h"
 
-#include <freeglut\freeglut.h>
-
-#include "Logger.h"
-
 #include "Timer.h"
 #include "InputController.h"
 
@@ -12,8 +8,7 @@ using namespace Rendering;
 using namespace Camera;
 
 PerspectiveCamera::PerspectiveCamera()
-	: m_moveCamera(false)
-	, m_keyPitch(0)
+	: m_keyPitch(0)
 	, m_keyYaw(0)
 	, m_keyRoll(0)
 	, m_cameraQuat({ 0,0,0,0 })
@@ -34,32 +29,37 @@ PerspectiveCamera::~PerspectiveCamera()
 
 void PerspectiveCamera::Update()
 {
+	// KEYBOARD UPDATE
 	float strafeValue = 0;
 	float forwardValue = 0;
 
 	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_S))
-	{
 		forwardValue += static_cast<float>(m_velocity);
-	}
-	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_W))
-	{
-		forwardValue -= static_cast<float>(m_velocity);
-	}
-	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_A))
-	{
-		strafeValue -= static_cast<float>(m_velocity);
-	}
-	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_D))
-	{
-		strafeValue += static_cast<float>(m_velocity);
-	}
 
-	glm::mat4 mat = GetViewMatrix();
-	
-	glm::vec3 forward(mat[0][2], mat[1][2], mat[2][2]);
-	glm::vec3 strafe(mat[0][0], mat[1][0], mat[2][0]);
+	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_W))
+		forwardValue -= static_cast<float>(m_velocity);
+
+	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_A))
+		strafeValue -= static_cast<float>(m_velocity);
+
+	if (Core::Input::InputController::IsNormalKeyPressed(Core::Input::Keys::KEY_D))
+		strafeValue += static_cast<float>(m_velocity);
+
+	glm::mat4 viewMatrix = GetViewMatrix();	
+	glm::vec3 forward(viewMatrix[0][2], viewMatrix[1][2], viewMatrix[2][2]);
+	glm::vec3 strafe(viewMatrix[0][0], viewMatrix[1][0], viewMatrix[2][0]);
 
 	m_eyeVector += (-forwardValue * forward + strafeValue * strafe) * Utils::Timer::GetDeltaTime();
+
+	// MOUSE UPDATE
+	if (Core::Input::InputController::IsMousePressed() && Core::Input::InputController::IsMouseButtonPressed(Core::Input::MouseButton::RIGHT_CLICK))
+	{		
+		auto mouseDelta = Core::Input::InputController::GetMousePressedDeltaPosition();
+		auto mouseSensitivy = Core::Input::InputController::GetMouseSensitivity();
+
+		m_keyYaw = mouseSensitivy.first * mouseDelta.first;
+		m_keyPitch = mouseSensitivy.second * mouseDelta.second;
+	}
 
 	UpdateView();
 }
@@ -94,33 +94,3 @@ void PerspectiveCamera::SetCameraVelocity(int speed)
 {
 	m_velocity = speed;
 }
-
-void PerspectiveCamera::MousePressed(int button, int state, int x, int y)
-{
-	if (state == GLUT_DOWN && button == GLUT_RIGHT_BUTTON)
-	{
-		m_moveCamera = true;
-		m_mousePosition.x = static_cast<float>(x);
-		m_mousePosition.y = static_cast<float>(y);
-	}
-	else
-		m_moveCamera = false;
-}
-
-void PerspectiveCamera::MouseMove(int x, int y)
-{
-	if (!m_moveCamera)
-		return;
-
-	glm::vec2 mouse_delta = glm::vec2(x, y) - m_mousePosition;
-
-	const float mouseX_Sensitivity = 0.0020f;
-	const float mouseY_Sensitivity = 0.0020f;
-
-	m_keyYaw = mouseX_Sensitivity * mouse_delta.x;
-	m_keyPitch = mouseY_Sensitivity * mouse_delta.y;
-
-	m_mousePosition = glm::vec2(x, y);
-	UpdateView();
-}
-

@@ -23,16 +23,10 @@ namespace LiteRenderer
 				virtual unsigned int GetCameraVelocity();
 				virtual void SetCameraVelocity(int speed);
 
-				virtual void MousePressed(int button, int state, int x, int y);
-				virtual void MouseMove(int x, int y);
-
 			private:
-				bool m_moveCamera;
-
 				glm::mat4 m_viewMatrix;
 
 				glm::vec3 m_eyeVector;
-				glm::vec2 m_mousePosition;
 				glm::quat m_cameraQuat;
 
 				float m_keyPitch;

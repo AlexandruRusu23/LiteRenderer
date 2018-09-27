@@ -19,9 +19,6 @@ namespace LiteRenderer
 
 			virtual unsigned int GetCameraVelocity() = 0;
 			virtual void SetCameraVelocity(int speed) = 0;
-
-			virtual void MousePressed(int button, int state, int x, int y) = 0;
-			virtual void MouseMove(int x, int y) = 0;
 		};
 
 		inline ICamera::~ICamera()

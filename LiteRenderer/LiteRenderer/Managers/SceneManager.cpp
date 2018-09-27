@@ -81,23 +81,25 @@ void SceneManager::NotifySpecialKeyboardReleased(int key, int x, int y)
 void SceneManager::NotifyMouse(int button, int state, int x, int y)
 {
 	//Logger::Log("NotifyMouse button: %d; state: %d; x: %d; y: %d", button, state, x, y);
-	m_camera->MousePressed(button, state, x, y);
+	Core::Input::InputController::MouseButtonEvent(button, state, x, y);
 }
 
 void SceneManager::NotifyMouseWheel(int button, int state, int x, int y)
 {
 	//Logger::Log("NotifyMouseWheel button: %d; state: %d; x: %d; y: %d", button, state, x, y);
+	Core::Input::InputController::MouseScrolling(button, state, x, y);
 }
 
 void SceneManager::NotifyMouseMotion(int x, int y)
 {
 	//Logger::Log("NotifyMouseMotion x: %d; y: %d", x, y);
-	m_camera->MouseMove(x, y);
+	Core::Input::InputController::MouseMovingPressed(x, y);
 }
 
 void SceneManager::NotifyMousePassiveMotion(int x, int y)
 {
 	//Logger::Log("NotifyMousePassiveMotion x: %d; y: %d", x, y);
+	Core::Input::InputController::MouseMovingReleased(x, y);
 }
 
 void SceneManager::SetModelsManager(ModelsManager*& modelsManager)
