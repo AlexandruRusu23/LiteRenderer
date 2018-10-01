@@ -19,6 +19,7 @@ void SceneManager::NotifyBeginFrame()
 	Utils::Timer::Update();
 	m_modelsManager->Update();
 	m_camera->Update();
+	Core::Input::InputController::UpdateInput();
 }
 
 void SceneManager::NotifyDisplayFrame()
@@ -36,6 +37,9 @@ void SceneManager::NotifyEndFrame()
 
 void SceneManager::NotifyReshape(int width, int height, int previous_width, int previous_height)
 {
+	if (height == 0)
+		height = 1;
+
 	float aspectRatio = static_cast<float>(width) / static_cast<float>(height);
 	float angle = 45.0f;
 	float near1 = 0.1f;
@@ -47,11 +51,7 @@ void SceneManager::NotifyReshape(int width, int height, int previous_width, int 
 	m_projectionMatrix[2][3] = 1.0f;
 	m_projectionMatrix[3][2] = 2.0f * near1 * far1 / (near1 - far1);
 
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
 	glViewport(0, 0, width, height);
-	gluPerspective(angle, aspectRatio, near1, far1);
-	glMatrixMode(GL_MODELVIEW);
 }
 
 void SceneManager::NotifyKeyboardPressed(unsigned char key, int x, int y)

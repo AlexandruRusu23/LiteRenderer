@@ -2,6 +2,7 @@
 #define UTILS_SINGLETON_H
 
 #include <memory>
+
 namespace LiteRenderer
 {
 	namespace Utils

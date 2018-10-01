@@ -99,6 +99,9 @@
     <ClCompile Include="Core\Input\InputController.cpp">
       <Filter>Core\Input</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Models\Skybox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\IListener.h">
@@ -178,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="Core\Input\InputController.h">
       <Filter>Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Models\Skybox.h">
+      <Filter>Rendering\Models</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

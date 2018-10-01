@@ -1,8 +1,6 @@
 #include "TextureLoader.h"
-#include "TextureLoader.h"
 
 #include <fstream>
-#include <iostream>
 
 #include "Logger.h"
 
@@ -19,9 +17,11 @@ TextureLoader::~TextureLoader()
 
 }
 
-unsigned int TextureLoader::LoadTexture(const std::string& filename, unsigned int width, unsigned int height)
+unsigned int TextureLoader::LoadTexture(const std::string& filename)
 {
 	unsigned char* data;
+	unsigned int width;
+	unsigned int height;
 	LoadBMPFile(filename, width, height, data);
 
 	unsigned int textureObject;
@@ -31,19 +31,44 @@ unsigned int TextureLoader::LoadTexture(const std::string& filename, unsigned in
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	
 	float maxAnisotropy;
 	glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &maxAnisotropy);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, maxAnisotropy);
 
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 
 	delete data;
 
 	glGenerateMipmap(GL_TEXTURE_2D);
+
+	return textureObject;
+}
+
+unsigned int TextureLoader::LoadCubemapTexture(const std::vector<std::string>& filenames)
+{
+	unsigned int textureObject;
+	glGenTextures(1, &textureObject);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, textureObject);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+	unsigned int width;
+	unsigned int height;
+	unsigned char* data;
+	for (unsigned int iter = 0; iter < filenames.size(); iter++)
+	{
+		LoadBMPFile(filenames[iter], width, height, data);
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + iter, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		delete data;
+	}
 
 	return textureObject;
 }

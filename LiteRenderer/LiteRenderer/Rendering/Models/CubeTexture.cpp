@@ -24,9 +24,6 @@ void CubeTexture::Create()
 	GLuint vbo;
 	GLuint ibo;
 
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-
 	std::vector<VertexFormat> vertices;
 	std::vector<unsigned int> indices =
 	{ 0, 1, 2, 0, 2, 3, //front
@@ -73,6 +70,9 @@ void CubeTexture::Create()
 	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, 1.0), glm::vec2(1, 1)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(0, 1)));
 
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(VertexFormat), &vertices[0], GL_STATIC_DRAW);
@@ -108,7 +108,7 @@ void CubeTexture::Update()
 	m_rotationSin = glm::vec3(m_rotation.x * PI / 180, m_rotation.y * PI / 180, m_rotation.z * PI / 180);
 }
 
-void CubeTexture::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
+void CubeTexture::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix)
 {
 	glUseProgram(m_program);
 	glBindVertexArray(m_vao);
@@ -120,8 +120,8 @@ void CubeTexture::Draw(const glm::mat4& projection_matrix, const glm::mat4& view
 	glUniform1i(glGetUniformLocation(m_program, "texture_sampler"), 0);
 
 	// vertex shader data
-	glUniformMatrix4fv(glGetUniformLocation(m_program, "projection_matrix"), 1, GL_FALSE, &projection_matrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(m_program, "view_matrix"), 1, GL_FALSE, &view_matrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(m_program, "projection_matrix"), 1, GL_FALSE, &projectionMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(m_program, "view_matrix"), 1, GL_FALSE, &viewMatrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(m_program, "translate_matrix"), 1, GL_FALSE, &m_translateMatrix[0][0]);
 	glUniform3f(glGetUniformLocation(m_program, "rotation"), m_rotationSin.x, m_rotationSin.y, m_rotationSin.z);
 

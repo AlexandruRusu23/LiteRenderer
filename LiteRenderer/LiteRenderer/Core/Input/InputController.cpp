@@ -1,6 +1,8 @@
 #include "InputController.h"
 
-using namespace LiteRenderer::Core::Input;
+using namespace LiteRenderer;
+using namespace Core;
+using namespace Input;
 
 int InputController::m_normalKeysPressed[MAX_KEYS] = { 0 };
 int InputController::m_specialKeysPressed[MAX_KEYS] = { 0 };
@@ -13,6 +15,12 @@ std::pair<int, int> InputController::m_mousePosition = { 0, 0 };
 std::pair<int, int> InputController::m_mousePressedDeltaPosition = { 0, 0 };
 std::pair<int, int> InputController::m_mouseReleasedDeltaPosition = { 0, 0 };
 std::pair<float, float> InputController::m_mouseSensitivity = { 0.0020f, 0.0020f };
+
+void InputController::UpdateInput()
+{
+	m_mousePressedDeltaPosition = { 0, 0 };
+	m_mouseReleasedDeltaPosition = { 0 ,0 };
+}
 
 void InputController::NormalKeyPressed(unsigned char keyPressed)
 {

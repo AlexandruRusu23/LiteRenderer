@@ -37,6 +37,8 @@ namespace LiteRenderer
 			class InputController
 			{
 			public:
+				static void UpdateInput();
+
 				static void NormalKeyPressed(unsigned char keyPressed);
 				static void SpecialKeyPressed(int keyPressed);
 

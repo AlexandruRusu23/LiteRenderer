@@ -164,6 +164,7 @@
     <ClCompile Include="Rendering\Camera\PerspectiveCamera.cpp" />
     <ClCompile Include="Rendering\Models\CubeTexture.cpp" />
     <ClCompile Include="Rendering\Models\Model.cpp" />
+    <ClCompile Include="Rendering\Models\Skybox.cpp" />
     <ClCompile Include="Rendering\Shaders\DrawingShader.cpp" />
     <ClCompile Include="Rendering\Shaders\ShaderObject.cpp" />
     <ClCompile Include="Rendering\Texture\TextureLoader.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Rendering\IGameObject.h" />
     <ClInclude Include="Rendering\Models\CubeTexture.h" />
     <ClInclude Include="Rendering\Models\Model.h" />
+    <ClInclude Include="Rendering\Models\Skybox.h" />
     <ClInclude Include="Rendering\Shaders\DrawingShader.h" />
     <ClInclude Include="Rendering\Shaders\ShaderObject.h" />
     <ClInclude Include="Rendering\Texture\BMPHeaders.h" />
