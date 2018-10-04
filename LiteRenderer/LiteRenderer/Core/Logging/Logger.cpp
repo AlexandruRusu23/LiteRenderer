@@ -1,8 +1,9 @@
 #include "Logger.h"
 
 #include <iostream>
-#include <cstdio>
+#include <ctime>
 #include <cstdarg>
+#include <assert.h>
 
 using namespace LiteRenderer;
 using namespace Core;
@@ -10,18 +11,37 @@ using namespace Logging;
 
 static const unsigned int LOGGER_STRING_MAX_LENGTH = 1024;
 
-std::ofstream Logger::m_outStream;
+#ifdef _DEBUG
+static const bool DEBUG_MODE_ENABLED = true;
+#else
+static const bool DEBUG_MODE_ENABLED = false;
+#endif
 
-void Logger::Init(std::string filename /* = "LiteRenderer.log" */)
+std::ofstream Logger::m_outStream;
+std::bitset<8> Logger::m_logFlags;
+
+void Logger::Init(std::string filename /* = "LiteRenderer.log" */, unsigned int flags /* = LOG_ALL */)
 {
 	if (m_outStream.is_open())
 	{
-		_ASSERT(false);
+		assert(false);
 		return;
 	}
 
+	m_logFlags |= flags;
 	m_outStream.open(filename, std::ofstream::out | std::ofstream::app);
 	Log("**Logger initialized**\n");
+}
+
+void Logger::ChangeFlags(unsigned int flags)
+{
+	m_logFlags.reset();
+	m_logFlags |= flags;
+}
+
+unsigned int Logger::GetFlags()
+{
+	return m_logFlags.to_ulong();
 }
 
 void Logger::Close()
@@ -48,14 +68,17 @@ void Logger::Log(const char* const format, ...)
 	char currentTimeFormatted[26];
 	if (asctime_s(currentTimeFormatted, 26, &currentTimeData))
 	{
-		_ASSERT(false);
 		m_outStream << "ERROR : Invalid argument to asctime_s." << std::endl;
+		if (DEBUG_MODE_ENABLED)
+			std::cout << "ERROR : Invalid argument to asctime_s." << std::endl;
+		assert(false);
 		return;
 	}
 	size_t timeFormattedLength = strlen(currentTimeFormatted);
 	currentTimeFormatted[timeFormattedLength - 1] = ' ';
 
 	m_outStream << currentTimeFormatted << messageBuffer << std::endl;
-	std::cout << currentTimeFormatted << messageBuffer << std::endl;
+	if (DEBUG_MODE_ENABLED)
+		std::cout << currentTimeFormatted << messageBuffer << std::endl;
 }
 

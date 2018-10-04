@@ -15,6 +15,7 @@ void InitGLUT::Init(int argc, char **argv, const WindowInfo& windowInfo, const C
 {
 	Utils::Timer::Init();
 	Logger::Init();
+	Logger::ChangeFlags(Logger::LOG_ALL & (~Logger::LOG_NOTIFICATIONS));
 
 	glutInit(&argc, argv);
 

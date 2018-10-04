@@ -21,6 +21,29 @@ namespace LiteRenderer
 
 				static void CALLBACK RegisterDebugError(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *msg, const void *data)
 				{
+					switch (severity)
+					{
+					case GL_DEBUG_SEVERITY_HIGH:
+						if (!(Logger::GetFlags() & Logger::LOG_HIGH_ERRORS))
+							return;
+						break;
+					case GL_DEBUG_SEVERITY_MEDIUM:
+						if (!(Logger::GetFlags() & Logger::LOG_MEDIUM_ERRORS))
+							return;
+						break;
+					case GL_DEBUG_SEVERITY_LOW:
+						if (!(Logger::GetFlags() & Logger::LOG_LOW_ERRORS))
+							return;
+						break;
+					case GL_DEBUG_SEVERITY_NOTIFICATION:
+						if (!(Logger::GetFlags() & Logger::LOG_NOTIFICATIONS))
+							return;
+						break;
+					default:
+						assert(false);
+						return;
+					}
+
 					Logger::Log("\n**********Debug Output**************");
 					Logger::Log("source: %s", GetStringForSource(source).c_str());
 					Logger::Log("type: %s", GetStringForType(type).c_str());

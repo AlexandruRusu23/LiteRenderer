@@ -84,5 +84,5 @@ namespace LiteRenderer
 	}
 }
 
-#endif
+#endif // !INPUT_INPUTCONTROLLER_H
 
