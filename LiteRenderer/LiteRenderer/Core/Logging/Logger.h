@@ -14,7 +14,12 @@ namespace LiteRenderer
 			class Logger
 			{
 			public:
-				static void Init(std::string filename = "LiteRenderer.log", unsigned int flags = LOG_ALL);
+				Logger(void) = delete;
+				~Logger(void) = delete;
+				Logger(Logger& logger) = delete;
+				Logger& operator=(const Logger& logger) = delete;
+
+				static void Init(std::string filename = "LiteRenderer.log", unsigned int flags = LOG_ALL | PRINT_BOTH);
 				static void ChangeFlags(unsigned int flags);
 				static unsigned int GetFlags();
 				static void Close();
@@ -26,11 +31,11 @@ namespace LiteRenderer
 				static const unsigned int LOG_LOW_ERRORS = 1 << 2;
 				static const unsigned int LOG_NOTIFICATIONS = 1 << 3;
 				static const unsigned int LOG_ALL = (1 << 4) - 1;
+				static const unsigned int PRINT_CONSOLE = 1 << 4;
+				static const unsigned int STORE_IN_FILE = 1 << 5;
+				static const unsigned int PRINT_BOTH = PRINT_CONSOLE | STORE_IN_FILE;
 
 			private:
-				Logger(void) {}
-				~Logger(void) {}
-
 				static std::ofstream	m_outStream;
 				static std::bitset<8>	m_logFlags;
 			};

@@ -37,6 +37,11 @@ namespace LiteRenderer
 			class InputController
 			{
 			public:
+				InputController() = delete;
+				~InputController() = delete;
+				InputController(InputController& inputController) = delete;
+				InputController& operator=(const InputController& inputController) = delete;
+
 				static void UpdateInput();
 
 				static void NormalKeyPressed(unsigned char keyPressed);
@@ -62,9 +67,6 @@ namespace LiteRenderer
 				static std::pair<float, float> GetMouseSensitivity();
 
 			private:
-				InputController() {}
-				~InputController() {}
-
 				static const int MAX_KEYS = 1024;
 				static const int MAX_BUTTONS = 64;
 

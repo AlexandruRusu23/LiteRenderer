@@ -20,7 +20,7 @@ static const bool DEBUG_MODE_ENABLED = false;
 std::ofstream Logger::m_outStream;
 std::bitset<8> Logger::m_logFlags;
 
-void Logger::Init(std::string filename /* = "LiteRenderer.log" */, unsigned int flags /* = LOG_ALL */)
+void Logger::Init(std::string filename /* = "LiteRenderer.log" */, unsigned int flags /* = LOG_ALL | PRINT_BOTH */)
 {
 	if (m_outStream.is_open())
 	{
@@ -52,6 +52,15 @@ void Logger::Close()
 
 void Logger::Log(const char* const format, ...)
 {
+	auto canPrintConsole = []()
+	{ 
+		return DEBUG_MODE_ENABLED || (GetFlags() & PRINT_CONSOLE); 
+	};
+	auto canStoreInFile = []()
+	{ 
+		return GetFlags() & STORE_IN_FILE; 
+	};
+
 	size_t messageLength = 0;
 	char messageBuffer[LOGGER_STRING_MAX_LENGTH];
 	memset(messageBuffer, 0, sizeof(messageBuffer));
@@ -69,16 +78,16 @@ void Logger::Log(const char* const format, ...)
 	if (asctime_s(currentTimeFormatted, 26, &currentTimeData))
 	{
 		m_outStream << "ERROR : Invalid argument to asctime_s." << std::endl;
-		if (DEBUG_MODE_ENABLED)
-			std::cout << "ERROR : Invalid argument to asctime_s." << std::endl;
+		std::cout << "ERROR : Invalid argument to asctime_s." << std::endl;
 		assert(false);
 		return;
 	}
 	size_t timeFormattedLength = strlen(currentTimeFormatted);
 	currentTimeFormatted[timeFormattedLength - 1] = ' ';
 
-	m_outStream << currentTimeFormatted << messageBuffer << std::endl;
-	if (DEBUG_MODE_ENABLED)
+	if (canStoreInFile())
+		m_outStream << currentTimeFormatted << messageBuffer << std::endl;
+	if (canPrintConsole())
 		std::cout << currentTimeFormatted << messageBuffer << std::endl;
 }
 

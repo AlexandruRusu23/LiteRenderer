@@ -17,9 +17,13 @@ namespace LiteRenderer
 			class InitGLUT
 			{
 			public:
+				InitGLUT() = delete;
+				~InitGLUT() = delete;
+				InitGLUT(InitGLUT& initGLUT) = delete;
+				InitGLUT& operator= (const InitGLUT& initGLUT) = delete;
+
 				static void Init(int argc, char **argv, const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FrameBufferInfo& frameBufferInfo);
 
-			public:
 				static void SetListener(IListener* iListener);
 
 				static void Run();
