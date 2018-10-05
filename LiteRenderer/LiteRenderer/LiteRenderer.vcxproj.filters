@@ -46,6 +46,9 @@
     <Filter Include="Core\Input">
       <UniqueIdentifier>{592226fd-9475-4547-9d05-7394e17a3996}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering\Text">
+      <UniqueIdentifier>{0848a3cc-4a38-4d56-9190-26f9848eaa15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -100,7 +103,16 @@
       <Filter>Core\Input</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Models\Skybox.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\TextManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Text\TextLoader.cpp">
+      <Filter>Rendering\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Text\TextModel.cpp">
+      <Filter>Rendering\Text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +196,15 @@
     </ClInclude>
     <ClInclude Include="Rendering\Models\Skybox.h">
       <Filter>Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\TextManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Text\TextLoader.h">
+      <Filter>Rendering\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Text\TextModel.h">
+      <Filter>Rendering\Text</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

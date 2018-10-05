@@ -12,7 +12,10 @@ SceneManager::SceneManager()
 	m_viewMatrix = glm::mat4(1.0f);
 }
 
-SceneManager::~SceneManager() { }
+SceneManager::~SceneManager() 
+{
+
+}
 
 void SceneManager::NotifyBeginFrame()
 {

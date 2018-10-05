@@ -36,8 +36,8 @@ namespace LiteRenderer
 			void SetCamera(Rendering::ICamera* camera);
 
 		private:
-			Managers::ModelsManager*	m_modelsManager;
-			Rendering::ICamera*			m_camera;
+			Managers::ModelsManager*	m_modelsManager = nullptr;
+			Rendering::ICamera*			m_camera = nullptr;
 
 			glm::mat4					m_projectionMatrix;
 			glm::mat4					m_viewMatrix;
