@@ -48,12 +48,13 @@ namespace LiteRenderer
 						return;
 					}
 
-					Logger::Log("\n**********Debug Output**************");
-					Logger::Log("source: %s", GetStringForSource(source).c_str());
-					Logger::Log("type: %s", GetStringForType(type).c_str());
-					Logger::Log("severity: %s", GetStringForSeverity(severity).c_str());
-					Logger::Log("debug call: %s", msg);
-					Logger::Log("\n************************");
+					Logger::Log("**********Debug Output**************");
+					Logger::Log("Source: %s", GetStringForSource(source).c_str());
+					Logger::Log("Type: %s", GetStringForType(type).c_str());
+					Logger::Log("Severity: %s", GetStringForSeverity(severity).c_str());
+					Logger::Log("Debug Call: %s", msg);
+					Logger::Log("************************************");
+					Logger::Log("");
 				}
 
 			private:

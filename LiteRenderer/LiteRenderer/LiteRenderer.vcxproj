@@ -168,6 +168,8 @@
     <ClCompile Include="Rendering\Shaders\DrawingShader.cpp" />
     <ClCompile Include="Rendering\Shaders\ShaderObject.cpp" />
     <ClCompile Include="Rendering\Texture\TextureLoader.cpp" />
+    <ClCompile Include="Rendering\Text\TextLoader.cpp" />
+    <ClCompile Include="Rendering\Text\TextModel.cpp" />
     <ClCompile Include="Utils\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +197,9 @@
     <ClInclude Include="Rendering\Shaders\ShaderObject.h" />
     <ClInclude Include="Rendering\Texture\BMPHeaders.h" />
     <ClInclude Include="Rendering\Texture\TextureLoader.h" />
+    <ClInclude Include="Rendering\Text\TextLoader.h" />
+    <ClInclude Include="Rendering\Text\TextModel.h" />
+    <ClInclude Include="Rendering\Text\TextObject.h" />
     <ClInclude Include="Rendering\VertexFormat.h" />
     <ClInclude Include="Utils\Singleton.h" />
     <ClInclude Include="Utils\Timer.h" />

@@ -17,10 +17,10 @@ namespace LiteRenderer
 
 		void Run();
 
-		Managers::SceneManager*		GetSceneManager()  const;
-		Managers::ShaderManager*	GetShaderManager() const;
-		Managers::ModelsManager*	GetModelsManager() const;
-		Rendering::TextureLoader*	GetTextureLoader() const;
+		Managers::SceneManager*		GetSceneManager()	const;
+		Managers::ShaderManager*	GetShaderManager()	const;
+		Managers::ModelsManager*	GetModelsManager()	const;
+		Rendering::TextureLoader*	GetTextureLoader()	const;
 
 	private:
 		Managers::SceneManager*		m_sceneManager  = nullptr;

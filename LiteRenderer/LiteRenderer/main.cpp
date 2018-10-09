@@ -1,6 +1,7 @@
 #include "Engine.h"
 #include "Rendering/Models/CubeTexture.h"
 #include "Rendering/Models/Skybox.h"
+#include "Rendering/Text/TextModel.h"
 
 using namespace LiteRenderer;
 
@@ -46,6 +47,28 @@ int main(int argc, char **argv)
 
 		engine->GetModelsManager()->SetModel("boxModel" + std::to_string(i), cubeTexture);
 	}
+
+	// TEXT
+	engine->GetShaderManager()->CreateProgram("textShader",
+		"Assets/Shaders/textRenderVertexShader.glsl",
+		"Assets/Shaders/textRenderFragmentShader.glsl");
+
+	Rendering::Text::TextObject textObject;
+	textObject.textFontname = "raleway";
+	textObject.textToRender = "LiteRenderer | Made by Alexandru Rusu";
+	textObject.textCoords = { 100, 100 };
+	textObject.textColor = { 1, 0, 0 };
+
+	Rendering::Text::TextLoader* textLoader = new Rendering::Text::TextLoader();
+	textLoader->LoadFont(textObject.textFontname, "Assets/Fonts/Raleway-Medium.ttf", 48);
+
+	Rendering::Text::TextModel* textModel = new Rendering::Text::TextModel();
+	textModel->SetProgram(engine->GetShaderManager()->GetShader("textShader")->GetProgramId());
+	textModel->Create();
+	textModel->SetTextObject(textObject);
+	textModel->SetTextLoader(textLoader);
+
+	engine->GetModelsManager()->SetModel("textModel", textModel);
 
 	// SKYBOX
 	engine->GetShaderManager()->CreateProgram("SkyboxShader",
