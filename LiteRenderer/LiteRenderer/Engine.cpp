@@ -20,9 +20,6 @@ Engine::~Engine()
 	if (m_modelsManager)
 		delete m_modelsManager;
 
-	if (m_textManager)
-		delete m_textManager;
-
 	if (m_textureLoader)
 		delete m_textureLoader;
 
@@ -41,14 +38,11 @@ void Engine::Init(int argc, char **argv)
 	m_shaderManager = new Managers::ShaderManager();
 	m_textureLoader = new Rendering::TextureLoader();
 	m_modelsManager = new Managers::ModelsManager();
-	m_textManager = new Managers::TextManager();
 	m_camera = new Rendering::Camera::PerspectiveCamera();
 	
 	Core::Init::InitGLUT::SetListener(m_sceneManager);
 	m_sceneManager->SetModelsManager(m_modelsManager);
 	m_sceneManager->SetCamera(m_camera);
-
-	m_textManager->SetModelsManager(m_modelsManager);
 }
 
 void Engine::Run()
@@ -69,11 +63,6 @@ Managers::ShaderManager* Engine::GetShaderManager() const
 Managers::ModelsManager* Engine::GetModelsManager() const
 {
 	return m_modelsManager;
-}
-
-Managers::TextManager* Engine::GetTextManager()	const
-{
-	return m_textManager;
 }
 
 Rendering::TextureLoader* Engine::GetTextureLoader() const

@@ -3,7 +3,6 @@
 
 #include "Core/Init/InitGLUT.h"
 #include "Managers/SceneManager.h"
-#include "Managers/TextManager.h"
 #include "Rendering/ICamera.h"
 
 namespace LiteRenderer
@@ -21,14 +20,12 @@ namespace LiteRenderer
 		Managers::SceneManager*		GetSceneManager()	const;
 		Managers::ShaderManager*	GetShaderManager()	const;
 		Managers::ModelsManager*	GetModelsManager()	const;
-		Managers::TextManager*		GetTextManager()	const;
 		Rendering::TextureLoader*	GetTextureLoader()	const;
 
 	private:
 		Managers::SceneManager*		m_sceneManager  = nullptr;
 		Managers::ShaderManager*	m_shaderManager = nullptr;
 		Managers::ModelsManager*	m_modelsManager = nullptr;
-		Managers::TextManager*		m_textManager	= nullptr;
 		Rendering::TextureLoader*	m_textureLoader = nullptr;
 		Rendering::ICamera*			m_camera		= nullptr;
 	};

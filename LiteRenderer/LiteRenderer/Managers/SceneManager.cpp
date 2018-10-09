@@ -9,6 +9,8 @@ using namespace Managers;
 SceneManager::SceneManager()
 {
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	m_viewMatrix = glm::mat4(1.0f);
 }
 

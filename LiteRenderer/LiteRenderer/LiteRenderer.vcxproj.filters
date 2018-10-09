@@ -105,9 +105,6 @@
     <ClCompile Include="Rendering\Models\Skybox.cpp">
       <Filter>Rendering\Models</Filter>
     </ClCompile>
-    <ClCompile Include="Managers\TextManager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\Text\TextLoader.cpp">
       <Filter>Rendering\Text</Filter>
     </ClCompile>
@@ -197,13 +194,13 @@
     <ClInclude Include="Rendering\Models\Skybox.h">
       <Filter>Rendering\Models</Filter>
     </ClInclude>
-    <ClInclude Include="Managers\TextManager.h">
-      <Filter>Managers</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering\Text\TextLoader.h">
       <Filter>Rendering\Text</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Text\TextModel.h">
+      <Filter>Rendering\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Text\TextObject.h">
       <Filter>Rendering\Text</Filter>
     </ClInclude>
   </ItemGroup>
