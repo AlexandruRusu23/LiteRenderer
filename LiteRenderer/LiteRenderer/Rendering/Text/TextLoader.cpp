@@ -43,6 +43,12 @@ void TextLoader::LoadFont(std::string fontName, std::string fontFilename, unsign
 			continue;
 		}
 
+		if (c == ' ')
+		{
+			ftFace->glyph->bitmap.width = 1;
+			ftFace->glyph->bitmap.rows = 1;
+		}
+
 		unsigned int texture;
 		glGenTextures(1, &texture);
 		glBindTexture(GL_TEXTURE_2D, texture);

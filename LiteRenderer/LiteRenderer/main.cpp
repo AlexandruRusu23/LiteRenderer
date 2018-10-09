@@ -53,14 +53,14 @@ int main(int argc, char **argv)
 		"Assets/Shaders/textRenderVertexShader.glsl",
 		"Assets/Shaders/textRenderFragmentShader.glsl");
 
-	Rendering::Text::TextLoader* textLoader = new Rendering::Text::TextLoader();
-	textLoader->LoadFont("raleway", "Assets/Fonts/Raleway-Medium.ttf", 48);
-
 	Rendering::Text::TextObject textObject;
 	textObject.textFontname = "raleway";
 	textObject.textToRender = "LiteRenderer | Made by Alexandru Rusu";
 	textObject.textCoords = { 100, 100 };
-	textObject.textColor = { 0, 0, 0 };
+	textObject.textColor = { 1, 0, 0 };
+
+	Rendering::Text::TextLoader* textLoader = new Rendering::Text::TextLoader();
+	textLoader->LoadFont(textObject.textFontname, "Assets/Fonts/Raleway-Medium.ttf", 48);
 
 	Rendering::Text::TextModel* textModel = new Rendering::Text::TextModel();
 	textModel->SetProgram(engine->GetShaderManager()->GetShader("textShader")->GetProgramId());

@@ -53,9 +53,9 @@ void TextModel::Update()
 void TextModel::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix)
 {
 	glUseProgram(m_program);
-	glActiveTexture(GL_TEXTURE0);
-
 	glBindVertexArray(m_vao);
+	
+	glActiveTexture(GL_TEXTURE0);
 
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(glutGet(GLUT_SCREEN_WIDTH)), 0.0f, static_cast<float>(glutGet(GLUT_SCREEN_HEIGHT)));
 	glUniformMatrix4fv(glGetUniformLocation(m_program, "projection_matrix"), 1, GL_FALSE, &projection[0][0]);
