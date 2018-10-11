@@ -12,7 +12,7 @@ namespace LiteRenderer
 		{
 			struct TextObject
 			{
-				float textSize = 48;
+				int textSize = 48;
 				float textScale = 1.0f;
 				glm::vec2 textCoords = { 0, 0 };
 				glm::vec3 textColor = { 1, 0, 0 };

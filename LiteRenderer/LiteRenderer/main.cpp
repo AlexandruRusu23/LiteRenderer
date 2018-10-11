@@ -1,6 +1,7 @@
 #include "Engine.h"
 #include "Rendering/Models/CubeTexture.h"
 #include "Rendering/Models/Skybox.h"
+#include "Rendering/Models/FpsDrawer.h"
 #include "Rendering/Text/TextModel.h"
 
 using namespace LiteRenderer;
@@ -56,11 +57,12 @@ int main(int argc, char **argv)
 	Rendering::Text::TextObject textObject;
 	textObject.textFontname = "raleway";
 	textObject.textToRender = "LiteRenderer | Made by Alexandru Rusu";
-	textObject.textCoords = { 100, 100 };
+	textObject.textCoords = { 10, 10 };
 	textObject.textColor = { 1, 0, 0 };
+	textObject.textSize = 24;
 
-	Rendering::Text::TextLoader* textLoader = new Rendering::Text::TextLoader();
-	textLoader->LoadFont(textObject.textFontname, "Assets/Fonts/Raleway-Medium.ttf", 48);
+	Rendering::Text::TextLoader* textLoader = &Rendering::Text::TextLoader::Instance();
+	textLoader->LoadFont(textObject.textFontname, "Assets/Fonts/Raleway-Medium.ttf", textObject.textSize);
 
 	Rendering::Text::TextModel* textModel = new Rendering::Text::TextModel();
 	textModel->SetProgram(engine->GetShaderManager()->GetShader("textShader")->GetProgramId());
@@ -69,6 +71,12 @@ int main(int argc, char **argv)
 	textModel->SetTextLoader(textLoader);
 
 	engine->GetModelsManager()->SetModel("textModel", textModel);
+
+	// FPS
+	Rendering::Models::FpsDrawer *fpsModel = new Rendering::Models::FpsDrawer();
+	fpsModel->SetProgram(engine->GetShaderManager()->GetShader("textShader")->GetProgramId());
+	fpsModel->Create();
+	engine->GetModelsManager()->SetModel("textFPS", fpsModel);
 
 	// SKYBOX
 	engine->GetShaderManager()->CreateProgram("SkyboxShader",

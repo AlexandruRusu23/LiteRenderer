@@ -111,6 +111,9 @@
     <ClCompile Include="Rendering\Text\TextModel.cpp">
       <Filter>Rendering\Text</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Models\FpsDrawer.cpp">
+      <Filter>Rendering\Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\IListener.h">
@@ -202,6 +205,9 @@
     </ClInclude>
     <ClInclude Include="Rendering\Text\TextObject.h">
       <Filter>Rendering\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Models\FpsDrawer.h">
+      <Filter>Rendering\Models</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

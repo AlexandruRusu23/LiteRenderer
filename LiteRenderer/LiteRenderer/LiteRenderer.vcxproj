@@ -163,6 +163,7 @@
     <ClCompile Include="Rendering\Camera\OrthogonalCamera.cpp" />
     <ClCompile Include="Rendering\Camera\PerspectiveCamera.cpp" />
     <ClCompile Include="Rendering\Models\CubeTexture.cpp" />
+    <ClCompile Include="Rendering\Models\FpsDrawer.cpp" />
     <ClCompile Include="Rendering\Models\Model.cpp" />
     <ClCompile Include="Rendering\Models\Skybox.cpp" />
     <ClCompile Include="Rendering\Shaders\DrawingShader.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="Rendering\ICamera.h" />
     <ClInclude Include="Rendering\IGameObject.h" />
     <ClInclude Include="Rendering\Models\CubeTexture.h" />
+    <ClInclude Include="Rendering\Models\FpsDrawer.h" />
     <ClInclude Include="Rendering\Models\Model.h" />
     <ClInclude Include="Rendering\Models\Skybox.h" />
     <ClInclude Include="Rendering\Shaders\DrawingShader.h" />
