@@ -1,6 +1,7 @@
 #ifndef TEXT_TEXTLOADER_H
 #define TEXT_TEXTLOADER_H
 
+#include <string>
 #include <map>
 #include <glm/glm.hpp>
 #include <glew\glew.h>
