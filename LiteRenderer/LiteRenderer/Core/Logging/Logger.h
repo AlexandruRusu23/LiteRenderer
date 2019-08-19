@@ -20,6 +20,8 @@ namespace LiteRenderer
 				Logger& operator=(const Logger& logger) = delete;
 
 				static void Init(std::string filename = "LiteRenderer.log", unsigned int flags = LOG_ALL | PRINT_BOTH);
+				static void AddFlag(unsigned int flag);
+				static void RemoveFlag(unsigned int flag);
 				static void ChangeFlags(unsigned int flags);
 				static unsigned int GetFlags();
 				static void Close();

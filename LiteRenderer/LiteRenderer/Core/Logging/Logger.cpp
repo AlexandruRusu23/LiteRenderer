@@ -33,6 +33,16 @@ void Logger::Init(std::string filename /* = "LiteRenderer.log" */, unsigned int 
 	Log("**Logger initialized**\n");
 }
 
+void Logger::AddFlag(unsigned int flag)
+{
+	m_logFlags |= flag;
+}
+
+void Logger::RemoveFlag(unsigned int flag)
+{
+	m_logFlags &= ~flag;
+}
+
 void Logger::ChangeFlags(unsigned int flags)
 {
 	m_logFlags.reset();
@@ -90,4 +100,3 @@ void Logger::Log(const char* const format, ...)
 	if (canPrintConsole())
 		std::cout << currentTimeFormatted << messageBuffer << std::endl;
 }
-
