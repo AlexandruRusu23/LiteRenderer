@@ -61,14 +61,13 @@ int main(int argc, char **argv)
 	textObject.textColor = { 1, 0, 0 };
 	textObject.textSize = 24;
 
-	Rendering::Text::TextLoader* textLoader = &Rendering::Text::TextLoader::Instance();
-	textLoader->LoadFont(textObject.textFontname, "Assets/Fonts/Raleway-Medium.ttf", textObject.textSize);
+	using TextLoader = Rendering::Text::TextLoader;
+	TextLoader::Instance().LoadFont(textObject.textFontname, "Assets/Fonts/Raleway-Medium.ttf", textObject.textSize);
 
 	Rendering::Text::TextModel* textModel = new Rendering::Text::TextModel();
 	textModel->SetProgram(engine->GetShaderManager()->GetShader("textShader")->GetProgramId());
 	textModel->Create();
 	textModel->SetTextObject(textObject);
-	textModel->SetTextLoader(textLoader);
 
 	engine->GetModelsManager()->SetModel("textModel", textModel);
 

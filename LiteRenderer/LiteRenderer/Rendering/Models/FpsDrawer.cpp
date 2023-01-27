@@ -21,8 +21,8 @@ FpsDrawer::FpsDrawer()
 	m_textObject.textColor = { 1, 0, 0 };
 	m_textObject.textSize = 24;
 
-	m_textLoader = &Rendering::Text::TextLoader::Instance();
-	m_textLoader->LoadFont(m_textObject.textFontname, "Assets/Fonts/Arial.ttf", m_textObject.textSize);
+	using TextLoader = Rendering::Text::TextLoader;
+	TextLoader::Instance().LoadFont(m_textObject.textFontname, "Assets/Fonts/Arial.ttf", m_textObject.textSize);
 }
 
 FpsDrawer::~FpsDrawer()

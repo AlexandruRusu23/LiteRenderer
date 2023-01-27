@@ -20,7 +20,7 @@ static const bool DEBUG_MODE_ENABLED = false;
 std::ofstream Logger::m_outStream;
 std::bitset<8> Logger::m_logFlags;
 
-void Logger::Init(std::string filename /* = "LiteRenderer.log" */, unsigned int flags /* = LOG_ALL | PRINT_BOTH */)
+void Logger::Init(std::string filename /* = "LiteRenderer.log" */, uint64_t flags /* = LOG_ALL | PRINT_BOTH */)
 {
 	if (m_outStream.is_open())
 	{
@@ -33,23 +33,23 @@ void Logger::Init(std::string filename /* = "LiteRenderer.log" */, unsigned int 
 	Log("**Logger initialized**\n");
 }
 
-void Logger::AddFlag(unsigned int flag)
+void Logger::AddFlag(uint64_t flag)
 {
 	m_logFlags |= flag;
 }
 
-void Logger::RemoveFlag(unsigned int flag)
+void Logger::RemoveFlag(uint64_t flag)
 {
 	m_logFlags &= ~flag;
 }
 
-void Logger::ChangeFlags(unsigned int flags)
+void Logger::ChangeFlags(uint64_t flags)
 {
 	m_logFlags.reset();
 	m_logFlags |= flags;
 }
 
-unsigned int Logger::GetFlags()
+uint64_t Logger::GetFlags()
 {
 	return m_logFlags.to_ulong();
 }
@@ -73,12 +73,10 @@ void Logger::Log(const char* const format, ...)
 
 	size_t messageLength = 0;
 	char messageBuffer[LOGGER_STRING_MAX_LENGTH];
-	memset(messageBuffer, 0, sizeof(messageBuffer));
 
 	va_list args;
 	va_start(args, format);
 	messageLength = _vsnprintf_s(messageBuffer, LOGGER_STRING_MAX_LENGTH - 1, format, args);
-	messageBuffer[messageLength] = '\0';
 	va_end(args);
 
 	time_t currentTime = time(nullptr);
