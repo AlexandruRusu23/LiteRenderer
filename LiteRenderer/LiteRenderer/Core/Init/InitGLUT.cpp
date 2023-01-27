@@ -15,7 +15,7 @@ void InitGLUT::Init(int argc, char **argv, const WindowInfo& windowInfo, const C
 {
 	Utils::Timer::Init();
 	Logger::Init();
-	Logger::ChangeFlags(Logger::LOG_ALL & (~Logger::LOG_NOTIFICATIONS));
+	Logger::ChangeFlags((Logger::LOG_ALL | Logger::PRINT_BOTH) & (~Logger::LOG_NOTIFICATIONS));
 
 	glutInit(&argc, argv);
 
@@ -78,9 +78,9 @@ void InitGLUT::Run()
 
 void InitGLUT::Close()
 {
+	glutLeaveMainLoop();
 	Logger::Log("GLUT:\t Finished");
 	Logger::Close();
-	glutLeaveMainLoop();
 }
 
 void InitGLUT::EnterFullscreen()

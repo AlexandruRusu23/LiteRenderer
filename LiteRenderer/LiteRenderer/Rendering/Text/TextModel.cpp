@@ -40,11 +40,6 @@ void TextModel::SetTextObject(const TextObject& textObject)
 	m_textObject = textObject;
 }
 
-void TextModel::SetTextLoader(TextLoader*& textLoader)
-{
-	m_textLoader = textLoader;
-}
-
 void TextModel::Update()
 {
 
@@ -66,7 +61,7 @@ void TextModel::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMat
 
 	for (auto cter : m_textObject.textToRender)
 	{
-		TextLoader::FTCharacter ch = m_textLoader->GetFontCharacter(m_textObject.textFontname, cter);
+		TextLoader::FTCharacter ch = TextLoader::Instance().GetFontCharacter(m_textObject.textFontname, cter);
 
 		float xPos = xTextCoords + ch.bearing.x * m_textObject.textScale;
 		float yPos = yTextCoords - (ch.size.y - ch.bearing.y) * m_textObject.textScale;
