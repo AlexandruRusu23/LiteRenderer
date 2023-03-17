@@ -92,8 +92,8 @@ std::string ShaderManager::ReadShader(const std::string& filename)
 	if (!file.good())
 	{
 		Logger::Log("Can't read file %s.", filename.c_str());
-		std::terminate();
 		_ASSERT(false);
+		std::terminate();
 		return 0;
 	}
 

@@ -22,7 +22,7 @@ namespace LiteRenderer
 			Singleton(Singleton&&) = delete;
 			Singleton(const Singleton&) = delete;
 			Singleton& operator=(Singleton&&) = delete;
-			Singleton& operator=(const Singleton&) = delete;
+			Singleton& operator=(const Singleton&) noexcept = delete;
 			~Singleton() = default;
 		};
 	}

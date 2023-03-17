@@ -70,6 +70,14 @@ void Logger::Log(const char* const format, ...)
 	{ 
 		return GetFlags() & STORE_IN_FILE; 
 	};
+	auto skipTimestamp = []()
+	{
+		return GetFlags() & REMOVE_TIMESTAMP;
+	};
+	auto skipNewLineLog = []()
+	{
+		return GetFlags() & NO_NEW_LINE_LOG;
+	};
 
 	size_t messageLength = 0;
 	char messageBuffer[LOGGER_STRING_MAX_LENGTH];
@@ -79,22 +87,39 @@ void Logger::Log(const char* const format, ...)
 	messageLength = _vsnprintf_s(messageBuffer, LOGGER_STRING_MAX_LENGTH - 1, format, args);
 	va_end(args);
 
-	time_t currentTime = time(nullptr);
-	struct tm currentTimeData;
-	localtime_s(&currentTimeData, &currentTime);
-	char currentTimeFormatted[26];
-	if (asctime_s(currentTimeFormatted, 26, &currentTimeData))
+	if (!skipTimestamp())
 	{
-		m_outStream << "ERROR : Invalid argument to asctime_s." << std::endl;
-		std::cout << "ERROR : Invalid argument to asctime_s." << std::endl;
-		assert(false);
-		return;
+		time_t currentTime = time(nullptr);
+		struct tm currentTimeData;
+		localtime_s(&currentTimeData, &currentTime);
+		char currentTimeFormatted[26];
+		if (asctime_s(currentTimeFormatted, 26, &currentTimeData))
+		{
+			m_outStream << "ERROR : Invalid argument to asctime_s." << std::endl;
+			std::cout << "ERROR : Invalid argument to asctime_s." << std::endl;
+			assert(false);
+			return;
+		}
+		size_t timeFormattedLength = strlen(currentTimeFormatted);
+		if (timeFormattedLength)
+			currentTimeFormatted[timeFormattedLength - 1] = ' ';
+
+		if (canStoreInFile())
+			m_outStream << currentTimeFormatted;
+		if (canPrintConsole())
+			std::cout << currentTimeFormatted;
 	}
-	size_t timeFormattedLength = strlen(currentTimeFormatted);
-	currentTimeFormatted[timeFormattedLength - 1] = ' ';
 
 	if (canStoreInFile())
-		m_outStream << currentTimeFormatted << messageBuffer << std::endl;
+		m_outStream << messageBuffer;
 	if (canPrintConsole())
-		std::cout << currentTimeFormatted << messageBuffer << std::endl;
+		std::cout << messageBuffer;
+
+	if (!skipNewLineLog())
+	{
+		if (canStoreInFile())
+			m_outStream << std::endl;
+		if (canPrintConsole())
+			std::cout << std::endl;
+	}
 }
