@@ -14,7 +14,7 @@ namespace LiteRenderer
 			public:
 				Model();
 				virtual ~Model();
-				virtual void Destroy() override;
+				virtual void Destroy() final override;
 
 				virtual void Update() override;
 				virtual void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) override;

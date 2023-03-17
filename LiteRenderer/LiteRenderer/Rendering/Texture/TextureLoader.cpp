@@ -93,7 +93,7 @@ void TextureLoader::LoadBMPFile(const std::string& filename, unsigned int& width
 	file.read((char*)&(bmpHeader.offBits), sizeof(int));
 	file.read((char*)&(bmpHeaderInfo), sizeof(Texture::BMP_Header_Info));
 
-	data = new unsigned char[bmpHeaderInfo.width*bmpHeaderInfo.height * 3];
+	data = new unsigned char[static_cast<size_t>(bmpHeaderInfo.width)*bmpHeaderInfo.height * 3];
 
 	long padd = 0;
 	if ((bmpHeaderInfo.width * 3) % 4 != 0) padd = 4 - (bmpHeaderInfo.width * 3) % 4;

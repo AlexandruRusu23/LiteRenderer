@@ -4,7 +4,11 @@ using namespace LiteRenderer;
 using namespace Rendering;
 using namespace Models;
 
-Model::Model() {}
+Model::Model()
+	: m_program(0)
+	, m_vao(0)
+{
+}
 
 Model::~Model()
 {

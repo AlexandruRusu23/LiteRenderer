@@ -9,6 +9,11 @@ using namespace Models;
 const float CubeTexture::PI = 3.14159265f;
 
 CubeTexture::CubeTexture()
+	: m_rotation(glm::vec3())
+	, m_rotationSpeed(glm::vec3())
+	, m_rotationSin(glm::vec3())
+	, m_translate(glm::vec3())
+	, m_translateMatrix(glm::mat4())
 {
 
 }

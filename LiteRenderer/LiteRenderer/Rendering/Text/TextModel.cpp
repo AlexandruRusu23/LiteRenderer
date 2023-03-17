@@ -18,7 +18,6 @@ void TextModel::Create()
 {
 	GLuint vao;
 	GLuint vbo;
-	GLuint ibo;
 
 	glGenVertexArrays(1, &vao);
 	glGenBuffers(1, &vbo);
@@ -32,7 +31,6 @@ void TextModel::Create()
 
 	this->m_vao = vao;
 	this->m_vbos.push_back(vbo);
-	this->m_vbos.push_back(ibo);
 }
 
 void TextModel::SetTextObject(const TextObject& textObject)
