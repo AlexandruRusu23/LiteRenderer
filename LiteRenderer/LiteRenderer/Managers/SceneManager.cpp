@@ -108,12 +108,12 @@ void SceneManager::NotifyMousePassiveMotion(int x, int y)
 	Core::Input::InputController::MouseMovingReleased(x, y);
 }
 
-void SceneManager::SetModelsManager(ModelsManager*& modelsManager)
+void SceneManager::SetModelsManager(std::shared_ptr<ModelsManager>& modelsManager)
 {
 	m_modelsManager = modelsManager;
 }
 
-void Managers::SceneManager::SetCamera(Rendering::ICamera * camera)
+void Managers::SceneManager::SetCamera(std::shared_ptr<Rendering::ICamera>& camera)
 {
 	m_camera = camera;
 }

@@ -28,29 +28,29 @@ static const std::vector<std::string> skyboxBlueSkyTextures =
 
 int main(int argc, char **argv)
 {
-	LiteRenderer::Engine* engine = new LiteRenderer::Engine();
+	std::unique_ptr<LiteRenderer::Engine> engine = std::make_unique<LiteRenderer::Engine>();
 	engine->Init(argc, argv);
 
 	// CUBES
-	engine->GetShaderManager()->CreateProgram("texturedCubeShader",
+	engine->GetShaderManager().CreateProgram("texturedCubeShader",
 		"Assets/Shaders/CubeTexturedVertexShader.glsl",
 		"Assets/Shaders/CubeTexturedFragmentShader.glsl");
 
 	for (int i = 0; i < 5; i++)
 	{
-		Rendering::Models::CubeTexture* cubeTexture = new Rendering::Models::CubeTexture();
-		cubeTexture->SetProgram(engine->GetShaderManager()->GetShader("texturedCubeShader")->GetProgramId());
+		std::unique_ptr<Rendering::Models::CubeTexture> cubeTexture = std::make_unique<Rendering::Models::CubeTexture>();
+		cubeTexture->SetProgram(engine->GetShaderManager().GetShader("texturedCubeShader").GetProgramId());
 		cubeTexture->Create();
 
-		unsigned int textureId = engine->GetTextureLoader()->LoadTexture("Assets/Textures/Test/Crate.bmp");
+		unsigned int textureId = engine->GetTextureLoader().LoadTexture("Assets/Textures/Test/Crate.bmp");
 		cubeTexture->AddTexture("CrateTexture", textureId);
 		cubeTexture->SetCurrentTextures({textureId});
 
-		engine->GetModelsManager()->SetModel("boxModel" + std::to_string(i), cubeTexture);
+		engine->GetModelsManager()->SetModel("boxModel" + std::to_string(i), std::move(cubeTexture));
 	}
 
 	// TEXT
-	engine->GetShaderManager()->CreateProgram("textShader",
+	engine->GetShaderManager().CreateProgram("textShader",
 		"Assets/Shaders/textRenderVertexShader.glsl",
 		"Assets/Shaders/textRenderFragmentShader.glsl");
 
@@ -64,38 +64,36 @@ int main(int argc, char **argv)
 	using TextLoader = Rendering::Text::TextLoader;
 	TextLoader::Instance().LoadFont(textObject.textFontname, "Assets/Fonts/Raleway-Medium.ttf", textObject.textSize);
 
-	Rendering::Text::TextModel* textModel = new Rendering::Text::TextModel();
-	textModel->SetProgram(engine->GetShaderManager()->GetShader("textShader")->GetProgramId());
+	std::unique_ptr<Rendering::Text::TextModel> textModel = std::make_unique<Rendering::Text::TextModel>();
+	textModel->SetProgram(engine->GetShaderManager().GetShader("textShader").GetProgramId());
 	textModel->Create();
 	textModel->SetTextObject(textObject);
 
-	engine->GetModelsManager()->SetModel("textModel", textModel);
+	engine->GetModelsManager()->SetModel("textModel", std::move(textModel));
 
 	// FPS
-	Rendering::Models::FpsDrawer *fpsModel = new Rendering::Models::FpsDrawer();
-	fpsModel->SetProgram(engine->GetShaderManager()->GetShader("textShader")->GetProgramId());
+	std::unique_ptr<Rendering::Models::FpsDrawer> fpsModel = std::make_unique<Rendering::Models::FpsDrawer>();
+	fpsModel->SetProgram(engine->GetShaderManager().GetShader("textShader").GetProgramId());
 	fpsModel->Create();
-	engine->GetModelsManager()->SetModel("textFPS", fpsModel);
+	engine->GetModelsManager()->SetModel("textFPS", std::move(fpsModel));
 
 	// SKYBOX
-	engine->GetShaderManager()->CreateProgram("SkyboxShader",
+	engine->GetShaderManager().CreateProgram("SkyboxShader",
 		"Assets/Shaders/skyboxVertexShader.glsl",
 		"Assets/Shaders/skyboxFragmentShader.glsl"
 	);
 
-	Rendering::Models::Skybox* skybox = new Rendering::Models::Skybox();
-	skybox->SetProgram(engine->GetShaderManager()->GetShader("SkyboxShader")->GetProgramId());
+	std::unique_ptr<Rendering::Models::Skybox> skybox = std::make_unique<Rendering::Models::Skybox>();
+	skybox->SetProgram(engine->GetShaderManager().GetShader("SkyboxShader").GetProgramId());
 	skybox->Create();
 
-	unsigned int textureId = engine->GetTextureLoader()->LoadCubemapTexture(skyboxBlueSkyTextures);
+	unsigned int textureId = engine->GetTextureLoader().LoadCubemapTexture(skyboxBlueSkyTextures);
 	skybox->AddTexture("SkyboxTexture", textureId);
 	skybox->SetCurrentTextures({ textureId });
 	
-	engine->GetModelsManager()->SetModel("skybox", skybox);
+	engine->GetModelsManager()->SetModel("skybox", std::move(skybox));
 
 	engine->Run();
-
-	delete engine;
 
 	return 0;
 }

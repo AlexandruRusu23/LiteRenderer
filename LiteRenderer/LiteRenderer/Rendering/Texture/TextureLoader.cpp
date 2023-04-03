@@ -19,9 +19,9 @@ TextureLoader::~TextureLoader()
 
 unsigned int TextureLoader::LoadTexture(const std::string& filename)
 {
-	unsigned char* data;
-	unsigned int width;
-	unsigned int height;
+	std::unique_ptr<unsigned char[]> data;
+	unsigned int width = 0;
+	unsigned int height = 0;
 	LoadBMPFile(filename, width, height, data);
 
 	unsigned int textureObject;
@@ -38,9 +38,7 @@ unsigned int TextureLoader::LoadTexture(const std::string& filename)
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, maxAnisotropy);
 
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-
-	delete data;
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data.get());
 
 	glGenerateMipmap(GL_TEXTURE_2D);
 
@@ -60,20 +58,19 @@ unsigned int TextureLoader::LoadCubemapTexture(const std::vector<std::string>& f
 
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-	unsigned int width;
-	unsigned int height;
-	unsigned char* data;
+	unsigned int width = 0;
+	unsigned int height = 0;
+	std::unique_ptr<unsigned char[]> data;
 	for (unsigned int iter = 0; iter < filenames.size(); iter++)
 	{
 		LoadBMPFile(filenames[iter], width, height, data);
-		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + iter, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-		delete data;
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + iter, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data.get());
 	}
 
 	return textureObject;
 }
 
-void TextureLoader::LoadBMPFile(const std::string& filename, unsigned int& width, unsigned int& height, unsigned char*& data)
+void TextureLoader::LoadBMPFile(const std::string& filename, unsigned int& width, unsigned int& height, std::unique_ptr<unsigned char[]> &data)
 {
 	std::ifstream file(filename.c_str(), std::ios::in | std::ios::binary);
 	if (!file.good()) {
@@ -93,7 +90,7 @@ void TextureLoader::LoadBMPFile(const std::string& filename, unsigned int& width
 	file.read((char*)&(bmpHeader.offBits), sizeof(int));
 	file.read((char*)&(bmpHeaderInfo), sizeof(Texture::BMP_Header_Info));
 
-	data = new unsigned char[static_cast<size_t>(bmpHeaderInfo.width)*bmpHeaderInfo.height * 3];
+	data = std::make_unique<unsigned char[]>(static_cast<size_t>(bmpHeaderInfo.width) * bmpHeaderInfo.height * 3);
 
 	long padd = 0;
 	if ((bmpHeaderInfo.width * 3) % 4 != 0) padd = 4 - (bmpHeaderInfo.width * 3) % 4;
@@ -101,7 +98,7 @@ void TextureLoader::LoadBMPFile(const std::string& filename, unsigned int& width
 	width = bmpHeaderInfo.width;
 	height = bmpHeaderInfo.height;
 
-	long pointer;
+	unsigned int pointer;
 	unsigned char r, g, b;
 	for (unsigned int i = 0; i < height; i++)
 	{
@@ -113,8 +110,8 @@ void TextureLoader::LoadBMPFile(const std::string& filename, unsigned int& width
 
 			pointer = (i*width + j) * 3;
 			data[pointer] = r;
-			data[pointer + 1] = g;
-			data[pointer + 2] = b;
+			data[static_cast<size_t>(pointer) + 1] = g;
+			data[static_cast<size_t>(pointer) + 2] = b;
 		}
 
 		file.seekg(padd, std::ios_base::cur);

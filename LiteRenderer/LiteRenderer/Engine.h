@@ -1,6 +1,8 @@
 #ifndef LITERENDERER_ENGINE_H
 #define LITERENDERER_ENGINE_H
 
+#include <memory>
+
 #include "Core/Init/InitGLUT.h"
 #include "Managers/SceneManager.h"
 #include "Rendering/ICamera.h"
@@ -17,17 +19,18 @@ namespace LiteRenderer
 
 		void Run();
 
-		Managers::SceneManager*		GetSceneManager()	const;
-		Managers::ShaderManager*	GetShaderManager()	const;
-		Managers::ModelsManager*	GetModelsManager()	const;
-		Rendering::TextureLoader*	GetTextureLoader()	const;
+		Managers::SceneManager&		GetSceneManager()	const;
+		Managers::ShaderManager&	GetShaderManager()	const;
+		Rendering::TextureLoader&	GetTextureLoader()	const;
+		std::shared_ptr<Managers::ModelsManager>	GetModelsManager()	const;
+		std::shared_ptr<Rendering::ICamera>	GetCamera()	const;
 
 	private:
-		Managers::SceneManager*		m_sceneManager  = nullptr;
-		Managers::ShaderManager*	m_shaderManager = nullptr;
-		Managers::ModelsManager*	m_modelsManager = nullptr;
-		Rendering::TextureLoader*	m_textureLoader = nullptr;
-		Rendering::ICamera*			m_camera		= nullptr;
+		std::unique_ptr<Managers::SceneManager>		m_sceneManager;
+		std::unique_ptr<Managers::ShaderManager>	m_shaderManager;
+		std::unique_ptr<Rendering::TextureLoader>	m_textureLoader;
+		std::shared_ptr<Managers::ModelsManager>	m_modelsManager;
+		std::shared_ptr<Rendering::ICamera>			m_camera;
 	};
 }
 

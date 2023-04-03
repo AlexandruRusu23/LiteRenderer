@@ -10,17 +10,12 @@ ModelsManager::ModelsManager()
 
 ModelsManager::~ModelsManager()
 {
-	for (auto model : m_gameModelList)
-	{
-		delete model.second;
-		model.second = nullptr;
-	}
 	m_gameModelList.clear();
 }
 
 void ModelsManager::Update()
 {
-	for (auto model : m_gameModelList)
+	for (auto& model : m_gameModelList)
 	{
 		model.second->Update();
 	}
@@ -28,7 +23,7 @@ void ModelsManager::Update()
 
 void ModelsManager::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
-	for (auto model : m_gameModelList)
+	for (auto& model : m_gameModelList)
 	{
 		model.second->Draw(projection_matrix, view_matrix);
 	}
@@ -36,18 +31,16 @@ void ModelsManager::Draw(const glm::mat4& projection_matrix, const glm::mat4& vi
 
 const Rendering::IGameObject& ModelsManager::GetModel(const std::string& gameModelName) const
 {
-	return (*m_gameModelList.at(gameModelName));
+	return *m_gameModelList.at(gameModelName);
 }
 
-void ModelsManager::SetModel(const std::string& gameObjectName, Rendering::IGameObject* gameObject)
+void ModelsManager::SetModel(const std::string& gameObjectName, std::unique_ptr<Rendering::IGameObject> gameObject)
 {
-	m_gameModelList[gameObjectName.c_str()] = gameObject;
+	m_gameModelList[gameObjectName.c_str()] = std::move(gameObject);
 }
 
 void ModelsManager::DeleteModel(const std::string& gameModelName)
 {
-	Rendering::IGameObject* model = m_gameModelList[gameModelName];
-	model->Destroy();
 	m_gameModelList.erase(gameModelName);
 }
 

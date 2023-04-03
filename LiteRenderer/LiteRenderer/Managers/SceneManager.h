@@ -32,12 +32,12 @@ namespace LiteRenderer
 			virtual void NotifyMouseMotion(int x, int y);
 			virtual void NotifyMousePassiveMotion(int x, int y);
 
-			void SetModelsManager(ModelsManager*& modelsManager);
-			void SetCamera(Rendering::ICamera* camera);
+			void SetModelsManager(std::shared_ptr<ModelsManager>& modelsManager);
+			void SetCamera(std::shared_ptr<Rendering::ICamera>& camera);
 
 		private:
-			Managers::ModelsManager*	m_modelsManager = nullptr;
-			Rendering::ICamera*			m_camera = nullptr;
+			std::shared_ptr<Managers::ModelsManager> m_modelsManager;
+			std::shared_ptr<Rendering::ICamera> m_camera;
 
 			glm::mat4					m_projectionMatrix;
 			glm::mat4					m_viewMatrix;

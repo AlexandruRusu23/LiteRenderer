@@ -13,20 +13,12 @@ ShaderManager::ShaderManager(void) {}
 
 ShaderManager::~ShaderManager(void)
 {
-	std::map<std::string, Rendering::Shaders::ShaderObject*>::iterator program;
-	for (program = m_programs.begin(); program != m_programs.end(); program++)
-	{
-		Rendering::Shaders::ShaderObject* shader = program->second;
-		delete shader;
-	}
 	m_programs.clear();
 }
 
-Rendering::Shaders::ShaderObject* ShaderManager::GetShader(const std::string& shaderName)
+Rendering::Shaders::ShaderObject& ShaderManager::GetShader(const std::string& shaderName)
 {
-	if (m_programs.find(shaderName) != m_programs.end())
-		return m_programs.at(shaderName);
-	return nullptr;
+	return *m_programs.at(shaderName);
 }
 
 void ShaderManager::CreateProgram(const std::string& shaderName,
@@ -69,12 +61,12 @@ void ShaderManager::CreateProgram(const std::string& shaderName,
 		return;
 	}
 
-	Rendering::Shaders::DrawingShader* shader = new Rendering::Shaders::DrawingShader(shaderName, program, vertexShader, fragmentShader, geometryShader);
+	std::unique_ptr<Rendering::Shaders::DrawingShader> shader = std::make_unique<Rendering::Shaders::DrawingShader>(shaderName, program, vertexShader, fragmentShader, geometryShader);
 	shader->SetVertexShaderFilename(vertexShaderFilename);
 	shader->SetFragmentShaderFilename(vertexShaderFilename);
 	shader->SetGeometryShaderFilename(geometryShaderFilename);
 
-	m_programs[shaderName] = shader;
+	m_programs[shaderName] = std::move(shader);
 }
 
 std::string ShaderManager::ReadShader(const std::string& filename)

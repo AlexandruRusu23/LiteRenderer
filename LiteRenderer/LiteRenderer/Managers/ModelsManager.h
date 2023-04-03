@@ -2,6 +2,7 @@
 #define MANAGERS_MODELSMANAGER_H
 
 #include <map>
+#include <memory>
 
 #include "Rendering/IGameObject.h"
 
@@ -19,11 +20,11 @@ namespace LiteRenderer
 			void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix);
 
 			const Rendering::IGameObject& GetModel(const std::string& gameModelName) const;
-			void SetModel(const std::string& gameObjectName, Rendering::IGameObject* gameObject);
+			void SetModel(const std::string& gameObjectName, std::unique_ptr<Rendering::IGameObject> gameObject);
 			void DeleteModel(const std::string& gameModelName);
 
 		private:
-			std::map<std::string, Rendering::IGameObject*> m_gameModelList;
+			std::map<std::string, std::unique_ptr<Rendering::IGameObject>> m_gameModelList;
 		};
 	}
 }
