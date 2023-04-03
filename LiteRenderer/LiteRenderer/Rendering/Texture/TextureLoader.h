@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 #include <glew/glew.h>
 
 #include "BMPHeaders.h"
@@ -21,7 +22,7 @@ namespace LiteRenderer
 			unsigned int LoadCubemapTexture(const std::vector<std::string>& filenames);
 
 		private:
-			void LoadBMPFile(const std::string& filename, unsigned int& width, unsigned int& height, unsigned char*& data);
+			void LoadBMPFile(const std::string& filename, unsigned int& width, unsigned int& height, std::unique_ptr<unsigned char[]> &data);
 		};
 	}
 }

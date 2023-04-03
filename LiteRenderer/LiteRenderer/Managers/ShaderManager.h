@@ -18,7 +18,7 @@ namespace LiteRenderer
 			ShaderManager(void);
 			~ShaderManager(void);
 
-			Rendering::Shaders::ShaderObject* GetShader(const std::string& shaderName);
+			Rendering::Shaders::ShaderObject& GetShader(const std::string& shaderName);
 
 			void CreateProgram(const std::string& shaderName,
 				const std::string& vertexShaderFilename,
@@ -29,7 +29,7 @@ namespace LiteRenderer
 			std::string ReadShader(const std::string& filename);
 			GLuint CreateShader(GLenum shaderType, const std::string& source, const std::string& shaderName);
 
-			std::map<std::string, Rendering::Shaders::ShaderObject*> m_programs;
+			std::map<std::string, std::unique_ptr<Rendering::Shaders::ShaderObject>> m_programs;
 		};
 	}
 }

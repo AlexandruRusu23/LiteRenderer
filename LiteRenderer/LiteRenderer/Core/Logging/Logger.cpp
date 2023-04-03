@@ -9,18 +9,18 @@ using namespace LiteRenderer;
 using namespace Core;
 using namespace Logging;
 
-static const unsigned int LOGGER_STRING_MAX_LENGTH = 1024;
+static constexpr unsigned int LOGGER_STRING_MAX_LENGTH = 1024;
 
 #ifdef _DEBUG
-static const bool DEBUG_MODE_ENABLED = true;
+static constexpr bool DEBUG_MODE_ENABLED = true;
 #else
-static const bool DEBUG_MODE_ENABLED = false;
+static constexpr bool DEBUG_MODE_ENABLED = false;
 #endif
 
 std::ofstream Logger::m_outStream;
 std::bitset<8> Logger::m_logFlags;
 
-void Logger::Init(std::string filename /* = "LiteRenderer.log" */, uint64_t flags /* = LOG_ALL | PRINT_BOTH */)
+void Logger::Init(const std::string& filename /* = "LiteRenderer.log" */, uint64_t flags /* = LOG_ALL | PRINT_BOTH */)
 {
 	if (m_outStream.is_open())
 	{
